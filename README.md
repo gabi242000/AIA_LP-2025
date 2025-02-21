@@ -9,7 +9,7 @@ Pentru fiecare student se va face un branch nou, unde isi va incarca fiecare tem
    * numele folder-ului = Nume_Prenume
 - Pentru a clona repo-ul, se va folosi in terminal comanda:
 
-   * git clone  local/path/to/desired/folder
+   * git clone  https://github.com/gabi242000/AIA_LP-2025 local/path/to/desired/folder
 - Pasi pentru commit (din VScode/alt IDE) (se va face o singura data):
 
  - configurare initiala (in caz ca nu a fost facuta deja) - In terminal se vor executa urmatoarele comenzi:
