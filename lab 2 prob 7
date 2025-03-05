@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    float salBrut, salNet;
+    int cod;
+
+    scanf("%f", &salBrut);
+    printf("Introduceti codul contractului (1, 2, 3): ");
+    scanf("%d", &cod);
+
+    switch (cod) {
+        case 1: salNet = salBrut * 0.75; break;
+        case 2: salNet = salBrut * 0.90; break;
+        case 3: salNet = salBrut * 0.95; break;
+        default: 
+            printf("EROARE 404");
+            return 1;
+    }
+
+    printf("Salariul net este: %.2f\n", salNet);
+    return 0;
+}
