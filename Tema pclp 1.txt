@@ -1,0 +1,87 @@
+Tema pclp laborator 1
+
+ex 5
+#include <iostream>
+using namespace std;
+int main (){
+    int a;
+    cout<<"Introduceti o nota de la 1 la 10: ";
+    cin>>a;
+    if (a<1 || a>10){
+        cout<<"Nota invalida!";}
+    else if (a>=1 && a<=4){
+        cout<<"Insuficient ";}
+    else if (a>=5 && a<=6){
+        cout<<"Suficient"<<endl;}
+    else if (a>=7 && a<=8){
+        cout<<"Bine"<<endl;}
+    else if (a==9){
+        cout<<"Foarte bine!";}
+    else if (a==10){
+        cout<<"Excelent!";}
+
+    return 0;
+}
+
+ex 6.
+#include <stdio.h>
+int main (){
+    int a, b, c;
+    printf("Introduceti pretul produsului:");
+    scanf("%d", &a);
+    printf("Introduceti codul de reducere(1, 2 sau 3):");
+    scanf("%d", &b);
+    switch (b) {
+        case 1:
+            c = a * 0.9;  
+            break;
+        case 2:
+            c = a * 0.8;  
+            break;
+        case 3:
+            c = a * 0.7;  
+            break;
+        default:
+            printf("Eroare: Codul de reducere este invalid!\n");
+          
+}
+    printf("Pretul final este: %d\n", c);
+    return 0;
+}
+
+ex 7.
+#include <stdio.h>
+
+int main() {
+    float salariuBrut, salariuNet;
+    int codContract;
+    float impozit;
+
+
+    printf("Introduceti salariu brut: ");
+    scanf("%f", &salariuBrut);
+
+
+    printf("Introduceti codul contractului (1 pentru full-time, 2 pentru colaborare, 3 pentru PFA): ");
+    scanf("%d", &codContract);
+
+
+    switch (codContract) {
+        case 1:
+            impozit = 0.25;
+            break;
+        case 2:
+            impozit = 0.10;
+            break;
+        case 3:
+            impozit = 0.05;
+            break;
+        default:
+            printf("Cod de contract invalid.\n");
+            return 1;
+    }
+    salariuNet = salariuBrut - (salariuBrut * impozit);
+    printf("Salariul net este: %.2f\n", salariuNet);
+
+    return 0;
+}
