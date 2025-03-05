@@ -1,0 +1,21 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    cout << " lab 2 prob 5";
+    int not;
+    cin >> not;
+
+    switch (not) {
+        case 10: cout << "Excelent"; break;
+        case 9: cout << "Foarte bine"; break;
+        case 8: cout << "Bine"; break;
+        case 7: case 6: cout << "Acceptabil"; break;
+        case 5: case 4: cout << "Slabut"; break;
+        case 3: case 2: case 1: cout << "Foarte slabut"; break;
+        default: cout << "EROARE 404"; break;
+    }
+
+    return 0;
+}
