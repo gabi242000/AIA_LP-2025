@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    printf("prob 6");
+    float pret;
+    int cod;
+
+    printf("Introdu pretul produsului:");
+    scanf("%f", &pret);
+    printf("Introdu codul de reducere (1, 2, 3): ");
+    scanf("%d", &cod);
+
+    switch (cod) {
+        case 1: pret *= 0.9; break;
+        case 2: pret *= 0.8; break;
+        case 3: pret *= 0.7; break;
+        default: 
+            printf("EROARE 404");
+            return 1;
+    }
+
+    printf("Pretul final: %.2f\n", pret);
+    return 0;
+}
