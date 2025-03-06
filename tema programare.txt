@@ -1,0 +1,106 @@
+exercitiul 5
+#include <iostream>
+using namespace std;
+int main(){
+    int n;
+    cout<<"introduceti o valoare de la 1 la 10 : ";
+    cin>>n;
+    switch(n){
+        case 1 :
+        cout<<"cel mai rau" <<endl;
+        break;
+        case 2 :
+        cout<<"la fel de rau"<<endl;
+        break;
+        case 3 :
+        cout<<"tot nu e bine deloc"<<endl;
+        break;
+        case 4 :
+        cout<<"4!stai jos."<<endl;
+        break;
+        case 5 :
+        cout<<"de trecere"<<endl;
+        break;
+        case 6 : 
+        cout<<"puteai mai mult!"<<endl;
+        break;
+        case 7 :
+        cout<<"nu e rau"<<endl;
+        break;
+        case 8 :
+        cout<<"e bine!"<<endl;
+        break;
+        case 9 :
+        cout<<"foarte bine!"<<endl;
+        break;
+        case 10 :
+        cout<<"lucrare perfecta"<<endl;
+        break;
+        default :
+        cout<<"nu ai pus bine nota "<<endl;
+        break;
+        
+    }
+    return 0;
+}
+
+exercitiul 6 
+#include <stdio.h>
+int main(){
+    int a , b , c ;
+    printf("alege pretul produsului:");
+    scanf("%d" , &a);
+    printf("alege reducerea 1 2 sau 3 :");
+    scanf("%d", &b);
+    switch(b){
+        case 1 :
+          c = a*0.9 ;
+          break;
+        case 2 :
+          c = a*0.8 ;
+          break;
+        case 3 :
+          c = a*0.7 ;
+          break;
+        default :
+          printf("nu ai ales bine reducerea\n");
+          return 1;
+          break;
+        
+    }
+    printf("pretul final este : %d\n" , c);
+    return 0;
+}
+
+
+
+exercitiul7
+#include <stdio.h>
+int main(){
+    float sNet , sBrut ,  impozit;
+    int cod;
+    printf("selecteaza salariul brut:");
+    scanf("%f", &sBrut);
+    printf("selecteaza tipul contractului:");
+    scanf("%d", &cod);
+    switch(cod){
+        case 1 :
+        impozit = 0.25;
+        break;
+        case 2 :
+        impozit = 0.1;
+        break;
+        case 3 :
+        impozit = 0.05;
+        break;
+        default:
+        printf("nu e bun codul\n");
+        return  1 ;
+        break;
+       
+        
+    }
+    sNet = sBrut - (sBrut * impozit);
+    printf("salariul net este : %.2f\n" , sNet);
+    return 0;
+}
