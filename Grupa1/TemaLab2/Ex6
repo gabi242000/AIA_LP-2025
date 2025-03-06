@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <math.h>
+int main(){
+    int a,b;
+    printf("Introdu un pret si un code de reducere(1,2,3) \n");
+    scanf("%d",&a);
+    scanf("%d",&b);
+
+    switch (b) {
+        case 1: {
+
+            float c = a - 0.1*a;
+            printf("Pretul redus este: %0.2f" ,c);
+            break;
+        }
+        case 2: {
+
+            float c = a - 0.2*a;
+            printf("Pretul redus este: %0.2f" ,c);
+            break;
+        }
+        case 3: {
+
+            float c = a - 0.3*a;
+            printf("Pretul redus este: %0.2f" ,c);
+            break;
+        }
+        default:{
+            printf("Cod invalid");
+            break;
+        }
+    }
+}
