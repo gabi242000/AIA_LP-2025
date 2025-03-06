@@ -1,0 +1,63 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int nota;
+    cout<<"Introdu o nota de la 1 la 10"<<endl;
+    cin>>nota;
+    switch (nota){
+    case 1:
+        if (nota==1)
+            cout<<"Insuficient";
+        break;
+
+    case 2:
+        if (nota==2)
+            cout<<"Insuficient";
+        break;
+
+    case 3:
+        if (nota==3)
+            cout<<"Insuficient";
+        break;
+
+    case 4:
+        if (nota==4)
+            cout<<"Insuficient";
+        break;
+
+    case 5:
+        if (nota==5)
+            cout<<"Suficient";
+        break;
+
+    case 6:
+        if (nota==6)
+            cout<<"Suficient";
+        break;
+
+    case 7:
+        if (nota==7)
+            cout<<"Bine";
+        break;
+
+    case 8:
+        if (nota==8)
+            cout<<"Bine";
+        break;
+
+    case 9:
+        if (nota==9)
+            cout<<"Foarte Bine";
+        break;
+
+    case 10:
+        if (nota==10)
+            cout<<"Foarte Bine";
+        break;
+
+    }
+    return 0;
+}
