@@ -1,0 +1,30 @@
+#include <algorithm>
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <string.h>
+#include <bits/ranges_algo.h>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    int a;
+    cout<<"Introduceti nota dorita: "<<endl;
+    cin>>a;
+
+
+    if (a <= 4)
+        cout<<"Nesatisfacator";
+    else if (a >= 5 && a <= 6)
+        cout<<"Decent";
+    else if (a >= 7 && a <= 8)
+        cout<<"Bun";
+    else if (a >= 9 && a <= 10)
+        cout<<"Genial";
+    else
+        cout<<"Cam mare vericule";
+
+    return 0;
+}
