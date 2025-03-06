@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int cod,brut,net;
+    printf("Introduceti salariul brut: ");
+    scanf("%d",&brut);
+    printf("Introduceti codul: ");
+    scanf("%d",&cod);
+    printf("\n");
+
+    switch(cod){
+    case 1:
+        net=brut-(brut*0.25);
+        printf("%d",net);
+        break;
+    case 2:
+        net=brut-(brut*0.1);
+        printf("%d",net);
+        break;
+    case 3:
+        net=brut-(brut*0.05);
+        printf("%d",net);
+        break;
+    case 4:
+        printf("Cod invalid");
+        break;
+
+}
+
+    return 0;
+}
