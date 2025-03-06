@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int cod,pret;
+    printf("Introduceti pretul: ");
+    scanf("%d",&pret);
+    printf("Introduceti codul: ");
+    scanf("%d",&cod);
+    printf("\n");
+
+    switch(cod){
+    case 1:
+        pret=pret-(10.0/100)*pret;
+        printf("%d",pret);
+        break;
+    case 2:
+        pret=pret-(20.0/100)*pret;
+        printf("%d",pret);
+        break;
+    case 3:
+        pret=pret-(30.0/100)*pret;
+        printf("%d",pret);
+        break;
+    case 4:
+        printf("Cod invalid");
+        break;
+
+}
+
+    return 0;
+}
