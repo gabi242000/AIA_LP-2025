@@ -1,0 +1,18 @@
+#include<stdio.h>
+
+int main(){
+    float salariuBrut;
+    int alegere;
+    printf("Introdu alegerea: \n 1.Salariu angajat full-time(25%% impozit) \n 2.Salariu pentru contract de colaborare(10%% impozit) \n 3.Salariu pentru PFA(5%% impozite) \n");
+    scanf("%d",&alegere);
+    printf("Introdu salariu brut: ");
+    scanf("%f",&salariuBrut);
+    switch(alegere) {
+        case 1:printf("salariul tau net este de: %0.2f",salariuBrut-(salariuBrut*25)/100);break;
+        case 2:printf("salariul tau net este de: %0.2f",salariuBrut-(salariuBrut*10)/100);break;
+        case 3:printf("salariul tau net este de: %0.2f",salariuBrut-(salariuBrut*5)/100);break;
+    }
+
+
+
+}
