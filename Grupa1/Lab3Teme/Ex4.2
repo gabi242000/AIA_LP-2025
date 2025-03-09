@@ -1,0 +1,16 @@
+#include<iostream>
+using namespace std;
+
+
+int main() {
+        unsigned long long a,nA=0,nB=1,aux;
+        cin>>a;
+        cout<<nA<<" "<<nB<<" ";
+        for (int i = 1; i <= a-2; i++) {
+                cout<<nA+nB<<" ";
+                aux=nA+nB;
+                nA=nB;
+                nB=aux;
+
+        }
+}
