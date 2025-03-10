@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <limits.h>
+using namespace std;
+int main() {
+    int N;
+    
+    cout << "Introduceti dimensiunea vectorului N: ";
+    cin >> N;
+    
+    vector<int> vec(N);
+    
+    cout << "Introduceti cele " << N << " elemente ale vectorului: ";
+    for(int i = 0; i < N; i++) {
+        cin >> vec[i];
+    }
+    
+    int max_val = INT_MIN;
+    int min_val = INT_MAX;
+    
+    for(int i = 0; i < N; i++) {
+        if(vec[i] > max_val) {
+            max_val = vec[i];
+        }
+        if(vec[i] < min_val) {
+            min_val = vec[i];
+        }
+    }
+    
+    //rezultate
+    cout << "Elementul maxim este: " << max_val << endl;
+    cout << "Elementul minim este: " << min_val << endl;
+    
+    return 0;
+}
