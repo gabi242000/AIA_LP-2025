@@ -1,0 +1,28 @@
+#include <stdio.h>
+//#define n 5
+int main() {
+    //printf("%d",&n); NU MERGE ALOCARE DINAMIICAAAA! (La mine)
+    //int n;
+    int a[n],aux;
+    
+    bool unsorted=false;
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n-1; j++) {
+            if (a[j]>a[j+1]) {
+                aux=a[j];
+                a[j]=a[j+1];
+                a[j+1]=aux;
+            }
+        }
+    }
+    printf("Vector sortat: \n");
+    for (int i = 0; i < n; i++) {
+        if (a[i]!=a[i+1]) {
+            printf("%d ", a[i]);
+       }
+    }
+}
+
