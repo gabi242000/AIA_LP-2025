@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define n 5
+
+int eVarf(int a[n][n], int i, int j) {
+    int poateVarf= a[i][j];
+    if (i > 0 && a[i-1][j] >= poateVarf)
+        return 0;
+    if (i < n-1 && a[i+1][j] >= poateVarf)
+        return 0;
+    if (j > 0 && a[i][j-1] >= poateVarf)
+        return 0;
+    if (j < n-1 && a[i][j+1] >= poateVarf)
+        return 0;
+    return 1;
+}
+
+int main() {
+    //printf("%d",&n); NU MERGE ALOCARE DINAMIICAAAA! (La mine)
+    //int n;
+    int a[n][n],aux;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &a[i][j]);
+        }
+    }
+    for (int i=0;i<n;i++) {
+        for (int j=0;j<n;j++) {
+            if (eVarf(a,i,j)) {
+                printf("Element varf la: (%d, %d) cu valoarea %d\n", i, j, a[i][j]);
+            }
+        }
+    }
+}
