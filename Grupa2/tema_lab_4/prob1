@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+    int n, i, j, s=0, smax=0, imax=0;
+    printf("Introdu dimensiunea matricei: \n");
+    scanf("%d", &n);
+    int a[n][n];
+    printf("Introdu elementele matricei: \n");
+    for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+    scanf("%d", &a[i][j]);
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+            s+=a[i][j];
+        if (s>smax) 
+        {
+            smax=s;
+            imax=i+1;
+        }
+        s=0;
+    }
+    printf("Randul %d are suma maxima de %d.",imax,smax);
+    return 0;
+}
