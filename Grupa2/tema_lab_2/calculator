@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{
+    float pret, reducere;
+    int cod;
+    printf("Introdu un pret: \n");
+    scanf("%f",&pret);
+    printf("Introdu codul de reducere: \n");
+    printf("Cod 1: 10%% reducere\n");
+    printf("Cod 2: 20%% reducere\n");
+    printf("Cod 3: 30%% reducere\n");
+    scanf("%d",&cod);
+    switch(cod)
+    {
+        case 1:
+        reducere=pret-pret*(1.0/10);
+            break;
+        case 2:
+        reducere=pret-pret*(2.0/10);
+            break;
+        case 3:
+        reducere=pret-pret*(3.0/10);
+            break;
+        default:
+            printf("Eroare!\n");
+            break;
+    }
+    printf("Pretul dupa reducere este: %f\n", reducere);
+}
