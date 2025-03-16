@@ -1,0 +1,12 @@
+#include <stdio.h>
+int main()
+{
+    int n, i;
+    printf("Introdu un numar: \n");
+    scanf("%d", &n);
+    printf("Toate numerele pare de la 0 pana la %d sunt: \n", n);
+    for(i=0;i<n;i=i+2)
+    printf("%d ", i);
+    if(n%2==0) printf("%d",n);
+    return 0;
+}
