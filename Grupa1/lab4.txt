@@ -1,0 +1,81 @@
+1.
+#include <stdio.h>
+
+int main() {
+    int n;
+    
+    printf("Introduceti numarul de coloane echivalent cu cel de randuri: ");
+    scanf("%d", &n);
+
+    int v[n][n]; 
+    int maxSum = -1, maxRow = -1; 
+
+    printf("Introduceti elementele matricei:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &v[i][j]);
+        }
+    }
+
+    for (int i = 0; i < n; i++) {
+        int rowSum = 0;
+        for (int j = 0; j < n; j++) {
+            rowSum += v[i][j];
+        }
+        if (rowSum > maxSum) {
+            maxSum = rowSum;
+            maxRow = i;
+        }
+    }
+    
+    printf("Randul cu suma maxima este: %d\n", maxRow + 1); 
+    printf("Suma maxima este: %d\n", maxSum);
+
+    return 0;
+}
+
+2. (nu stiu mai mult de atat)
+#include <stdio.h>
+int main () {
+    int n;
+    scanf("%d", &n);
+    int v[n];
+    printf("Introduceti elementele vectorului:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &v[i]);
+    }
+    
+    return 0;
+}
+
+3.
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Introduceti dimensiunea matricei N: ");
+    scanf("%d", &n);
+
+    int a[n][n];
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (j >= i)  
+                a[i][j] = i + j + 1;
+            else  {
+                a[i][j] = a[j][i];}
+        }
+    }
+    
+    printf("Matricea generata este:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+4. ...
