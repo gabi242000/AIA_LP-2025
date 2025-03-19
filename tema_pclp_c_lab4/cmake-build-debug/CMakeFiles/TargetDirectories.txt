@@ -1,0 +1,6 @@
+C:/Users/ionut/CLionProjects/tema_pclp_c_lab4/cmake-build-debug/CMakeFiles/tema_pclp_c_lab4.dir
+C:/Users/ionut/CLionProjects/tema_pclp_c_lab4/cmake-build-debug/CMakeFiles/tema_pclp_c_lab4_2.dir
+C:/Users/ionut/CLionProjects/tema_pclp_c_lab4/cmake-build-debug/CMakeFiles/tema_pclp_c_lab4_3.dir
+C:/Users/ionut/CLionProjects/tema_pclp_c_lab4/cmake-build-debug/CMakeFiles/tema_pclp_c_lab4_4.dir
+C:/Users/ionut/CLionProjects/tema_pclp_c_lab4/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/ionut/CLionProjects/tema_pclp_c_lab4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
