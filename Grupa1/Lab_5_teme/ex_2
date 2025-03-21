@@ -1,0 +1,19 @@
+#include <cctype>
+#include <cstring>
+#include<stdio.h>
+#import<cstring>
+
+int main() {
+    char a[100];
+    int x,y;
+    printf("stringu aici pls-> ");
+    fgets(a,100,stdin);
+    printf("x si y aici pls->");
+    scanf("%d%d",&x,&y);
+    char aux;
+    aux =a[x];
+    a[x]=a[y];
+    a[y]=aux;
+    printf("%s",a);
+
+}
