@@ -1,0 +1,14 @@
+#include <cctype>
+#include <cstring>
+#include<stdio.h>
+#import<cstring>
+
+int main() {
+    char a[100]="bag pula";
+    fgets(a,100,stdin);
+    for (int i = 0; i<strlen(a); i++) {
+        a[i] = toupper(a[i]);
+    }
+    printf("%s",a);
+
+}
