@@ -1,6 +1,7 @@
 #include <stdio.h>
 int main()
 {
+    //ex4_1
     int N,i;
     printf("Introdu un numar: \n");
     scanf("%d",&N);
