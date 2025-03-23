@@ -25,10 +25,29 @@ void ex3()
 {
     //s-a scos algoritmul de backtracking
     //din programa de cativa ani de la mate info, acum se invata
-    //doar principiul pe care merge si nu codul in caz ca nu stiati
+    //doar principiul pe care merge si nu codul 
 
-    //tl;dr nu stiu cum sa rezolv si nu vreau sa bag chatgpt paste
-    //as putea sa invat de pe pbinfo dar am de invatat si la alte materii
+    //dar daca n-am inteles cerinta si trb defapt sa verific daca cuvantul e "frumos":
+    char a[101];
+    int ok=1,i,x;
+    cin.getline(a, 100);
+    x=strlen(a);
+    if(a[0]!='z' && x%2!=0)
+        ok=0;
+    for(i=1;i<x;i++)
+    {
+        if(a[i]=='a' || a[i]=='e' || a[i]=='i' || a[i]=='o' || a[i]=='u')
+        {
+            if(i%2==0)
+                ok=0;
+        }
+        else if(i%2==1)
+            ok=0;
+    }       
+    if(ok==1)
+        cout<<"Cuvantul este frumos";
+    else
+        cout<<"Cuvantul NU este frumos";
 }
 void ex4()
 {
@@ -50,6 +69,6 @@ void ex4()
 }
 int main()
 {
-    
+    ex3();
     return 0;
 }
