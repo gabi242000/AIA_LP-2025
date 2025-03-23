@@ -6,6 +6,7 @@ int main()
 {
     char s[100];
     int p,i;
+    printf("introdu sirul: ");
     fgets(s,100,stdin);
     printf("introdu p: ");
     scanf("%d",&p);
