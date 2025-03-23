@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    double salariu_brut, salariu_net;
+    int cod;
+
+    cout << "Introduceti salariul brut: ";
+    cin >> salariu_brut;
+    cout << "Introduceti codul contractului (1, 2, 3): ";
+    cin >> cod;
+
+    switch (cod) {
+        case 1: salariu_net = salariu_brut * 0.75; break; // 25% impozit
+        case 2: salariu_net = salariu_brut * 0.90; break; // 10% impozit
+        case 3: salariu_net = salariu_brut * 0.95; break; // 5% impozit
+        default:
+            cout << "Cod invalid!" << endl;
+            return 1;
+    }
+
+    cout << "Salariul net: " << salariu_net << " lei" << endl;
+    return 0;
+}
