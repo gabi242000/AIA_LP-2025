@@ -1,0 +1,92 @@
+Ex1
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main()
+{int i;
+char s[51];
+printf("Scrie un sir: ");
+fgets(s, 51, stdin);
+for(i=0;i<strlen(s);i++)
+if(s[i]>='a' && s[i]<='z')
+s[i]=toupper(s[i]);
+printf("Sirul in litere mari este: %s\n", s);
+return 0;
+
+}
+
+Ex2
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main()
+{int x,y;
+char s[51],i;
+printf("Scrie un cuvant: ");
+fgets(s, 51, stdin);
+printf("Alege 2 pozitii din cuvant, iar literele se vor interschimba\n");
+printf("Scrie pozitia x: ");
+scanf("%d", &x);
+printf("Scrie pozitia y: ");
+scanf("%d", &y);
+if(x<strlen(s) && x>=0 && y<strlen(s) && y>=0)
+{i=s[y];
+s[y]=s[x];
+s[x]=i;
+printf("Cuvantul a devenit: %s\n", s);
+}
+else printf("Pozitiile nu exista\n ");
+return 0;
+
+}
+
+Ex3
+#include <stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main()
+{int i,ok1=0,OK=0;
+char s[51];
+printf("Scrie un cuvant: ");
+scanf("%s",s);
+if(strlen(s)%2==0 && s[0]=='z')
+{for(i=1;i<strlen(s);i++)
+if(strchr("aeiou",s[i])==strchr("aeiou",s[i-1])) OK=-1;
+}
+else ok1=-1;
+if(ok1==-1||OK==-1) printf("Cuvantul %s este urat\n", s);
+else printf("Cuvantul %s este foarte frumos\n", s);
+return 0;
+
+}
+
+Ex4
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+    char s[51];
+    int p,i;
+    printf("Introdu cifru: ");
+    fgets(s,51,stdin);
+    printf("Introdu pozitie: ");
+    scanf("%d",&p);
+    for (i=0;i<strlen(s)-1;i++){
+        if (isalpha(s[i])){
+            if (islower(s[i]))
+                if (s[i]+p>'z')
+                    s[i]='a'-('z'-s[i]+1)+p;
+                else
+                    s[i]=s[i]+p;
+            if (isupper(s[i]))
+                if (s[i]+p>'Z')
+                    s[i]='A'-('Z'-s[i]+1)+p;
+                else
+                    s[i]=s[i]+p;
+        }
+    }
+    printf("Cifrul modificat este: %s\n",s);
+    return 0;
+}
