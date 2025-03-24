@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    int N, i;
+
+    printf("Introduceti un numar intreg N: ");
+    scanf("%d", &N);
+
+    printf("Numerele pare pana la %d sunt: ", N);
+    
+    for(i = 2; i <= N; i += 2) {
+        printf("%d ", i);
+    }
+
+    printf("\n");
+    return 0;
+}
