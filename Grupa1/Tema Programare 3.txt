@@ -5,13 +5,11 @@
 int main() {
     int N;
     
-    // Citirea dimensiunii matricei
     printf("Introduceți dimensiunea matricei N: ");
     scanf("%d", &N);
 
     int matrice[N][N];
     
-    // Citirea matricei
     printf("Introduceți elementele matricei %dx%d:\n", N, N);
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
@@ -21,7 +19,6 @@ int main() {
 
     int sumaMax = 0, randMax = 0;
 
-    // Calculul sumei fiecărui rând și determinarea celui cu suma maximă
     for (int i = 0; i < N; i++) {
         int sumaRand = 0;
         for (int j = 0; j < N; j++) {
@@ -33,7 +30,6 @@ int main() {
         }
     }
 
-    // Afișarea rezultatului
     printf("Rândul cu suma maximă este: %d (suma: %d)\n", randMax + 1, sumaMax);
 
     return 0;
@@ -42,7 +38,7 @@ int main() {
 
 
 
-2.
+2.cu ajutor de pe net.
 
 
 #include <stdio.h>
