@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+void sortare(int v[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (v[j] > v[j + 1]) {
+                int temp = v[j];
+                v[j] = v[j + 1];
+                v[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int duplicate(int v[], int n) {
+    if (n == 0 || n == 1) {
+        return n;
+    }
+
+    int j = 0;
+    for (int i = 0; i < n - 1; i++) {
+        if (v[i] != v[i + 1]) {
+            v[j++] = v[i];
+        }
+    }
+    v[j++] = v[n - 1];
+    return j;
+}
+
+int main() {
+    int n;
+    printf("Introduceți nr de elem: ");
+    scanf("%d", &n);
+    
+    int v[n];
+    printf("Introduceți elem: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &v[i]);
+    }
+
+    sortare(v, n);
+    int n2 = duplicate(v, n);
+
+    
+    printf("Vector nou:\n");
+    for (int i = 0; i < n2; i++) {
+        printf("%d ", v[i]);
+    }
+
+    return 0;
+}
