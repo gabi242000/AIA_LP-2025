@@ -4,7 +4,7 @@
 
 int main() {
     char sir[100];
-    printf("Introduceți șirul: ");
+    printf("Introduceti sirul: ");
     fgets(sir, 100, stdin);
     
     int len = strlen(sir);
