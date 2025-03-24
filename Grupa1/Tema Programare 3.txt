@@ -1,0 +1,182 @@
+1.
+
+#include <stdio.h>
+
+int main() {
+    int N;
+    
+    // Citirea dimensiunii matricei
+    printf("Introduceți dimensiunea matricei N: ");
+    scanf("%d", &N);
+
+    int matrice[N][N];
+    
+    // Citirea matricei
+    printf("Introduceți elementele matricei %dx%d:\n", N, N);
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            scanf("%d", &matrice[i][j]);
+        }
+    }
+
+    int sumaMax = 0, randMax = 0;
+
+    // Calculul sumei fiecărui rând și determinarea celui cu suma maximă
+    for (int i = 0; i < N; i++) {
+        int sumaRand = 0;
+        for (int j = 0; j < N; j++) {
+            sumaRand += matrice[i][j];
+        }
+        if (sumaRand > sumaMax) {
+            sumaMax = sumaRand;
+            randMax = i;
+        }
+    }
+
+    // Afișarea rezultatului
+    printf("Rândul cu suma maximă este: %d (suma: %d)\n", randMax + 1, sumaMax);
+
+    return 0;
+}
+
+
+
+
+2.
+
+
+#include <stdio.h>
+
+void sortare(int v[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (v[j] > v[j + 1]) {
+                int temp = v[j];
+                v[j] = v[j + 1];
+                v[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int eliminareDuplicate(int v[], int n) {
+    if (n == 0 || n == 1) return n;
+
+    int temp[n], j = 0;
+    for (int i = 0; i < n - 1; i++) {
+        if (v[i] != v[i + 1]) {
+            temp[j++] = v[i];
+        }
+    }
+    temp[j++] = v[n - 1];
+
+    for (int i = 0; i < j; i++) {
+        v[i] = temp[i];
+    }
+
+    return j;
+}
+
+int main() {
+    int N;
+
+    printf("Introduceți numărul de elemente: ");
+    scanf("%d", &N);
+
+    int v[N];
+
+    printf("Introduceți elementele vectorului:\n");
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &v[i]);
+    }
+
+    sortare(v, N);
+
+    int nouN = eliminareDuplicate(v, N);
+
+    printf("Vectorul rezultat după sortare și eliminarea duplicatelor:\n");
+    for (int i = 0; i < nouN; i++) {
+        printf("%d ", v[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
+
+
+3.
+
+
+#include <stdio.h>
+
+int main() {
+    int N;
+
+    printf("Introduceți dimensiunea matricei N: ");
+    scanf("%d", &N);
+
+    int matrice[N][N];
+
+    for (int i = 0; i < N; i++) {
+        for (int j = i; j < N; j++) {
+            matrice[i][j] = i + j + 1;
+            matrice[j][i] = matrice[i][j];
+        }
+    }
+
+    printf("Matricea generată:\n");
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            printf("%d ", matrice[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
+
+4.
+
+
+#include <stdio.h>
+
+int esteVarf(int matrice[][100], int i, int j, int N) {
+    int valoare = matrice[i][j];
+
+    if (i > 0 && matrice[i - 1][j] >= valoare) return 0;
+    if (i < N - 1 && matrice[i + 1][j] >= valoare) return 0;
+    if (j > 0 && matrice[i][j - 1] >= valoare) return 0;
+    if (j < N - 1 && matrice[i][j + 1] >= valoare) return 0;
+
+    return 1;
+}
+
+int main() {
+    int N;
+    
+    printf("Introduceți dimensiunea matricei N: ");
+    scanf("%d", &N);
+
+    int matrice[100][100];
+
+    printf("Introduceți elementele matricei %dx%d:\n", N, N);
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            scanf("%d", &matrice[i][j]);
+        }
+    }
+
+    printf("Elementele vârf din matrice sunt:\n");
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (esteVarf(matrice, i, j, N)) {
+                printf("Vârf găsit la (%d, %d) cu valoarea %d\n", i, j, matrice[i][j]);
+            }
+        }
+    }
+
+    return 0;
+}
