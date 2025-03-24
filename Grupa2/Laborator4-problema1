@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    int N, i, j, suma, suma_max = 0, rand_max = 0;
+    
+    printf("Introduceti dimensiunea matricei N: ");
+    scanf("%d", &N);
+    
+    int matrice[N][N];
+
+    printf("Introduceti elementele matricei:\n");
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < N; j++) {
+            scanf("%d", &matrice[i][j]);
+        }
+    }
+
+    for(i = 0; i < N; i++) {
+        suma = 0;
+        for(j = 0; j < N; j++) {
+            suma += matrice[i][j];
+        }
+        if(suma > suma_max) {
+            suma_max = suma;
+            rand_max = i;
+        }
+    }
+
+    printf("Randul cu suma maxima este %d cu suma %d\n", rand_max, suma_max);
+    return 0;
+}
