@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+
+    int a[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &a[i][j]);
+        }
+    }
+
+    int gasit = 0;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            int varf = 1;
+
+            if (i > 0 && a[i][j] <= a[i - 1][j]) {
+                varf = 0;
+            }
+            if (i < n - 1 && a[i][j] <= a[i + 1][j]) {
+                varf = 0;
+            }
+            if (j > 0 && a[i][j] <= a[i][j - 1]) {
+                varf = 0;
+            }
+            if (j < n - 1 && a[i][j] <= a[i][j + 1]) {
+                varf = 0;
+            }
+
+            if (varf) {
+                printf("Element: %d pe poziția [%d][%d]\n", a[i][j], i, j);
+                gasit = 1;
+                break;
+            }
+        }
+        if (gasit) {
+            break;
+        }
+    }
+
+    if (!gasit) {
+        printf("Nu există varf\n");
+    }
+
+    return 0;
+}
