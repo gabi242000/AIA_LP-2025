@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int vocala(char c) {
+    c = tolower(c);
+    return (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
+}
+
+int frumos(char *cuv) {
+    int length = strlen(cuv);
+    
+    if (length % 2 != 0)
+        return 0;
+    
+    if (tolower(cuv[0]) != 'z')
+        return 0;
+    
+    for (int i = 1; i < length; i++)
+        if ((vocala(cuv[i]) && vocala(cuv[i - 1])) || (!vocala(cuv[i]) && !vocala(cuv[i - 1])))
+            return 0;
+    
+    return 1;
+}
+
+int main() {
+    char cuv[100];
+    
+    printf("Introduceti un cuvant: ");
+    scanf("%s", cuv);
+    
+    if (frumos(cuv)) {
+        printf("Cuvantul este frumos!\n");
+    } else {
+        printf("Cuvantul nu este frumos!\n");
+    }
+    
+    return 0;
+}
