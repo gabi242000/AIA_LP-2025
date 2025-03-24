@@ -1,0 +1,146 @@
+TEME COLES SASHA MIHAI
+EX6
+#include <stdio.h>
+int main() {
+    int pret, cod;  
+    printf("Introduceti pretul produsului: ");
+    scanf("%d", &pret);
+    printf("Introduceti codul de reducere (1, 2 sau 3): ");
+    scanf("%d", &cod);
+    if (cod == 1) pret -= pret * 10 / 100;
+    else if (cod == 2) pret -= pret * 20 / 100;
+    else if (cod == 3) pret -= pret * 30 / 100;  
+    printf("Pretul final este: %d\n", pret);  
+    return 0;
+}
+EX7
+#include <stdio.h>
+
+int main() {
+    int s, t, i = 0;
+
+    printf("Salariu brut: ");
+    scanf("%d", &s);
+    printf("Tip contract (1-full-time, 2-colaborare, 3-PFA): ");
+    scanf("%d", &t);
+
+    if (t == 1) i = 25;
+    if (t == 2) i = 10;
+    if (t == 3) i = 5;
+    if (i == 0) return printf("Eroare: cod invalid!\n"), 1;
+
+    printf("Salariu net: %d\n", s * (100 - i) / 100);
+    return 0;
+}
+EX5
+#include <iostream>
+using namespace std;
+int main()
+{
+    int nota;
+    cout<<"Introduceti o nota de la 1 la 10: ";
+    cin>>nota;
+    if(nota>=1 && nota <=10)
+    {
+        if(nota==10)
+        cout<<"Exccelent!";
+        else if(nota==9)
+        cout<<"Minunat!";
+        else if(nota==8)
+        cout<<"Foarte bine!";
+        else if(nota==7)
+        cout<<"Se putea mai bine!";
+        else if(nota==6)
+        cout<<"Bine";
+        else if(nota==5)
+        cout<<"Satisfacator";
+        else if(nota==4)
+        cout<<"Mai invata";
+        else if(nota==3)
+        cout<<"Prost";
+        else if(nota==2)
+        cout<<"Execrabil";
+        else cout<<"Renunta la facultate!";
+    }
+    else cout<<"Nota nu este valabila!";
+    return 0;
+}
+EX7
+#include <stdio.h>
+
+int main() {
+    float salariu_brut, salariu_net;
+    int cod_contract;
+    float impozit;
+    printf("Introdu salariul brut: ");
+    scanf("%f", &salariu_brut);
+    printf("Introdu codul contractului (1 - Full-time, 2 - Colaborare, 3 - PFA): ");
+    scanf("%d", &cod_contract);
+    switch (cod_contract) {
+        case 1:
+            impozit = 0.25; 
+            break;
+        case 2:
+            impozit = 0.10; 
+        case 3:
+            impozit = 0.05; 
+            break;
+        default:
+            printf("Eroare: Cod contract invalid!\n");
+            return 1;
+    }
+    salariu_net = salariu_brut - (salariu_brut * impozit);
+    printf("Salariul net este: %.2f\n", salariu_net);
+    return 0;
+}
+EX5
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int nota;
+    cout << "Introduceti o nota (1-10): ";
+    cin >> nota;
+    
+    if (nota == 10) cout << "Excelent";
+    else if (nota == 9) cout << "Foarte bine";
+    else if (nota == 8) cout << "Bine";
+    else if (nota == 7) cout << "Destul de bine";
+    else if (nota == 6) cout << "Acceptabil";
+    else if (nota == 5) cout << "Satisfacator";
+    else if (nota == 4) cout << "Slab";
+    else if (nota == 3) cout << "Foarte slab";
+    else if (nota == 2) cout << "Insuficient";
+    else if (nota == 1) cout << "Foarte insuficient";
+    else cout << "Nota invalida! Introduceti un numar intre 1 si 10.";
+    
+    cout << endl;
+    return 0;
+}
+EX6
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int nota;
+    cout << "Introduceti o nota (1-10): ";
+    cin >> nota;
+    
+    if (nota == 10) cout << "Excelent";
+    else if (nota == 9) cout << "Foarte bine";
+    else if (nota == 8) cout << "Bine";
+    else if (nota == 7) cout << "Destul de bine";
+    else if (nota == 6) cout << "Acceptabil";
+    else if (nota == 5) cout << "Satisfacator";
+    else if (nota == 4) cout << "Slab";
+    else if (nota == 3) cout << "Foarte slab";
+    else if (nota == 2) cout << "Insuficient";
+    else if (nota == 1) cout << "Foarte insuficient";
+    else cout << "Nota invalida! Introduceti un numar intre 1 si 10.";
+    
+    cout << endl;
+    return 0;
+}
+
