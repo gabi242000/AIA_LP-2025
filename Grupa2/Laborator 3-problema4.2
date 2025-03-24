@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    int N, i;
+    int a = 0, b = 1, c;
+
+    printf("Introduceti numarul de termeni Fibonacci: ");
+    scanf("%d", &N);
+
+    printf("Primele %d numere Fibonacci sunt: ", N);
+    
+    for(i = 0; i < N; i++) {
+        printf("%d ", a);
+        c = a + b;
+        a = b;
+        b = c;
+    }
+
+    printf("\n");
+    return 0;
+}
