@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+void sortare(int v[], int N) {
+    int i, j, temp;
+    for(i = 0; i < N - 1; i++) {
+        for(j = i + 1; j < N; j++) {
+            if(v[i] > v[j]) {
+                temp = v[i];
+                v[i] = v[j];
+                v[j] = temp;
+            }
+        }
+    }
+}
+
+int eliminare_duplicate(int v[], int N) {
+    int i, j = 0, temp[N];
+    for(i = 0; i < N - 1; i++) {
+        if(v[i] != v[i + 1]) {
+            temp[j++] = v[i];
+        }
+    }
+    temp[j++] = v[N - 1];
+    for(i = 0; i < j; i++) {
+        v[i] = temp[i];
+    }
+    return j;
+}
+
+int main() {
+    int N, i;
+
+    printf("Introduceti numarul de elemente: ");
+    scanf("%d", &N);
+    
+    int v[N];
+
+    printf("Introduceti elementele vectorului: ");
+    for(i = 0; i < N; i++) {
+        scanf("%d", &v[i]);
+    }
+
+    sortare(v, N);
+    N = eliminare_duplicate(v, N);
+
+    printf("Vectorul rezultat: ");
+    for(i = 0; i < N; i++) {
+        printf("%d ", v[i]);
+    }
+    
+    printf("\n");
+    return 0;
+}
