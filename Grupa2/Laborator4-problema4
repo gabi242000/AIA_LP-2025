@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    int N, i, j;
+    
+    printf("Introduceti dimensiunea matricei N: ");
+    scanf("%d", &N);
+    
+    int matrice[N][N];
+
+    printf("Introduceti elementele matricei:\n");
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < N; j++) {
+            scanf("%d", &matrice[i][j]);
+        }
+    }
+
+    printf("Varfurile din matrice sunt:\n");
+    for(i = 1; i < N - 1; i++) {
+        for(j = 1; j < N - 1; j++) {
+            if(matrice[i][j] > matrice[i - 1][j] &&
+               matrice[i][j] > matrice[i + 1][j] &&
+               matrice[i][j] > matrice[i][j - 1] &&
+               matrice[i][j] > matrice[i][j + 1]) {
+                printf("(%d, %d) -> %d\n", i, j, matrice[i][j]);
+            }
+        }
+    }
+
+    return 0;
+}
