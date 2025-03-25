@@ -1,0 +1,24 @@
+#include <cstring>
+#include<stdio.h>
+
+int main() {
+    char a[10000];
+    int p;
+    printf("Testeaza un cuvant: \n");
+    fgets(a, 10000, stdin);
+    a[strcspn(a, "\n")]=NULL;
+    printf("tasteaza deplasarea \n");
+    scanf("%d",&p);
+    for (int i = 0; i < strlen(a); i++) {
+        if (a[i]!=' ') {
+            if ((a[i]+p>=91 && a[i]+p<=96) || a[i]+p>=123 ) {
+                a[i]=a[i]+p-26;
+            }else {
+                a[i]=a[i]+p;
+            }
+        }
+
+    }
+    printf("Cuvantul nou: %s", a);
+
+}
