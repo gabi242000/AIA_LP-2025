@@ -1,0 +1,51 @@
+#include <algorithm>
+#include <iostream>
+#include <bits/stdc++.h>
+#include <vector>
+#include <queue>
+#include <fstream>
+#include <string.h>
+
+using namespace std;
+
+
+int main()
+{
+    char a[100];
+    cin.get(a, 100);
+    bool regele = true;
+
+    if (!(a[0] == 'z' || a[0] == 'Z')) {
+        regele = false;
+      
+    }
+
+    if (strlen(a) % 2 != 0) {
+        regele = false;
+        
+    }
+
+    for (int i = 1; i < strlen(a); i++) {
+        if (i % 2 != 0) {
+            if (strchr("aeiou", a[i]) == NULL) {
+                regele = false;
+                
+            }
+        }
+        else
+            if (strchr("aeiou", a[i]) != NULL) {
+                regele = false;
+                
+            }
+    }
+
+    if (regele) {
+        cout<<"Foarte frumos cuvantul, imi place";
+    }
+    else
+        cout<<"Ii urat rau cuvantu asta";
+
+    //Nu scrie in cerinta ce sa fac, am presupus ca vrei sa verific daca un cuvant este frumos sau nu
+
+    return 0;
+}
