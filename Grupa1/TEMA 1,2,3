@@ -1,0 +1,250 @@
+#include <stdio.h>  TEMA 1
+
+int main(){
+    printf("Problema 5\n");
+    int nota;
+
+    //introducerea notei de catre utilizator
+    printf("Introduceti o nota intre 1 si 10: ");
+    scanf("%d", &nota);
+
+    //afisarea mesajului pentru nota
+    switch(nota){
+        case 1:
+        printf("Ingrijorator!\n");
+        break;
+        case 2:
+        printf("Foarte slab!\n");
+        break;
+        case 3:
+        printf("Slab!\n");
+        break;
+        case 4:
+        printf("Slabut!\n");
+        break;
+        case 5:
+        printf("Suficient!\n");
+        break;
+        case 6:
+        printf("Acceptabil!\n");
+        break;
+        case 7:
+        printf("Destul de bine!\n");
+        break;
+        case 8:
+        printf("Bine!\n");
+        break;
+        case 9:
+        printf("Foarte bine!\n");
+        break;
+        case 10:
+        printf("Excelent!\n");
+        break;
+        default:
+        printf("Nu ati respectat conditia de a introduce o nota intre 1-10.\n");
+    
+    }
+
+    printf("Problema 6\n");
+    float pret, pret_final;
+    int cod;
+
+    //introducerea pretului de catre utilizator
+    printf("Introduceti pretul produdului: ");
+    scanf("%f", &pret);
+
+    //introducerea codului de reducere de catre utilizator
+    printf("Introduceti codul de reducere 1, 2 sau 3: ");
+    scanf("%d", &cod);
+
+    //aplicarea reducerii corecte
+    switch(cod){
+        case 1:
+        pret_final=pret*0.90;
+        printf("Pret final dupa reducere: %.2f\n", pret_final);
+        break;
+        case 2:
+        pret_final=pret*0.80;
+        printf("Pret final dupa reducere: %.2f\n", pret_final);
+        break;
+        case 3:
+        pret_final=pret*0.70;
+        printf("Pret final dupa reducere: %.2f\n", pret_final);
+        break;
+        default:
+        printf("Cod de reducere incorect! Introduceti 1, 2 sau 3.\n");
+    }
+
+    print("Problema 7\n");
+    int cod2;
+    float salariu_brut, salariu_net;
+
+    //introducerea salariului brut
+    printf("Introduceti salariul brut: ");
+    scanf("%f", &salariu_brut);
+
+    //introducerea codolui pt tipul de contract
+    printf("Introduceti codul tipului de contract (1, 2 sau 3): ");
+    scanf("%d", &cod2);
+
+    //aplicarea impozitului corespunzator
+    switch(cod2){
+        case 1:
+        salariu_net=salariu_brut*0.75;
+        printf("Salariu net pentru angajat full-time: %.2f\n", salariu_net);
+        break;
+        case 2:
+        salariu_net=salariu_brut*0.90;
+        printf("Salariu net pentru contract de colaborare: %.2f\n", salariu_net);
+        break;
+        case 3:
+        salariu_net=salariu_brut*0.95;
+        printf("Salariu net pentru PFA: %.2f\n", salariu_net);
+        break;
+        default:
+        printf("Cod de contract incorect! Introduceti 1, 2 sau 3.\n");
+    }
+
+    return 0;
+}
+Tema 2 
+#include <stdio.h>
+
+int main() {
+    int N;
+    printf("Introduceti un numar N: ");
+    scanf("%d", &N);
+    for (int i = 2; i <= N; i += 2) {
+        printf("%d ", i);
+    }
+
+    return 0;
+} 
+#include <stdio.h>
+
+int main() {
+    int N;
+    printf("Introduceti un numar N: ");
+    scanf("%d", &N);
+    if (N <= 0) {
+        printf("Nu exista numere Fibonacci pentru N <= 0.\n");
+        return 0;
+    }
+    long long a = 0, b = 1, temp;
+    for (int i = 0; i < N; i++) {
+        printf("%lld ", a);
+        temp = a;
+        a = b;
+        b = temp + b;
+    }
+
+    return 0;
+} 
+Tema 3 
+#include <stdio.h>
+
+int main() {
+    int N;
+    printf("Introduceti dimensiunea matricei N (numar de linii/coloane): ");
+    scanf("%d", &N);
+
+    int matrice[N][N];
+    int suma_maxima = -1;
+    int rand_maxim = -1;
+    printf("Introduceti elementele matricei %d x %d:\n", N, N);
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            printf("Elementul [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matrice[i][j]);
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        int suma_rând = 0;
+        for (int j = 0; j < N; j++) {
+            suma_rând += matrice[i][j];
+        }
+        
+        if (suma_rând > suma_maxima) {
+            suma_maxima = suma_rând;
+            rand_maxim = i;
+        }
+    }
+    printf("Rândul cu suma maxima este: %d\n", rand_maxim + 1);  // Se adauga 1 pentru a afisa rândul începând de la 1
+    printf("Suma maxima este: %d\n", suma_maxima);
+    
+    return 0;
+} 
+#include <stdio.h>
+
+void sortare_crescatoare(int vector[], int N) ;
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = 0; j < N - 1 - i; j++) {
+            if (vector[j] > vector[j + 1]) 
+                int temp = vector[j];
+                vector[j] = vector[j + 1];
+                vector[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int elimina_duplicate(int vector[], int N) {
+    if (N == 0) return 0;
+
+    int index = 1;
+    for (int i = 1; i < N; i++) {
+        if (vector[i] != vector[i - 1]) {
+            vector[index] = vector[i];
+            index++;
+        }
+    }
+    return index;  
+}
+
+int main() {
+    int N;
+    printf("Introduceti numarul de elemente N: ");
+    scanf("%d", &N);
+    int vector[N];
+    printf("Introduceti elementele vectorului:\n");
+    for (int i = 0; i < N; i++) {
+        printf("Elementul %d: ", i + 1);
+        scanf("%d", &vector[i]);
+    }
+    sortare_crescatoare(vector, N);
+    N = elimina_duplicate(vector, N);
+    printf("Vectorul rezultat fara duplicate este:\n");
+    for (int i = 0; i < N; i++) {
+        printf("%d ", vector[i]);
+    }
+    printf("\n");
+
+    return 0;
+} 
+#include <stdio.h>
+
+int main() {
+    int N;
+    printf("Introduceti dimensiunea matricei N (numar de linii/coloane): ");
+    scanf("%d", &N);
+    int matrice[N][N];
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) { 
+if (i <= j) {
+               
+                matrice[i][j] = i + j + 1;
+            } else {
+                matrice[i][j] = matrice[j][i];
+            }
+        }
+    }
+    printf("Matricea generata este:\n");
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            printf("%d ", matrice[i][j]); 
+}
+        printf("\n");
+    }
+
+    return 0;
+}
