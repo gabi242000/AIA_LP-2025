@@ -1,0 +1,48 @@
+4.1.c
+#include <stdio.h>
+int main() {
+    int numar;
+    printf("Introdu un numar: ");
+    scanf("%d", &numar);
+    for(int i=2; i <= numar; i+=2) {
+        printf("%d ", i);
+    }
+return 0;
+}
+
+
+4.2.c
+#include <stdio.h>
+int main() {
+    int i, n;
+    int a=0, b=1;
+    int c=a+b;
+    printf("introdu un numar:");
+    scanf("%d", &n);
+    printf("Numerele din sirul lui Fibonacci: %d, %d ", a, b);
+    for (i=3; i<=n; ++i) {
+        printf("%d, ", c);
+        a=b;
+        b=c;
+        c=a+b;
+    }
+return 0;
+} 
+
+4.3.c
+#include <stdio.h>
+int main() {
+    int n;
+    printf("Introdu numarul de randuri dorite: ");
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n - i; j++) {
+            printf(" ");
+        }
+        for (int j = 1; j <= (2 * i - 1); j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+    return 0;
+}
