@@ -1,0 +1,66 @@
+1.
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main (){
+    char s[101];
+    fgets(s,sizeof(s),stdin);
+    for (int i=0; s[i]!='\0';i++){
+        s[i]=toupper(s[i]);
+    }
+    printf("%s", s);
+    return 0;
+}
+
+2.
+#include <stdio.h>
+
+int main() {
+    char s[101];
+    int x, y;
+
+    scanf("%s", s);       
+    scanf("%d %d", &x, &y); 
+
+
+    char t = s[x];
+    s[x] = s[y];
+    s[y] = t;
+
+    printf("%s\n", s);   
+
+    return 0;
+}
+
+
+3.
+ ------------------
+
+
+4.
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main (){
+    char alfabet[30] ="abcdefgijklmnopqrstuvxyz";
+    char s[101];
+    printf("Introduceti sirul de caractere: ");
+    scanf("%s", s);
+    int p;
+    printf("Introduceti valoarea pentru p:");
+    scanf("%d", &p);
+    
+    for (int i=0; s[i]!='\0'; i++){
+        if(islower(s[i])){
+         s[i]=alfabet[i+p];   
+        }
+        else if(isupper(s[i])){
+     s[i]=toupper(alfabet[i+p]) ; 
+    }}
+    
+    printf("%s",s);
+    return 0;
+}
