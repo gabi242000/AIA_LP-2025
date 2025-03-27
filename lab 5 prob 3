@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void trans_in_maj(char *sir) {
+    int i;
+    for (i = 0; sir[i] != '\0'; i++) {
+        if (sir[i] != ' ') {
+            sir[i] = toupper(sir[i]);
+        }
+    }
+}
+
+void inter_lit(char *cuvant, int x, int y) {
+    int lung = strlen(cuvant);
+    if (x >= 0 && x < lung && y >= 0 && y < lung) {
+        char temp = cuvant[x];
+        cuvant[x] = cuvant[y];
+        cuvant[y] = temp;
+    }
+}
+
+
+void cifra_cezar(char *text, int p) {
+    for (int i = 0; text[i] != '\0'; i++) {
+        if (isalpha(text[i])) {
+            char baza = isupper(text[i]) ? 'A' : 'a';
+            text[i] = (text[i] - baza + p) % 26 + baza;
+        }
+    }
+}
+
+int main() {
+    char sir[100];
+    fgets(sir, sizeof(sir), stdin);
+    
+    trans_in_maj(sir);
+    printf("Sir transformat: %s\n", sir);
+    
+    char cuvant[100];
+    int x, y;
+    scanf("%s", cuvant);
+    scanf("%d %d", &x, &y);
+    
+    inter_lit(cuvant, x, y);
+    printf("Cuvantul modificat: %s\n", cuvant);
+    
+    char text[200];
+    int p;
+    fgets(text, sizeof(text), stdin);
+    text[strcspn(text, "\n")] = '\0';
+    
+    printf("Introdu valoarea p: ");
+    scanf("%d", &p);
+    
+    cifra_cezar(text, p);
+    printf("Text criptat: %s\n", text);
+    
+    return 0;
+}
