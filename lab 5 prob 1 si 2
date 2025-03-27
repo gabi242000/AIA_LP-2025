@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void trans_in_maj(char *sir) {
+    int i;
+    for (i = 0; sir[i] != '\0'; i++) {
+        if (sir[i] != ' ') {
+            sir[i] = toupper(sir[i]);
+        }
+    }
+}
+
+void inter_lit(char *cuvant, int x, int y) {
+    int lung = strlen(cuvant);
+    if (x >= 0 && x < lung && y >= 0 && y < lung) {
+        char temp = cuvant[x];
+        cuvant[x] = cuvant[y];
+        cuvant[y] = temp;
+    }
+}
+
+int main() {
+    char sir[100];
+    fgets(sir, sizeof(sir), stdin);
+    
+    trans_in_maj(sir);
+    printf("Sir transformat: %s\n", sir);
+    
+    char cuvant[100];
+    int x, y;
+    scanf("%s", cuvant);
+    scanf("%d %d", &x, &y);
+    
+    inter_lit(cuvant, x, y);
+    printf("Cuvantul modificat: %s\n", cuvant);
+    
+    return 0;
+}
