@@ -1,0 +1,372 @@
+1. C
+
+#include <stdio.h>
+
+void sortareVector(int v[], int n) {
+    int i, j, pivot, temp;
+    if (n <= 1) return;
+
+    pivot = v[n / 2];
+    i = 0;
+    j = n - 1;
+
+    while (i <= j) {
+        while (v[i] < pivot) i++;
+        while (v[j] > pivot) j--;
+        if (i <= j) {
+            temp = v[i];
+            v[i] = v[j];
+            v[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    sortareVector(v, j + 1);
+    sortareVector(v + i, n - i);
+}
+
+
+int cautareBinara(int v[], int n, int x) {
+    int st = 0, dr = n - 1, m;
+    while (st <= dr) {
+        m = (st + dr) / 2;
+        if (v[m] == x) return m;
+        if (v[m] < x) st = m + 1;
+        else dr = m - 1;
+    }
+    return -1;
+}
+
+int main() {
+    int v[100], n, x, i;
+
+    printf("Cate elemente are vectorul? ");
+    scanf("%d", &n);
+
+    printf("Introdu %d numere:\n", n);
+    for (i = 0; i < n; i++) scanf("%d", &v[i]);
+
+    sortareVector(v, n);
+
+    printf("Vector sortat: ");
+    for (i = 0; i < n; i++) printf("%d ", v[i]);
+    printf("\n");
+
+    printf("Ce numar cauti? ");
+    scanf("%d", &x);
+
+    int poz = cautareBinara(v, n, x);
+    if (poz != -1)
+        printf("Gasit la pozitia %d.\n", poz);
+    else
+        printf("Nu a fost gasit.\n");
+
+    return 0;
+}
+
+1. C++
+
+#include <iostream>
+using namespace std;
+
+void sortareVector(int v[], int n) {
+    int i = 0, j = n - 1, pivot = v[n / 2], temp;
+
+    while (i <= j) {
+        while (v[i] < pivot) i++;
+        while (v[j] > pivot) j--;
+        if (i <= j) {
+            temp = v[i];
+            v[i] = v[j];
+            v[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    if (j + 1 > 0) sortareVector(v, j + 1);
+    if (n - i > 0) sortareVector(v + i, n - i);
+}
+
+
+int cautareBinara(int v[], int n, int x) {
+    int st = 0, dr = n - 1, m;
+    while (st <= dr) {
+        m = (st + dr) / 2;
+        if (v[m] == x) return m;
+        if (v[m] < x) st = m + 1;
+        else dr = m - 1;
+    }
+    return -1;
+}
+
+int main() {
+    int v[100], n, x;
+
+    cout << "Cate elemente are vectorul? ";
+    cin >> n;
+
+    cout << "Introdu " << n << " numere:\n";
+    for (int i = 0; i < n; i++) cin >> v[i];
+
+    sortareVector(v, n);
+
+    cout << "Vector sortat: ";
+    for (int i = 0; i < n; i++) cout << v[i] << " ";
+    cout << endl;
+
+    cout << "Ce numar cauti? ";
+    cin >> x;
+
+    int poz = cautareBinara(v, n, x);
+    if (poz != -1)
+        cout << "Gasit la pozitia " << poz << ".\n";
+    else
+        cout << "Nu a fost gasit.\n";
+
+    return 0;
+}
+
+
+2. C
+
+#include <stdio.h>
+#include <math.h>
+
+#define N 10  
+
+
+float determinant(float m[][N], int n) {
+    float det = 1;
+    int i, j, k;
+    
+    for (i = 0; i < n; i++) {
+        // dacă pivotul este zero, caută o linie de schimb
+        if (m[i][i] == 0) {
+            for (j = i + 1; j < n; j++) {
+                if (m[j][i] != 0) {
+                    // schimbă liniile
+                    for (k = 0; k < n; k++) {
+                        float temp = m[i][k];
+                        m[i][k] = m[j][k];
+                        m[j][k] = temp;
+                    }
+                    det *= -1;
+                    break;
+                }
+            }
+        }
+        if (m[i][i] == 0) return 0;
+
+        det *= m[i][i];
+
+        // eliminare Gauss
+        for (j = i + 1; j < n; j++) {
+            float f = m[j][i] / m[i][i];
+            for (k = i; k < n; k++) {
+                m[j][k] -= f * m[i][k];
+            }
+        }
+    }
+
+    return det;
+}
+
+int esteInversabila(float m[][N], int n) {
+    float copie[N][N];
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            copie[i][j] = m[i][j];
+
+    float det = determinant(copie, n);
+    return fabs(det) > 1e-6;
+}
+
+int main() {
+    float m[N][N];
+    int n;
+
+    printf("Dimensiunea matricei (n x n): ");
+    scanf("%d", &n);
+
+    printf("Introdu elementele matricei (%d x %d):\n", n, n);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            scanf("%f", &m[i][j]);
+
+    float copie[N][N];
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            copie[i][j] = m[i][j];
+
+    float det = determinant(copie, n);
+
+    printf("Determinantul este: %.2f\n", det);
+
+    if (esteInversabila(m, n))
+        printf("Matricea este inversabila.\n");
+    else
+        printf("Matricea NU este inversabila.\n");
+
+    return 0;
+}
+
+2. C++
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+const int N = 10;  
+
+float determinant(float m[N][N], int n) {
+    float det = 1.0;
+
+    for (int i = 0; i < n; i++) {
+        if (m[i][i] == 0.0f) {
+            for (int j = i + 1; j < n; j++) {
+                if (m[j][i] != 0.0f) {
+                    for (int k = 0; k < n; k++) {
+                        swap(m[i][k], m[j][k]);
+                    }
+                    det *= -1; 
+                    break;
+                }
+            }
+        }
+
+
+        if (m[i][i] == 0.0f) return 0.0f;
+
+        det *= m[i][i];
+
+
+        for (int j = i + 1; j < n; j++) {
+            float f = m[j][i] / m[i][i];
+            for (int k = i; k < n; k++) {
+                m[j][k] -= f * m[i][k];
+            }
+        }
+    }
+
+    return det;
+}
+
+bool esteInversabila(float m[N][N], int n) {
+    float copie[N][N];
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            copie[i][j] = m[i][j];
+
+    float det = determinant(copie, n);
+    return fabs(det) > 1e-6;
+}
+
+int main() {
+    float m[N][N];
+    int n;
+
+    cout << "Dimensiunea matricei (n x n): ";
+    cin >> n;
+
+    cout << "Introdu elementele matricei (" << n << " x " << n << "):\n";
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            cin >> m[i][j];
+
+    float copie[N][N];
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            copie[i][j] = m[i][j];
+
+    float det = determinant(copie, n);
+    cout << "Determinantul este: " << det << endl;
+
+    if (esteInversabila(m, n))
+        cout << "Matricea ESTE inversabila.\n";
+    else
+        cout << "Matricea NU este inversabila.\n";
+
+    return 0;
+}
+
+
+3. C
+
+#include <stdio.h>
+#include <string.h>
+
+void cripteaza(char s[], int key) {
+    for (int i = 0; s[i] != '\0'; i++) {
+        if (s[i] >= 'a' && s[i] <= 'z')
+            s[i] = 'a' + (s[i] - 'a' + key) % 26;
+        else if (s[i] >= 'A' && s[i] <= 'Z')
+            s[i] = 'A' + (s[i] - 'A' + key) % 26;
+    }
+}
+
+void decripteaza(char s[], int key) {
+    cripteaza(s, 26 - key % 26);
+}
+
+int main() {
+    char text[100];
+    int key;
+
+    printf("Textul: ");
+    fgets(text, sizeof(text), stdin);
+    text[strcspn(text, "\n")] = '\0';
+
+    printf("Cheia: ");
+    scanf("%d", &key);
+
+    cripteaza(text, key);
+    printf("Criptat: %s\n", text);
+
+    decripteaza(text, key);
+    printf("Decriptat: %s\n", text);
+
+    return 0;
+}
+
+
+3. C++
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+void cripteaza(string &s, int key) {
+    for (char &c : s) {
+        if (c >= 'a' && c <= 'z')
+            c = 'a' + (c - 'a' + key) % 26;
+        else if (c >= 'A' && c <= 'Z')
+            c = 'A' + (c - 'A' + key) % 26;
+    }
+}
+
+void decripteaza(string &s, int key) {
+    cripteaza(s, 26 - key % 26);
+}
+
+int main() {
+    string text;
+    int key;
+
+    cout << "Textul: ";
+    getline(cin, text);
+
+    cout << "Cheia: ";
+    cin >> key;
+
+    cripteaza(text, key);
+    cout << "Criptat: " << text << endl;
+
+    decripteaza(text, key);
+    cout << "Decriptat: " << text << endl;
+
+    return 0;
+}
