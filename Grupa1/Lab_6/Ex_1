@@ -1,0 +1,63 @@
+#include<stdio.h>
+
+//global
+int a[100];
+//global
+
+void ShowVect(int n) {
+    printf("\nVect: ");
+    for(int i=0;i<n;i++) {
+        printf("%d ",a[i]);
+    }
+    printf("\n");
+}
+
+void SortVect(int n) {
+    int temp =0;
+    for (int j = 0; j < n - 1; ++j) {
+        for (int i = 0; i < n - j - 1; ++i) {
+            if (a[i] > a[i + 1]) {
+                temp = a[i];
+                a[i] = a[i + 1];
+                a[i + 1] = temp;
+            }
+        }
+    }
+}
+
+int BinarySearch(int n,int target) {
+    int left = 0;
+    int right = n - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (a[mid] == target) {
+            return mid;
+        } else if (a[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int n,tar;
+    printf("Introdu numarul de elemenete din vector: \n");
+    scanf("%d",&n);
+    printf("Introdu vectorul: \n");
+    for(int i=0;i<n;i++) {
+        scanf("%d",&a[i]);
+    }
+    SortVect(n);
+    ShowVect(n);
+    printf("Cauta elementul tar: \n");
+    scanf("%d",&tar);
+    if (BinarySearch(n,tar)!=-1) {
+        printf("A fost gasit numarul! \n");
+    }else {
+        printf("Nu exista numarul in vector! \n");
+    }
+    printf("gt\n");
+
+}
