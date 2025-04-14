@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+
+auto Cript(char a[], int key) {
+    key = key % 26;
+    for (int i = 0; i < strlen(a); i++) {
+        if (a[i] >= 'A' && a[i] <= 'Z') {
+            a[i] = (a[i] - 'A' + key) % 26 + 'A';
+        } else if (a[i] >= 'a' && a[i] <= 'z') {
+            a[i] = (a[i] - 'a' + key) % 26 + 'a';
+        }
+    }
+    return a;
+}
+
+auto DeCript(char a[], int key) {
+    key = key % 26;
+    for (int i = 0; i < strlen(a); i++) {
+        if (a[i] >= 'A' && a[i] <= 'Z') {
+            a[i] = (a[i] - 'A' - key + 26) % 26 + 'A';
+        } else if (a[i] >= 'a' && a[i] <= 'z') {
+            a[i] = (a[i] - 'a' - key + 26) % 26 + 'a';
+        }
+    }
+    return a;
+}
+
+int main() {
+    printf("Pune propozitia aici->\n");
+    char a[100];
+    fgets(a,100,stdin);
+    a[strcspn(a,"\n")]=NULL;
+    int key;
+    printf("Pune cheia aici->\n");
+    scanf("%d",&key);
+    Cript(a,key);
+    printf("Propozitia criptata->%s\n",a);
+    DeCript(a,key);
+    printf("Propozitia decriptata->%s\n",a);
+}
