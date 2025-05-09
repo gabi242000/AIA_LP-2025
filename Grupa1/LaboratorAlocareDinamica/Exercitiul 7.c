@@ -11,6 +11,11 @@ int main(){
     for(int i=1;i<=n;i++)
         A[i] = (int*)malloc(n*sizeof(int));
 
+    if(A==NULL){
+        printf("Eroare la alocarea memoriei pentru matricea A");
+        return 1;
+    }
+
     
 
     for(int i=1;i<=n;i++)

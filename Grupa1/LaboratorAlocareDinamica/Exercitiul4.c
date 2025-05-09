@@ -6,6 +6,10 @@ int main(){
     scanf("%d",&n);
 
     v = (int*)malloc(n*sizeof(int));
+    if(v == NULL){
+        printf("Eroare la alocarea memoriei pentru vectorul v");
+        return 1;
+    }
 
     for(int i=1;i<=n;i++){
         scanf("%d",&v[i]);
@@ -16,6 +20,10 @@ int main(){
     ma = (int)s/cnt;
 
     v2 = (int*)malloc(n* sizeof(int));
+    if(v2==NULL){
+        printf("Eroare la alocarea memoriei pentru vectorul v2");
+        return 1;
+    }
 
     for(int i=1;i<=n;i++)
         if(v[i]>=ma) {
