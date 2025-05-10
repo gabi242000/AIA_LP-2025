@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    int *vec,*vec_par;
+    int n,x;
+    printf("num of elems: \n");
+    scanf("%d",&n);
+    vec = (int*)malloc(n*sizeof(int));
+    printf("introduce elem: \n");
+    for(int i=0;i<n;i++) {
+        printf("elem %d: ",i);
+        scanf("%d",&vec[i]);
+    }
+    vec_par = (int*)malloc(n*sizeof(int));
+    int aux=0;
+    for(int i=0;i<n;i++) {
+        if (vec[i]%2==0) {
+            vec_par[aux]=vec[i];
+            aux++;
+        }
+    }
+    for (int i=0;i<aux;i++) {
+        printf("%d ",vec_par[i]);
+    }
+    free(vec);
+    free(vec_par);
+}
