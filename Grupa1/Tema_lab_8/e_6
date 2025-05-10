@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+   int *vect1,*vect2,*vectC;
+   int n,m;
+   printf("nr elem vect1: \n");
+   scanf("%d",&n);
+   printf("nr elem vect2: \n");
+   scanf("%d",&m);
+   vect1 = (int*)malloc(n*sizeof(int));
+   vect2 = (int*)malloc(m*sizeof(int));
+   printf("vect1 de %d elemente: \n", n);
+   for(int i=0;i<n;i++) {
+      scanf("%d",&vect1[i]);
+   }
+   printf("vect2 de %d elemente: \n", m);
+   for(int i=0;i<m;i++) {
+      scanf("%d",&vect2[i]);
+   }
+   vectC = (int*)malloc((n+m)*sizeof(int));
+   for(int i=0;i<n;i++) {
+      vectC[i] = vect1[i];
+   }
+   for(int i=n;i<m+n;i++) {
+      vectC[i] = vect2[i-n];
+   }
+   for(int i=0;i<n+m;i++) {
+      printf("%d ",vectC[i]);
+   }
+
+   free(vect1);
+   free(vect2);
+
+}
