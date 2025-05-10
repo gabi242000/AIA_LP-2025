@@ -31,7 +31,7 @@ int cautareBinara(int v[], int n, int x) {
     return 0;
 }
 
-int main(void) {
+int main() {
     int v[100], n, x;
     scanf("%d", &n);
     scanf("%d", &x);
