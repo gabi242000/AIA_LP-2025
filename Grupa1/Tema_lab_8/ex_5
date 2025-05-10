@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+   int *vect,*rev;
+   int n;
+   printf("nr elem: \n");
+   scanf("%d",&n);
+   vect = (int*)malloc(n*sizeof(int));
+   rev = (int*)malloc(n*sizeof(int));
+   printf("vect de %d elemente: \n", n);
+   for(int i=0;i<n;i++) {
+      scanf("%d",&vect[i]);
+   }
+   for(int i=0;i<n;i++) {
+      rev[i] = vect[n-1-i];
+   }
+   for(int i=0;i<n;i++) {
+      printf("%d ",rev[i]);
+   }
+   free(vect);
+   free(rev);
+
+}
