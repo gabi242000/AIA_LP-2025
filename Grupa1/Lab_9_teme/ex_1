@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+int sizeOfNum(int n) {
+   int size = 1;
+   while (n) {
+      n = n / 10;
+      size*=10;
+   }
+   return size/10;
+}
+int Reverse(int n,int ind) {
+   int static rev=0;
+   if (n==0) return 0;
+   rev+=(n%10)*ind;
+   Reverse(n/10,ind/10);
+   return rev;
+}
+
+int main() {
+   int n;
+   scanf("%d",&n);
+   int ind=sizeOfNum(n);
+   int rev = Reverse(n,ind);
+   printf("%d",rev);
+}
