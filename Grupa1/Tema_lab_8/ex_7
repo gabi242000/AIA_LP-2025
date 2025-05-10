@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+   int **I;
+   int n;
+   printf("marime mat: \n");
+   scanf("%d", &n);
+   I = (int**)calloc(sizeof(int*)*n,0);
+   for (int i = 0; i < n; i++) {
+      I[i] = (int*)calloc(sizeof(int)*n,0);
+   }
+   for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+         if (i==j) {
+            I[i][j] = 1;
+         }
+      }
+   }
+   for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+         printf("%d ",I[i][j]);
+      }
+      printf("\n");
+   }
+}
