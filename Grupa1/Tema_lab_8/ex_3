@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+   int **A, **B, **C;
+   int rowA, colA,rowB, colB;
+   printf("dim A(row, col)\n");
+   scanf("%d%d", &rowA,&colA);
+   printf("dim B(row, col)\n");
+   scanf("%d%d", &rowB,&colB);
+
+   A=(int **)malloc(rowA*sizeof(int *));
+   for(int i=0;i<rowA;i++) {
+      A[i]=(int *)malloc(colA*sizeof(int));
+   }
+   B=(int **)malloc(rowB*sizeof(int *));
+   for(int i=0;i<rowB;i++) {
+      B[i]=(int *)malloc(colB*sizeof(int));
+   }
+   C=(int **)malloc(rowA*sizeof(int *));
+   for(int i=0;i<rowA;i++) {
+      C[i]=(int *)malloc(colB*sizeof(int));
+   }
+   printf("Elem din A:\n");
+   for(int i=0;i<rowA;i++) {
+      for(int j=0;j<colA;j++) {
+         printf("A[%d][%d]:\n", i, j);
+         scanf("%d",&A[i][j]);
+      }
+   }
+
+   printf("Elem din B:\n");
+   for(int i=0;i<rowB;i++) {
+      for(int j=0;j<colB;j++) {
+         printf("B[%d][%d]:\n", i, j);
+         scanf("%d",&B[i][j]);
+      }
+   }
+   for(int i=0;i<rowA;i++) {
+      for(int j=0;j<colB;j++) {
+         C[i][j]=0;
+         for(int k=0;k<colA;k++) {
+            C[i][j]+=A[i][k]*B[k][j];
+         }
+      }
+   }
+
+   printf("C:\n");
+   for(int i=0;i<rowA;i++) {
+      for(int j=0;j<colB;j++) {
+         printf("%d ", C[i][j]);
+      }
+      printf("\n");
+   }
+
+   for(int i=0;i<rowA;i++) {
+      free(A[i]);
+   }
+   free(A);
+   for(int i=0;i<rowB;i++) {
+      free(B[i]);
+   }
+   free(B);
+   for(int i=0;i<rowA;i++) {
+      free(C[i]);
+   }
+   free(C);
+   return 0;
+}
