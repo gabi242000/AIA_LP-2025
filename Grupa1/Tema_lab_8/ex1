@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    int *vec;
+    int n,x;
+    printf("num of elems: \n");
+    scanf("%d",&n);
+    vec = (int*)malloc(n*sizeof(int));
+    printf("introduce elem: \n");
+    for(int i=0;i<n;i++) {
+        printf("elem %d: ",i);
+        scanf("%d",&vec[i]);
+    }
+    printf("introduce x: \n");
+    scanf("%d",&x);
+    printf("val din %d si %d \n",x-5,x+5);
+    for(int i=0;i<n;i++) {
+        if (vec[i]>=x-5&&vec[i]<=x+5) {
+            printf("%d ",vec[i]);
+        }
+    }
+    free(vec);
+}
