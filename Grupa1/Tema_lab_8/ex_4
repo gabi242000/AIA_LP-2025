@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+   int *vect, *vectM;
+   int n,avg=0;
+   printf("num of elems: ");
+   scanf("%d",&n);
+   printf("elem: ");
+   vect = (int*)malloc(n*sizeof(int));
+   vectM = (int*)malloc(n*sizeof(int));
+   for(int i=0;i<n;i++) {
+      scanf("%d",&vect[i]);
+      avg+=vect[i];
+   }
+   avg = avg/n;
+   int aux=0;
+   for(int i=0;i<n;i++) {
+      if (vect[i]>=avg) {
+         vectM[aux]=vect[i];
+         aux++;
+      }
+   }
+   for(int i=0;i<aux;i++) {
+      printf("%d ",vectM[i]);
+   }
+   free(vect);
+   free(vectM);
+   return 0;
+
+}
