@@ -1,0 +1,22 @@
+#include <stdatomic.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int cmmdc(int n, int m) {
+
+    if (n == m) {
+        return n;
+    }
+    else if (n > m)
+        return cmmdc(n - m, m);
+    else
+        return cmmdc(n, m-n);
+}
+
+int main() {
+    int n, m;
+    scanf("%d %d", &n, &m);
+    printf("%d", cmmdc(n,m));
+    return 0;
+}
