@@ -1,0 +1,27 @@
+#include <stdatomic.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int invers(int n) {
+    static int inv = 0;
+
+
+    if (n != 0) {
+        if (inv > 0)
+            inv *= 10;
+
+        inv += n % 10;
+
+        return invers(n/10);
+    }
+    else
+        return inv;
+
+}
+int main() {
+    int n;
+    scanf("%d", &n);
+    printf("%d", invers(n));
+    return 0;
+}
