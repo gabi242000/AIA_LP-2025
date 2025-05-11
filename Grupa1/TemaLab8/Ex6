@@ -1,0 +1,30 @@
+#include <stdatomic.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    int n;
+    char *vector_1, *vector_2, *vector_3;
+
+    scanf("%d", &n);
+
+    vector_1 = (char *)malloc(100 * sizeof(char));
+    vector_2 = (char *)malloc(100 * sizeof(char));
+
+
+    fgets(vector_1, 100, stdin);
+    fgets(vector_2, 100, stdin);
+    vector_3 = (char *)malloc((200 * sizeof(char)));
+    vector_2[strlen(vector_2)-1] = '\0';
+    vector_1[strlen(vector_1)-1] = '\0';
+
+    strcat(vector_3, vector_1);
+    printf("%s\n", vector_3);
+    strcat(vector_3, vector_2);
+    printf("%s\n", vector_3);
+    free(vector_1);
+    free(vector_2);
+    free(vector_3);
+    return 0;
+}
