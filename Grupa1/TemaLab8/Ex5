@@ -1,0 +1,32 @@
+#include <stdatomic.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    int n;
+    int *vector_1, *vector_2;
+
+    scanf("%d", &n);
+
+    vector_1 = (int *)malloc(n * sizeof(int));
+    vector_2 = (int *)malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &vector_1[i]);
+        vector_2[n-i-1] = vector_1[i];
+    }
+
+    for (int i = 0; i < n; i++) {
+        printf("%d ", vector_1[i]);
+    }
+    printf("\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", vector_2[i]);
+    }
+    printf("\n");
+
+
+    free(vector_1);
+    free(vector_2);
+    return 0;
+}
