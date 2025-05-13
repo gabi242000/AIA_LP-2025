@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int main() {
+    int optiune;
+    float num1, num2, rezultat;
+
+    do {
+        printf("\nCalculator simplu:\n");
+        printf("1. Adunare\n");
+        printf("2. Scadere\n");
+        printf("3. Inmultire\n");
+        printf("4. Impartire\n");
+        printf("5. Iesire\n");
+        printf("Alege o optiune (1-5): ");
+        scanf("%d", &optiune);
+        if (optiune >= 1 && optiune <= 4) {
+            printf("Introdu primul numar: ");
+            scanf("%f", &num1);
+            printf("Introdu al doilea numar: ");
+            scanf("%f", &num2);
+        }
+        switch (optiune) {
+            case 1:
+                rezultat = num1 + num2;
+                printf("Rezultatul adunarii: %.2f\n", rezultat);
+                break;
+            case 2:
+                rezultat = num1 - num2;
+                printf("Rezultatul scaderii: %.2f\n", rezultat);
+                break;
+            case 3:
+                rezultat = num1 * num2;
+                printf("Rezultatul inmultirii: %.2f\n", rezultat);
+                break;
+            case 4:
+                if (num2 == 0) {
+                    printf("Eroare: Impartirea la zero nu este permisa!\n");
+                } else {
+                    rezultat = num1 / num2;
+                    printf("Rezultatul impartirii: %.2f\n", rezultat);
+                }
+                break;
+            case 5:
+                printf("Programul se inchide. La revedere!\n");
+                break;
+            default:
+                printf("Optiune invalida. Incearca din nou.\n");
+        }
+
+    } while (optiune != 5);
+
+    return 0;
+}
