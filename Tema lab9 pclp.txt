@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    int n = 1234;
+    int acc = 0;
+    int temp = n;
+    while (temp != 0) {
+        acc = acc * 10 + temp % 10;
+        temp = temp / 10;
+    }
+    printf("Inversul lui %d este %d\n", n, acc);
+    int a = 48, b = 18;
+    while (b != 0) {
+        int r = a % b;
+        a = b;
+        b = r;
+    }
+    printf("CMMD = %d\n", a);
+    return 0;
+}
