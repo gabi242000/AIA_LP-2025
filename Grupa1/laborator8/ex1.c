@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N, i, count = 0;
+    float media = 0;
+
+    printf("Introdu numarul de elemente: ");
+    scanf("%d", &N);
+
+    int *v = (int*)malloc(N * sizeof(int));
+    if (v == NULL) {
+        printf("Eroare la alocarea memoriei!\n");
+        return 1;
+    }
+
+    printf("Introdu %d numere intregi:\n", N);
+    for (i = 0; i < N; i++) {
+        scanf("%d", &v[i]);
+        media += v[i];
+    }
+
+    media /= N;
+
+    for (i = 0; i < N; i++) {
+        if (v[i] >= media)
+            count++;
+    }
+
+    int *v2 = (int*)malloc(count * sizeof(int));
+    if (v2 == NULL) {
+        printf("Eroare la alocarea memoriei!\n");
+        free(v);
+        return 1;
+    }
+
+    int j = 0;
+    for (i = 0; i < N; i++) {
+        if (v[i] >= media)
+            v2[j++] = v[i];
+    }
+
+    printf("Elementele mai mari sau egale cu media (%.2f) sunt:\n", media);
+    for (i = 0; i < count; i++) {
+        printf("%d ", v2[i]);
+    }
+    printf("\n");
+
+    free(v);
+    free(v2);
+
+    return 0;
+}

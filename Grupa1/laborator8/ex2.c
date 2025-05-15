@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N, i;
+
+    printf("Introdu numarul de elemente: ");
+    scanf("%d", &N);
+
+    int *v = (int*)malloc(N * sizeof(int));
+    if (v == NULL) {
+        printf("Eroare la alocarea memoriei pentru v!\n");
+        return 1;
+    }
+
+    printf("Introdu %d numere intregi:\n", N);
+    for (i = 0; i < N; i++) {
+        scanf("%d", &v[i]);
+    }
+
+    int *v_inv = (int*)malloc(N * sizeof(int));
+    if (v_inv == NULL) {
+        printf("Eroare la alocarea memoriei pentru v_inv!\n");
+        free(v);
+        return 1;
+    }
+
+    for (i = 0; i < N; i++) {
+        v_inv[i] = v[N - 1 - i];
+    }
+
+    printf("Vectorul original:\n");
+    for (i = 0; i < N; i++) {
+        printf("%d ", v[i]);
+    }
+    printf("\n");
+
+    printf("Vectorul inversat:\n");
+    for (i = 0; i < N; i++) {
+        printf("%d ", v_inv[i]);
+    }
+    printf("\n");
+
+    free(v);
+    free(v_inv);
+
+    return 0;
+}
