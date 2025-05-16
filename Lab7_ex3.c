@@ -30,7 +30,7 @@ int main(){
     printf("Introdu un sir: ");
     fgets(sir,101,stdin);
     for (int i = 0; sir[i] != '\0'; i++) t[i]=sir[i];
-    //printf("Sirul introdus este: %s",t);
+
 
     printf("Introdu pozitia: ");
     scanf("%d",&key);
