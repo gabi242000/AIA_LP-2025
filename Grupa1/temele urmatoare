@@ -1,0 +1,375 @@
+- teme grupa 1  
+Tema lab 5 
+Ex 1 #include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int main() {
+    char sir[256];
+    printf("Introduceți un șir de caractere: ");
+    fgets(sir, sizeof(sir), stdin);
+    sir[strcspn(sir, "\n")] = '\0';
+    for (int i = 0; sir[i] != '\0'; i++) {
+        sir[i] = toupper((unsigned char)sir[i]);
+    }
+    printf("Șirul modificat: %s\n", sir);
+
+    return 0;
+}    
+Ex 2 #include <stdio.h>
+#include <string.h>
+
+int main() {
+    char cuvant[101];
+    int x, y;
+
+    printf("Introduceți un cuvânt (doar litere mici): ");
+    scanf("%100s", cuvant);
+    printf("Introduceți două poziții (x și y): ");
+    scanf("%d %d", &x, &y);
+
+    int lungime = strlen(cuvant);
+    if (x < 0 || y < 0 || x >= lungime || y >= lungime) {
+        printf("Pozițiile sunt invalide!\n");
+    } else {
+       
+        char temp = cuvant[x];
+        cuvant[x] = cuvant[y];
+        cuvant[y] = temp;
+        printf("Cuvântul modificat: %s\n", cuvant);
+    }
+
+    return 0;
+} 
+Ex 3  
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int esteVocala(char c) {
+    return (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
+}
+
+int esteCuvantFrumos(char cuv[]) {
+    int lungime = strlen(cuv);
+    if (cuv[0] != 'z') return 0;
+    if (lungime % 2 != 0) return 0;
+    for (int i = 0; i < lungime - 1; i++) {
+        int e1 = esteVocala(cuv[i]);
+        int e2 = esteVocala(cuv[i + 1]);
+
+        if (e1 == e2) {
+            
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+int main() {
+    char cuvant[101];
+
+    printf("Introduceți un cuvânt: ");
+    scanf("%100s", cuvant);
+
+    if (esteCuvantFrumos(cuvant)) {
+        printf("Cuvântul este frumos!\n");
+    } else {
+        printf("Cuvântul NU este frumos.\n");
+    }
+
+    return 0;
+} 
+
+Tema lab functii 
+Ex 1 #include <stdio.h>
+
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+int partition(int v[], int low, int high) {
+    int pivot = v[high];
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+        if (v[j] < pivot) {
+            i++;
+            swap(&v[i], &v[j]);
+        }
+    }
+    swap(&v[i + 1], &v[high]);
+    return i + 1;
+}
+
+void quicksort(int v[], int low, int high) {
+    if (low < high) {
+        int pi = partition(v, low, high);
+        quicksort(v, low, pi - 1);
+        quicksort(v, pi + 1, high);
+    }
+}
+
+void sortareVector(int v[], int n) {
+    quicksort(v, 0, n - 1);
+}
+
+int cautareBinara(int v[], int n, int x) {
+    int st = 0, dr = n - 1;
+    while (st <= dr) {
+        int mij = (st + dr) / 2;
+        if (v[mij] == x)
+            return mij; 
+        else if (v[mij] < x)
+            st = mij + 1;
+        else
+            dr = mij - 1;
+    }
+    return -1; 
+}
+
+int main() {
+    int v[100], n, x;
+    printf("Introduceți numărul de elemente: ");
+    scanf("%d", &n);
+    printf("Introduceți elementele vectorului:\n");
+    for (int i = 0; i < n; i++) {
+        printf("v[%d] = ", i);
+        scanf("%d", &v[i]);
+    }
+    sortareVector(v, n);
+    printf("Vectorul sortat: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", v[i]);
+    }
+    printf("\n");
+    printf("Introduceți elementul de căutat: ");
+    scanf("%d", &x);
+    int poz = cautareBinara(v, n, x);
+    if (poz != -1)
+        printf("Elementul %d se află la poziția %d (index de la 0).\n", x, poz);
+    else
+        printf("Elementul %d nu a fost găsit în vector.\n", x);
+
+    return 0;
+} 
+Ex 2 
+#include <stdio.h>
+#include <math.h>
+
+#define N 10 
+double determinant(double m[N][N], int n) {
+    double temp[N][N];
+    double det = 1.0;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            temp[i][j] = m[i][j];
+
+    for (int i = 0; i < n; i++) {
+        if (fabs(temp[i][i]) < 1e-9) {
+            
+            int schimb = -1;
+            for (int k = i + 1; k < n; k++) {
+                if (fabs(temp[k][i]) > 1e-9) {
+                    schimb = k;
+                    break;
+                }
+            }
+            if (schimb == -1) return 0.0; 
+
+            
+            for (int j = 0; j < n; j++) {
+                double aux = temp[i][j];
+                temp[i][j] = temp[schimb][j];
+                temp[schimb][j] = aux;
+            }
+            det *= -1; 
+        }
+
+        det *= temp[i][i];
+
+        for (int k = i + 1; k < n; k++) {
+            double factor = temp[k][i] / temp[i][i];
+            for (int j = i; j < n; j++) {
+                temp[k][j] -= factor * temp[i][j];
+            }
+        }
+    }
+
+    return det;
+}
+
+
+int esteInversabila(double m[N][N], int n) {
+    double det = determinant(m, n);
+    return fabs(det) > 1e-9; 
+}
+
+
+int main() {
+    int n;
+    double matrice[N][N];
+    printf("Introduceți dimensiunea matricei (n): ");
+    scanf("%d", &n);
+    if (n > N || n <= 0) {
+        printf("Dimensiune invalidă.\n");
+        return 1;
+    }
+    printf("Introduceți elementele matricei (%dx%d):\n", n, n);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) {
+            printf("m[%d][%d] = ", i, j);
+            scanf("%lf", &matrice[i][j]);
+        }
+
+    double det = determinant(matrice, n);
+    printf("Determinantul matricei este: %.2lf\n", det);
+
+    if (esteInversabila(matrice, n))
+        printf("Matricea este inversabilă.\n");
+    else
+        printf("Matricea NU este inversabilă.\n");
+
+    return 0;
+} 
+Tema lab 8 
+Ex 1 
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf("Introduceți numărul de elemente: ");
+    scanf("%d", &n);
+
+    int *v = (int *)malloc(n * sizeof(int));
+    if (!v) {
+        printf("Eroare la alocare memorie.\n");
+        return 1;
+    }
+
+    printf("Introduceți elementele:\n");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &v[i]);
+    double suma = 0;
+    for (int i = 0; i < n; i++)
+        suma += v[i];
+    double media = suma / n;
+    printf("Media: %.2lf\n", media);
+    int *nou = (int *)malloc(n * sizeof(int));
+    int k = 0;
+    for (int i = 0; i < n; i++)
+        if (v[i] >= media)
+            nou[k++] = v[i];
+
+    printf("Elemente >= media: ");
+    for (int i = 0; i < k; i++)
+        printf("%d ", nou[i]);
+    printf("\n");
+
+    free(v);
+    free(nou);
+    return 0;
+} 
+Ex 2 
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf("Introduceți numărul de elemente: ");
+    scanf("%d", &n);
+
+    int *v = (int *)malloc(n * sizeof(int));
+    int *inv = (int *)malloc(n * sizeof(int));
+    if (!v || !inv) {
+        printf("Eroare la alocare.\n");
+        return 1;
+    }
+
+    printf("Introduceți elementele:\n");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &v[i]);
+
+    
+    for (int i = 0; i < n; i++)
+        inv[i] = v[n - 1 - i];
+
+    printf("Vector original: ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", v[i]);
+    printf("\n");
+
+    printf("Vector inversat: ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", inv[i]);
+    printf("\n");
+
+    free(v);
+    free(inv);
+    return 0;
+} 
+Ex 3 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    char *sir1 = NULL, *sir2 = NULL, *rezultat = NULL;
+    int l1, l2;
+
+    printf("Lungimea primului șir: ");
+    scanf("%d", &l1);
+    getchar(); 
+
+    sir1 = (char *)malloc((l1 + 1) * sizeof(char));
+    printf("Introduceți primul șir: ");
+    fgets(sir1, l1 + 1, stdin);
+
+    printf("Lungimea celui de-al doilea șir: ");
+    scanf("%d", &l2);
+    getchar(); 
+
+    sir2 = (char *)malloc((l2 + 1) * sizeof(char));
+    printf("Introduceți al doilea șir: ");
+    fgets(sir2, l2 + 1, stdin);
+
+    rezultat = (char *)malloc((strlen(sir1) + strlen(sir2) + 1) * sizeof(char));
+    strcpy(rezultat, sir1);
+    strcat(rezultat, sir2);
+
+    printf("Concatenarea: %s\n", rezultat);
+
+    free(sir1);
+    free(sir2);
+    free(rezultat);
+    return 0;
+} 
+
+Tema lab 9 
+Ex 1 
+#include <stdio.h>
+int invers(int n, int acc) {
+    if (n == 0)
+        return acc;
+    return invers(n / 10, acc * 10 + n % 10);
+}
+
+int main() {
+    int n;
+    printf("Introduceți un număr: ");
+    scanf("%d", &n);
+
+  int rezultat = invers(n, 0);
+    printf("Numărul inversat este: %d\n", rezultat);
+
+    return 0;
+}
+
+
+
+
+
