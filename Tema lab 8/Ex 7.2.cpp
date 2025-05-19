@@ -6,7 +6,7 @@ int main() {
     cout << "Introduceti dimensiunea matricei: ";
     cin >> N;
 
-    // Alocare matrice dinamică
+    // Alocare matrice dinamica
     int** mat = new int*[N];
     for (int i = 0; i < N; ++i) {
         mat[i] = new int[N];
