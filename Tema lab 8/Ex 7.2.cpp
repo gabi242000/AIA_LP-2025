@@ -12,7 +12,7 @@ int main() {
         mat[i] = new int[N];
     }
 
-    // Inițializare matrice identitate cu if
+    // Initializare matrice identitate cu if
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
             if (i == j) {
