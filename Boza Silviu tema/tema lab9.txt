@@ -1,0 +1,70 @@
+Functie recursiva care inverseaza cifrele unui numar natural:
+ 
+#include <stdio.h>
+ 
+// Funcția recursivă pentru a inversa cifrele unui număr
+
+int invers(int n, int acc) {
+
+    if (n == 0)
+
+        return acc;
+
+    return invers(n / 10, acc * 10 + n % 10);
+
+}
+ 
+int main() {
+
+    int n;
+
+    printf("Introdu un număr: ");
+
+    scanf("%d", &n);
+ 
+    int rezultat = invers(n, 0);
+
+    printf("Numărul inversat este: %d\n", rezultat);
+ 
+    return 0;
+
+}
+
+
+Funcție recursivă care calculează CMMD (Cel Mai Mare Divizor Comun):
+ 
+#include <stdio.h>
+ 
+// Funcția recursivă pentru CMMD folosind algoritmul lui Euclid
+
+int cmmdc(int a, int b) {
+
+    if (b == 0)
+
+        return a;
+
+    return cmmdc(b, a % b);
+
+}
+ 
+int main() {
+
+    int a, b;
+
+    printf("Introdu două numere: ");
+
+    scanf("%d %d", &a, &b);
+ 
+    int rezultat = cmmdc(a, b);
+
+    printf("CMMD dintre %d și %d este: %d\n", a, b, rezultat);
+ 
+    return 0;
+
+}
+
+ 
+ 
+
+
+

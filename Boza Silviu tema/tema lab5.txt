@@ -1,0 +1,120 @@
+Transformarea tuturor literelor în litere mari:
+ 
+#include <stdio.h>
+
+#include <ctype.h>
+ 
+int main() {
+
+    char s[201];
+
+    printf("Introdu sirul: ");
+
+    fgets(s, 201, stdin); // citeste sirul inclusiv spatii
+ 
+    for (int i = 0; s[i] != '\0'; i++) {
+
+        if (isalpha(s[i])) {
+
+            s[i] = toupper(s[i]);
+
+        }
+
+    }
+ 
+    printf("Sirul modificat este: %s", s);
+
+    return 0;
+
+}
+
+ 
+
+
+
+Interschimbarea a două litere aflate pe pozițiile x și y:
+ 
+#include <stdio.h>
+
+#include <string.h>
+ 
+int main() {
+
+    char cuvant[101];
+
+    int x, y;
+ 
+    printf("Introdu cuvantul: ");
+
+    scanf("%s", cuvant);
+
+    printf("Introdu doua pozitii x si y (incepand de la 0): ");
+
+    scanf("%d %d", &x, &y);
+ 
+    int lungime = strlen(cuvant);
+
+    if (x >= 0 && x < lungime && y >= 0 && y < lungime) {
+
+        char temp = cuvant[x];
+
+        cuvant[x] = cuvant[y];
+
+        cuvant[y] = temp;
+
+        printf("Cuvantul modificat: %s\n", cuvant);
+
+    } else {
+
+        printf("Pozitii invalide!\n");
+
+    }
+ 
+    return 0;
+
+}
+
+
+
+Criptarea unui text folosind Cifrul Cezar (Caesar Cipher):
+ 
+#include <stdio.h>
+
+#include <ctype.h>
+ 
+int main() {
+
+    char text[201];
+
+    int p;
+ 
+    printf("Introdu textul de criptat: ");
+
+    fgets(text, 201, stdin);
+ 
+    printf("Introdu valoarea p: ");
+
+    scanf("%d", &p);
+ 
+    for (int i = 0; text[i] != '\0'; i++) {
+
+        if (isupper(text[i])) {
+
+            text[i] = 'A' + (text[i] - 'A' + p) % 26;
+
+        } else if (islower(text[i])) {
+
+            text[i] = 'a' + (text[i] - 'a' + p) % 26;
+
+        }
+
+    }
+ 
+    printf("Textul criptat: %s\n", text);
+ 
+    return 0;
+
+}
+
+ 
+ 
