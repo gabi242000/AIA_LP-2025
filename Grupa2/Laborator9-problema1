@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-// Funcție recursivă pentru inversarea cifrelor
 int invers(int n, int acc) {
     if (n == 0)
         return acc;
