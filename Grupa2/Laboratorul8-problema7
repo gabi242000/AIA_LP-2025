@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N, i, j;
+    printf("Introdu dimensiunea matricei (N): ");
+    scanf("%d", &N);
+
+    int *matrice = (int *)malloc(N * sizeof(int *));
+    if (matrice == NULL) {
+        printf("Alocare esuata.\n");
+        return 1;
+    }
+
+    for (i = 0; i < N; i++) {
+        matrice[i] = (int *)malloc(N * sizeof(int));
+        if (matrice[i] == NULL) {
+            printf("Alocare esuata.\n");
+            return 1;
+        }
+    }
+
+    for (i = 0; i < N; i++)
+        for (j = 0; j < N; j++)
+            matrice[i][j] = (i == j) ? 1 : 0;
+
+    printf("Matricea identitate %dx%d este:\n", N, N);
+    for (i = 0; i < N; i++) {
+        for (j = 0; j < N; j++) {
+            printf("%d ", matrice[i][j]);
+        }
+        printf("\n");
+    }
+
+    for (i = 0; i < N; i++) {
+        free(matrice[i]);
+    }
+    free(matrice);
+    return 0;
+}
