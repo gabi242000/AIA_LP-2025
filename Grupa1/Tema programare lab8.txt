@@ -1,0 +1,143 @@
+Ex.4(de pe net)
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N;
+    printf("Introdu N: ");
+    scanf("%d", &N);
+
+    int *v = (int*)malloc(N * sizeof(int));
+    printf("Introdu %d numere:\n", N);
+    for (int i = 0; i < N; i++)
+        scanf("%d", &v[i]);
+
+    double suma = 0;
+    for (int i = 0; i < N; i++)
+        suma += v[i];
+    double media = suma / N;
+
+    int count = 0;
+    for (int i = 0; i < N; i++)
+        if (v[i] >= media) count++;
+
+    int *nou = (int*)malloc(count * sizeof(int));
+    int j = 0;
+    for (int i = 0; i < N; i++)
+        if (v[i] >= media)
+            nou[j++] = v[i];
+
+    printf("Elemente ≥ media (%.2f): ", media);
+    for (int i = 0; i < count; i++)
+        printf("%d ", nou[i]);
+    printf("\n");
+
+    free(v);
+    free(nou);
+
+    return 0;
+}
+
+
+Ex.5(cu ajutor)
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N;
+    printf("Introdu N: ");
+    scanf("%d", &N);
+
+    int *v1 = (int*)malloc(N * sizeof(int));
+    int *v2 = (int*)malloc(N * sizeof(int));
+
+    printf("Introdu %d numere:\n", N);
+    for (int i = 0; i < N; i++)
+        scanf("%d", &v1[i]);
+
+    for (int i = 0; i < N; i++)
+        v2[i] = v1[N - 1 - i];
+
+    printf("Vector original: ");
+    for (int i = 0; i < N; i++)
+        printf("%d ", v1[i]);
+
+    printf("\nVector inversat: ");
+    for (int i = 0; i < N; i++)
+        printf("%d ", v2[i]);
+    printf("\n");
+
+    free(v1);
+    free(v2);
+
+    return 0;
+}
+
+
+Ex.6(cu ajutor)
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    char *s1 = (char*)malloc(100 * sizeof(char));
+    char *s2 = (char*)malloc(100 * sizeof(char));
+
+    printf("Introdu primul sir: ");
+    getchar();  
+    fgets(s1, 100, stdin);
+    s1[strcspn(s1, "\n")] = '\0'; 
+
+    printf("Introdu al doilea sir: ");
+    fgets(s2, 100, stdin);
+    s2[strcspn(s2, "\n")] = '\0';
+
+    char *s3 = (char*)malloc(strlen(s1) + strlen(s2) + 1);
+    strcpy(s3, s1);
+    strcat(s3, s2);
+
+    printf("Concatenare: %s\n", s3);
+
+    free(s1);
+    free(s2);
+    free(s3);
+
+    return 0;
+}
+
+
+Ex.7
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N;
+    printf("Introdu dimensiunea N: ");
+    scanf("%d", &N);
+
+    int **matrice = (int**)malloc(N * sizeof(int*));
+    for (int i = 0; i < N; i++)
+        matrice[i] = (int*)malloc(N * sizeof(int));
+
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++)
+            matrice[i][j] = (i == j) ? 1 : 0;
+
+    printf("Matrice identitate:\n");
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++)
+            printf("%d ", matrice[i][j]);
+        printf("\n");
+    }
+
+    for (int i = 0; i < N; i++)
+        free(matrice[i]);
+    free(matrice);
+
+    return 0;
+}
