@@ -1,0 +1,128 @@
+// prob 4 vector cu valori medie arit
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N;
+    scanf("%d", &N);
+
+    int *v = (int*)malloc(N * sizeof(int));
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &v[i]);
+    }
+
+    double suma = 0;
+    for (int i = 0; i < N; i++) {
+        suma += v[i];
+    }
+    double media = suma / N;
+
+    int *nou = (int*)malloc(N * sizeof(int));
+    int k = 0;
+    for (int i = 0; i < N; i++) {
+        if (v[i] >= media) {
+            nou[k++] = v[i];
+        }
+    }
+
+    for (int i = 0; i < k; i++) {
+        printf("%d ", nou[i]);
+    }
+    printf("\n");
+
+    free(v);
+    free(nou);
+    return 0;
+}
+
+
+//prob 5 vector inversat
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N;
+    scanf("%d", &N);
+
+    int *v = (int*)malloc(N * sizeof(int));
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &v[i]);
+    }
+
+    int *inv = (int*)malloc(N * sizeof(int));
+    for (int i = 0; i < N; i++) {
+        inv[i] = v[N - 1 - i];
+    }
+
+    for (int i = 0; i < N; i++) {
+        printf("%d ", v[i]);
+    }
+    printf("\n");
+    for (int i = 0; i < N; i++) {
+        printf("%d ", inv[i]);
+    }
+    printf("\n");
+
+    free(v);
+    free(inv);
+    return 0;
+}
+
+//prob 6 concatenare siruri
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    char *s1 = (char*)malloc(100 * sizeof(char));
+    char *s2 = (char*)malloc(100 * sizeof(char));
+
+    scanf(" %[^\n]", s1);
+    scanf(" %[^\n]", s2);
+
+    int len = strlen(s1) + strlen(s2) + 1;
+    char *rez = (char*)malloc(len * sizeof(char));
+    strcpy(rez, s1);
+    strcat(rez, s2);
+
+    printf("%s\n", rez);
+
+    free(s1);
+    free(s2);
+    free(rez);
+    return 0;
+}
+
+//prob 7 matrice identice
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N;
+    scanf("%d", &N);
+
+    int **mat = (int**)malloc(N * sizeof(int*));
+    for (int i = 0; i < N; i++) {
+        mat[i] = (int*)malloc(N * sizeof(int));
+    }
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            mat[i][j] = (i == j) ? 1 : 0;
+        }
+    }
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            printf("%d ", mat[i][j]);
+        }
+        printf("\n");
+    }
+
+    for (int i = 0; i < N; i++) {
+        free(mat[i]);
+    }
+    free(mat);
+    return 0;
+}
+
