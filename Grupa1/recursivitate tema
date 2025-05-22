@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int invers(int n, int acc) {
+    if (n == 0) return acc;
+    return invers(n / 10, acc * 10 + n % 10);
+}
+
+int cmmdc(int a, int b) {
+    if (b == 0) return a;
+    return cmmdc(b, a % b);
+}
+
+int main() {
+    int n, a, b;
+
+    scanf("%d", &n);
+    printf("%d\n", invers(n, 0));
+
+    scanf("%d %d", &a, &b);
+    printf("%d\n", cmmdc(a, b));
+
+    return 0;
+}
