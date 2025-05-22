@@ -1,0 +1,40 @@
+Ex.1
+
+
+#include <iostream>
+using namespace std;
+
+int invers(int n, int acc = 0) {
+    if (n == 0) {
+        return acc;
+    }
+    return invers(n / 10, acc * 10 + n % 10);
+}
+
+int main() {
+    int n;
+    cout << "Introdu un numar: ";
+    cin >> n;
+    cout << "Inversul este: " << invers(n) << endl;
+    return 0;
+}
+
+
+Ex.2
+
+#include <iostream>
+using namespace std;
+
+int cmmdc(int a, int b) {
+    if (b == 0)
+        return a;
+    return cmmdc(b, a % b);
+}
+
+int main() {
+    int a, b;
+    cout << "Introdu doua numere: ";
+    cin >> a >> b;
+    cout << "CMMDC este: " << cmmdc(a, b) << endl;
+    return 0;
+}
