@@ -1,0 +1,661 @@
+# depslib dependency file v1.0
+1743689366 source:/home/remus/Desktop/Game/Pac-Man/main.cpp
+	<SFML/Graphics.hpp>
+
+1746005814 source:/home/remus/Desktop/Game/Pac-Man/test.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<optional>
+	<vector>
+	<cmath>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics.hpp
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/CircleShape.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/ConvexShape.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/RectangleShape.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/RenderTexture.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Shader.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/StencilMode.hpp>
+	<SFML/Graphics/Text.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/Graphics/VertexBuffer.hpp>
+	<SFML/Graphics/View.hpp>
+	<SFML/Window.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/BlendMode.hpp
+	<SFML/Graphics/Export.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Export.hpp
+	<SFML/Config.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Config.hpp
+	"TargetConditionals.h"
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/CircleShape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/System/Vector2.hpp>
+	<cstddef>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Shape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/System/Vector2.hpp>
+	<cstddef>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Color.hpp
+	<cstdint>
+	<SFML/Graphics/Color.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Color.inl
+	<SFML/Graphics/Color.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Drawable.hpp
+	<SFML/Graphics/Export.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/PrimitiveType.hpp
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Rect.hpp
+	<SFML/System/Vector2.hpp>
+	<optional>
+	<SFML/Graphics/Rect.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Vector2.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/Angle.hpp>
+	<SFML/System/Vector2.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Export.hpp
+	<SFML/Config.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Angle.hpp
+	<SFML/System/Angle.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Angle.inl
+	<SFML/System/Angle.hpp>
+	<cassert>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Vector2.inl
+	<SFML/System/Vector2.hpp>
+	<cassert>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Rect.inl
+	<SFML/Graphics/Rect.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/RenderStates.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/CoordinateType.hpp>
+	<SFML/Graphics/StencilMode.hpp>
+	<SFML/Graphics/Transform.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/CoordinateType.hpp
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/StencilMode.hpp
+	<SFML/Graphics/Export.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Transform.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/System/Vector2.hpp>
+	<array>
+	<SFML/Graphics/Transform.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Transform.inl
+	<SFML/Graphics/Transform.hpp>
+	<array>
+	<cstddef>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Transformable.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/System/Angle.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/VertexArray.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<vector>
+	<cstddef>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Vertex.hpp
+	<SFML/Graphics/Color.hpp>
+	<SFML/System/Vector2.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/ConvexShape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<vector>
+	<cstddef>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Font.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/System/Vector2.hpp>
+	<filesystem>
+	<memory>
+	<string>
+	<unordered_map>
+	<vector>
+	<cstddef>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Glyph.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Texture.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/CoordinateType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/System/Vector2.hpp>
+	<filesystem>
+	<cstddef>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/GlResource.hpp
+	<SFML/Window/Export.hpp>
+	<memory>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Export.hpp
+	<SFML/Config.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Image.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/System/Vector2.hpp>
+	<filesystem>
+	<optional>
+	<string_view>
+	<vector>
+	<cstddef>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/RectangleShape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/System/Vector2.hpp>
+	<cstddef>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/RenderTarget.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/CoordinateType.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/StencilMode.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/View.hpp>
+	<SFML/System/Vector2.hpp>
+	<array>
+	<cstddef>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/View.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/System/Angle.hpp>
+	<SFML/System/Vector2.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/RenderTexture.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/System/Vector2.hpp>
+	<memory>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/ContextSettings.hpp
+	<SFML/Config.hpp>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/RenderWindow.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/Window.hpp>
+	<SFML/Window/WindowEnums.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/System/Vector2.hpp>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/VideoMode.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector2.hpp>
+	<vector>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Window.hpp
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/Window/WindowBase.hpp>
+	<SFML/Window/WindowEnums.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Time.hpp>
+	<memory>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/WindowBase.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/Window/Vulkan.hpp>
+	<SFML/Window/WindowEnums.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/System/Vector2.hpp>
+	<memory>
+	<optional>
+	<cstdint>
+	<SFML/Window/WindowBase.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Vulkan.hpp
+	<SFML/Window/Export.hpp>
+	<vector>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/WindowEnums.hpp
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/WindowHandle.hpp
+	<SFML/Config.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Time.hpp
+	<chrono>
+	<cstdint>
+	<SFML/System/Time.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Time.inl
+	<SFML/System/Time.hpp>
+	<ratio>
+	<cassert>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/WindowBase.inl
+	<SFML/Window/Event.hpp>
+	<SFML/Window/WindowBase.hpp>
+	<utility>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Event.hpp
+	<SFML/Window/Joystick.hpp>
+	<SFML/Window/Keyboard.hpp>
+	<SFML/Window/Mouse.hpp>
+	<SFML/Window/Sensor.hpp>
+	<SFML/System/Vector2.hpp>
+	<variant>
+	<SFML/Window/Event.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Joystick.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/String.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/String.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/Utf.hpp>
+	<locale>
+	<string>
+	<cstddef>
+	<cstdint>
+	<SFML/System/String.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Utf.hpp
+	<SFML/Config.hpp>
+	<array>
+	<locale>
+	<cstdint>
+	<cstdlib>
+	<SFML/System/Utf.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Utf.inl
+	<SFML/System/Utf.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/String.inl
+	<SFML/System/String.hpp>
+	<iterator>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Keyboard.hpp
+	<SFML/Window/Export.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Mouse.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector2.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Sensor.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector3.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Vector3.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/Vector3.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Vector3.inl
+	<SFML/System/Vector3.hpp>
+	<cassert>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Event.inl
+	<SFML/Window/Event.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Clock.hpp
+	<SFML/System/Export.hpp>
+	<chrono>
+	<ratio>
+	<type_traits>
+	<SFML/System/SuspendAwareClock.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/SuspendAwareClock.hpp
+	<SFML/System/Export.hpp>
+	<chrono>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Shader.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Glsl.hpp>
+	<SFML/Window/GlResource.hpp>
+	<filesystem>
+	<string>
+	<string_view>
+	<unordered_map>
+	<cstddef>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Glsl.hpp
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<cstddef>
+	<SFML/Graphics/Glsl.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Glsl.inl
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Glsl.hpp>
+	<array>
+	<cstddef>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Sprite.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<array>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/Text.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/System/String.hpp>
+	<SFML/System/Vector2.hpp>
+	<cstddef>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Graphics/VertexBuffer.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Window/GlResource.hpp>
+	<cstddef>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window.hpp
+	<SFML/Window/Clipboard.hpp>
+	<SFML/Window/Context.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/Cursor.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Joystick.hpp>
+	<SFML/Window/Keyboard.hpp>
+	<SFML/Window/Mouse.hpp>
+	<SFML/Window/Sensor.hpp>
+	<SFML/Window/Touch.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/Window.hpp>
+	<SFML/Window/WindowEnums.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/System.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Clipboard.hpp
+	<SFML/Window/Export.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Context.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/System/Vector2.hpp>
+	<memory>
+	<string_view>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Cursor.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector2.hpp>
+	<memory>
+	<optional>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Window/Touch.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector2.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Angle.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Err.hpp>
+	<SFML/System/Exception.hpp>
+	<SFML/System/FileInputStream.hpp>
+	<SFML/System/InputStream.hpp>
+	<SFML/System/MemoryInputStream.hpp>
+	<SFML/System/Sleep.hpp>
+	<SFML/System/String.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/System/Utf.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Err.hpp
+	<SFML/System/Export.hpp>
+	<iosfwd>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Exception.hpp
+	<SFML/System/Export.hpp>
+	<stdexcept>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/FileInputStream.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Export.hpp>
+	<SFML/System/InputStream.hpp>
+	<filesystem>
+	<memory>
+	<cstdint>
+	<cstdio>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/InputStream.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Export.hpp>
+	<optional>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/MemoryInputStream.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Export.hpp>
+	<SFML/System/InputStream.hpp>
+	<cstddef>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/System/Sleep.hpp
+	<SFML/System/Export.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio.hpp
+	<SFML/Audio/InputSoundFile.hpp>
+	<SFML/Audio/Listener.hpp>
+	<SFML/Audio/Music.hpp>
+	<SFML/Audio/OutputSoundFile.hpp>
+	<SFML/Audio/PlaybackDevice.hpp>
+	<SFML/Audio/Sound.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundBufferRecorder.hpp>
+	<SFML/Audio/SoundFileFactory.hpp>
+	<SFML/Audio/SoundFileReader.hpp>
+	<SFML/Audio/SoundFileWriter.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/Audio/SoundStream.hpp>
+	<SFML/System.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/InputSoundFile.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundFileReader.hpp>
+	<filesystem>
+	<memory>
+	<vector>
+	<cstddef>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/Export.hpp
+	<SFML/Config.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/SoundFileReader.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundChannel.hpp>
+	<optional>
+	<vector>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/SoundChannel.hpp
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/Listener.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Angle.hpp>
+	<SFML/System/Vector3.hpp>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/Music.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundStream.hpp>
+	<filesystem>
+	<memory>
+	<optional>
+	<cstddef>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/SoundStream.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundChannel.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Time.hpp>
+	<memory>
+	<optional>
+	<vector>
+	<cstddef>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/SoundSource.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/AudioResource.hpp>
+	<SFML/System/Angle.hpp>
+	<SFML/System/Vector3.hpp>
+	<functional>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/AudioResource.hpp
+	<SFML/Audio/Export.hpp>
+	<memory>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/OutputSoundFile.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundChannel.hpp>
+	<SFML/Audio/SoundFileWriter.hpp>
+	<filesystem>
+	<memory>
+	<vector>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/SoundFileWriter.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundChannel.hpp>
+	<filesystem>
+	<vector>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/PlaybackDevice.hpp
+	<SFML/Audio/Export.hpp>
+	<optional>
+	<string>
+	<vector>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/Sound.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<memory>
+	<cstdlib>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/SoundBuffer.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundChannel.hpp>
+	<SFML/System/Time.hpp>
+	<filesystem>
+	<unordered_set>
+	<vector>
+	<cstddef>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/SoundBufferRecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<vector>
+	<cstddef>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/SoundRecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundChannel.hpp>
+	<memory>
+	<string>
+	<vector>
+	<cstddef>
+	<cstdint>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/SoundFileFactory.hpp
+	<SFML/Audio/Export.hpp>
+	<filesystem>
+	<memory>
+	<unordered_map>
+	<cstddef>
+	<SFML/Audio/SoundFileFactory.inl>
+
+1735558136 /home/remus/SFML/SFML-3.0.0-linux-gcc-64-bit/SFML-3.0.0/include/SFML/Audio/SoundFileFactory.inl
+	<SFML/Audio/SoundFileFactory.hpp>
+	<memory>
+
