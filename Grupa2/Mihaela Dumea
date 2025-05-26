@@ -1,0 +1,219 @@
+Tema 1: 
+
+Ex 1: 
+
+#include <stdio.h>
+
+// Schimbă două valori din vector
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Funcție de partitionare pentru quicksort
+int partition(int v[], int low, int high) {
+    int pivot = v[high];
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+        if (v[j] < pivot) {
+            i++;
+            swap(&v[i], &v[j]);
+        }
+    }
+    swap(&v[i + 1], &v[high]);
+    return i + 1;
+}
+
+// Funcția de quicksort
+void sortareVector(int v[], int low, int high) {
+    if (low < high) {
+        int pi = partition(v, low, high);
+        sortareVector(v, low, pi - 1);
+        sortareVector(v, pi + 1, high);
+    }
+}
+
+// Căutare binară într-un vector sortat
+int cautareBinara(int v[], int n, int x) {
+    int st = 0, dr = n - 1;
+    while (st <= dr) {
+        int mij = (st + dr) / 2;
+        if (v[mij] == x)
+            return mij; // găsit
+        else if (v[mij] < x)
+            st = mij + 1;
+        else
+            dr = mij - 1;
+    }
+    return -1; // nu s-a găsit
+}
+
+int main() {
+    int v[100], n, x;
+
+    printf("Introdu numarul de elemente: ");
+    scanf("%d", &n);
+
+    printf("Introdu elementele vectorului:\n");
+    for (int i = 0; i < n; i++) {
+        printf("v[%d] = ", i);
+        scanf("%d", &v[i]);
+    }
+
+    sortareVector(v, 0, n - 1);
+
+    printf("\nVectorul sortat este:\n");
+    for (int i = 0; i < n; i++)
+        printf("%d ", v[i]);
+
+    printf("\n\nCe valoare vrei sa cauti? ");
+    scanf("%d", &x);
+
+    int poz = cautareBinara(v, n, x);
+    if (poz != -1)
+        printf("Elementul %d a fost gasit la pozitia %d.\n", x, poz);
+    else
+        printf("Elementul %d NU a fost gasit in vector.\n", x);
+
+    return 0;
+}
+
+
+Ex 2 :
+
+#include <stdio.h>
+#include <math.h>
+
+#define N 10
+
+// Eliminare Gauss pentru determinant
+float determinant(float m[N][N], int n) {
+    float temp[N][N];
+    float det = 1;
+
+    // Copiem matricea pentru a nu modifica originalul
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            temp[i][j] = m[i][j];
+
+    for (int i = 0; i < n; i++) {
+        // Dacă pivotul este 0, căutăm o linie de schimb
+        if (fabs(temp[i][i]) < 1e-6) {
+            int schimb = -1;
+            for (int j = i + 1; j < n; j++) {
+                if (fabs(temp[j][i]) > 1e-6) {
+                    schimb = j;
+                    break;
+                }
+            }
+            if (schimb == -1)
+                return 0; // determinantul e zero
+
+            // schimbă liniile
+            for (int k = 0; k < n; k++) {
+                float aux = temp[i][k];
+                temp[i][k] = temp[schimb][k];
+                temp[schimb][k] = aux;
+            }
+            det *= -1; // schimbarea liniilor => inversare semn
+        }
+
+        // Eliminare pentru linia curentă
+        for (int j = i + 1; j < n; j++) {
+            float f = temp[j][i] / temp[i][i];
+            for (int k = i; k < n; k++) {
+                temp[j][k] -= f * temp[i][k];
+            }
+        }
+
+        det *= temp[i][i];
+    }
+
+    return det;
+}
+
+// Verifică inversabilitatea (dacă det ≠ 0)
+int esteInversabila(float m[N][N], int n) {
+    float det = determinant(m, n);
+    return fabs(det) > 1e-6;
+}
+
+int main() {
+    float matrice[N][N];
+    int n;
+
+    printf("Introdu dimensiunea matricei patratice (n): ");
+    scanf("%d", &n);
+
+    printf("Introdu elementele matricei (%dx%d):\n", n, n);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) {
+            printf("matrice[%d][%d] = ", i, j);
+            scanf("%f", &matrice[i][j]);
+        }
+
+    float det = determinant(matrice, n);
+    printf("\nDeterminantul matricei este: %.2f\n", det);
+
+    if (esteInversabila(matrice, n))
+        printf("Matricea ESTE inversabila.\n");
+    else
+        printf("Matricea NU este inversabila.\n");
+
+    return 0;
+}
+
+Ex3 :
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+// Criptează șirul folosind cifrul Caesar
+void cripteaza(char s[], int key) {
+    for (int i = 0; s[i]; i++) {
+        if (isalpha(s[i])) {
+            char baza = isupper(s[i]) ? 'A' : 'a';
+            s[i] = (s[i] - baza + key) % 26 + baza;
+        }
+    }
+}
+
+// Decriptează șirul folosind aceeași cheie
+void decripteaza(char s[], int key) {
+    for (int i = 0; s[i]; i++) {
+        if (isalpha(s[i])) {
+            char baza = isupper(s[i]) ? 'A' : 'a';
+            s[i] = (s[i] - baza - key + 26) % 26 + baza;
+        }
+    }
+}
+
+int main() {
+    char mesaj[256];
+    int cheie;
+
+    printf("Introdu mesajul (fara spatii): ");
+    scanf("%s", mesaj); // pentru simplitate, fara spatii
+
+    printf("Introdu cheia de criptare (numar): ");
+    scanf("%d", &cheie);
+
+    // Facem o copie pentru a păstra originalul
+    char criptat[256], decriptat[256];
+    strcpy(criptat, mesaj);
+    strcpy(decriptat, mesaj);
+
+    // Criptare
+    cripteaza(criptat, cheie);
+    printf("Mesaj criptat: %s\n", criptat);
+
+    // Decriptare
+    decripteaza(criptat, cheie); // folosim direct șirul criptat
+    printf("Mesaj decriptat: %s\n", criptat);
+
+    return 0;
+}
+
