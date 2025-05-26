@@ -1,1 +1,87 @@
-Cod
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    int max_size=1000;
+    char input[max_size];
+    char filename[100];
+    FILE *file;
+    char choice;
+
+    printf("Options:\n");
+    printf("W (Write)\n");
+    printf("R (Read)\n");
+    printf("D: (Delete)\n");
+    printf("Awaiting input: ");
+    scanf("%c", &choice);
+
+    getchar();
+
+    printf("Enter the file name: ");
+    scanf("%s", filename);
+    getchar();
+
+    switch (choice) {
+
+        //scris
+        case 'W':
+        case 'w':
+            file=fopen(filename, "w");
+            if(file==NULL){
+                perror("Error");
+                return 1;
+            }
+
+            printf("Insert text: \n");
+            while(fgets(input, max_size, stdin)!=NULL){
+                if(strcmp(input, "EOF\n")==0) {
+                    break;
+                }
+                fprintf(file, "%s", input);
+            }
+
+            fclose(file);
+            printf("Text saved to %s\n", filename);
+            break;
+
+        //citit
+        case 'R':
+        case 'r':
+            file=fopen(filename, "r");
+            if(file == NULL){
+                perror("Error");
+                return 2;
+            }
+
+            printf("Contents of %s:\n", filename);
+            while (fgets(input, max_size, file)!=NULL){
+                printf("%s", input);
+            }
+
+            fclose(file);
+            break;
+
+        //stergere
+        case 'D':
+        case 'd':
+            printf("Enter the file name to delete it: ");
+            scanf("%s", filename);
+            getchar();
+
+            if (remove(filename)==0){
+                printf("File %s deleted successfully.\n", filename);
+            }
+            else{
+                perror("Error");
+                return 3;
+            }
+            break;
+
+        //default-ul
+        default:
+            printf("Invalid option.\n");
+            return 4;
+    }
+    return 0;
+}
