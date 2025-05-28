@@ -1,0 +1,95 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdio>
+
+using namespace std;
+
+void creareFisier(const string& numeFisier) {
+    ofstream fout(numeFisier);
+    if (fout) {
+        cout << "Fișierul \"" << numeFisier << "\" a fost creat cu succes.\n";
+        fout.close();
+    } else {
+        cerr << "Eroare la crearea fișierului.\n";
+    }
+}
+void scriereFisier(const string& numeFisier) {
+    ofstream fout(numeFisier, ios::app);
+    if (fout) {
+        string text;
+        cout << "Introduceți textul de scris în fișier (scrieți 'STOP' pe o linie nouă pentru a încheia):\n";
+        cin.ignore();
+        while (true) {
+            getline(cin, text);
+            if (text == "STOP") break;
+            fout << text << endl;
+        }
+        fout.close();
+        cout << "Textul a fost scris în fișier.\n";
+    } else {
+        cerr << "Nu se poate deschide fișierul pentru scriere.\n";
+    }
+}
+void citireFisier(const string& numeFisier) {
+    ifstream fin(numeFisier);
+    if (fin) {
+        string linie;
+        cout << "Conținutul fișierului:\n";
+        while (getline(fin, linie)) {
+            cout << linie << endl;
+        }
+        fin.close();
+    } else {
+        cerr << "Fișierul nu poate fi citit (posibil să nu existe).\n"
+    }
+}
+void editareFisier(const string& numeFisier) {
+    ofstream fout(numeFisier);
+    if (fout) {
+        string text;
+        cout << "Introduceți NOUL conținut al fișierului (scrieți 'STOP' pentru a termina):\n";
+        cin.ignore();
+        while (true) {
+            getline(cin, text);
+            if (text == "STOP") break;
+            fout << text << endl;
+        }
+        fout.close();
+        cout << "Fișierul a fost editat.\n";
+    } else {
+        cerr << "Eroare la deschiderea fișierului pentru editare.\n";
+    }
+}
+void stergereFisier(const string& numeFisier) {
+    if (remove(numeFisier.c_str()) == 0) {
+        cout << "Fișierul a fost șters cu succes.\n";
+    } else {
+        cerr << "Eroare la ștergerea fișierului (posibil inexistent).\n";
+    }
+}
+int main() {
+    string numeFisier = "fisier_online.txt";
+    int optiune;
+    do {
+        cout << "\n=== Meniu - Gestionare Fișier ===\n";
+        cout << "1. Creare fișier\n";
+        cout << "2. Scriere în fișier\n";
+        cout << "3. Citire fișier\n";
+        cout << "4. Editare fișier\n";
+        cout << "5. Ștergere fișier\n";
+        cout << "0. Ieșire\n";
+        cout << "Selectați o opțiune: ";
+        cin >> optiune;
+        switch (optiune) {
+            case 1: creareFisier(numeFisier); break;
+            case 2: scriereFisier(numeFisier); break;
+            case 3: citireFisier(numeFisier); break;
+            case 4: editareFisier(numeFisier); break;
+            case 5: stergereFisier(numeFisier); break;
+            case 0: cout << "Program încheiat.\n"; break;
+            default: cout << "Opțiune invalidă.\n";
+        }
+    } while (optiune != 0);
+    return 0;
+}
