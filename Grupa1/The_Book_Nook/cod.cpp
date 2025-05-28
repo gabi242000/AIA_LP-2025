@@ -86,7 +86,7 @@ int get_valid_int(const string& message) {
 }
 
 void save_books() {
-    ofstream fout("C:\\Users\\lavin\\Documents\\UTCB 2024 - 2025\\library_management_system\\books.txt");
+    ofstream fout("books.txt");
     if(!fout.is_open()) {
         cerr << "❌ Eroare la deschiderea fisierului!\n";
         return;
@@ -111,7 +111,7 @@ void save_books() {
 
 void load_books() {
     nr_carti = 0;
-    ifstream fin("C:\\Users\\lavin\\Documents\\UTCB 2024 - 2025\\library_management_system\\books.txt");
+    ifstream fin("books.txt");
     if(!fin.is_open()) {
         cerr << "❌ Eroare la deschiderea fisierului!\n";
         return;
