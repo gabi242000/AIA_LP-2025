@@ -1,0 +1,5 @@
+None of This Is True;Lisa Jewell;Thriller;ebook;citita;9;370;;0 0 0;2 10 2024;18 10 2024
+House of Hollow;Krystal Sutherland;young adult;fizic;citita;8;300;;0 0 0;0 0 0;0 0 0
+Gods of Jade and Shadow;Silvia Moreno-Garcia;fantasy;fizic;citita;9;336;Okian;4 5 2022;0 0 0;0 0 0
+Little Women;Louisa May Alcott;classics;fizic;citita;8;354;Carturesti;0 0 0;16 7 2022;30 7 2022
+The Empire of Gold;S.A. Chakraborty;Fantasy;fizic;citita;10;790;Carturesti;0 0 0;2 9 2024;13 9 2024
