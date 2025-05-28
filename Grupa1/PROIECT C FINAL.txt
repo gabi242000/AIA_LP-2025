@@ -1,0 +1,154 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_EVENTE 20
+#define MAX_NUME 50
+#define MAX_REZ 30
+
+typedef struct {
+    char nume_eveniment[MAX_NUME];
+    int locuri_total;
+    int locuri_disponibile;
+    char rezervari[MAX_REZ][MAX_NUME];
+    int nr_rezervari;
+} Eveniment;
+
+Eveniment evenimente[MAX_EVENTE];
+int nr_evenimente = 0;
+
+void adauga_eveniment() {
+    if (nr_evenimente >= MAX_EVENTE) {
+        printf("Nu mai poti adauga evenimente.\n");
+        return;
+    }
+    Eveniment e;
+    printf("Nume eveniment: ");
+    getchar(); 
+    fgets(e.nume_eveniment, MAX_NUME, stdin);
+    e.nume_eveniment[strcspn(e.nume_eveniment, "\n")] = 0;
+
+    printf("Numar locuri: ");
+    scanf("%d", &e.locuri_total);
+    e.locuri_disponibile = e.locuri_total;
+    e.nr_rezervari = 0;
+
+    evenimente[nr_evenimente++] = e;
+    printf("Eveniment adaugat!\n");
+}
+
+void afiseaza_evenimente() {
+    if (nr_evenimente == 0) {
+        printf("Nu exista evenimente.\n");
+        return;
+    }
+    printf("Lista evenimente:\n");
+    for (int i = 0; i < nr_evenimente; i++) {
+        printf("%d. %s (Locuri disponibile: %d/%d)\n", i+1, evenimente[i].nume_eveniment, 
+               evenimente[i].locuri_disponibile, evenimente[i].locuri_total);
+    }
+}
+
+void afiseaza_rezervari() {
+    afiseaza_evenimente();
+    if (nr_evenimente == 0) return;
+    int idx;
+    printf("Alege eveniment: ");
+    scanf("%d", &idx);
+    idx--;
+    if (idx < 0 || idx >= nr_evenimente) {
+        printf("Eveniment invalid.\n");
+        return;
+    }
+    if (evenimente[idx].nr_rezervari == 0) {
+        printf("Nu exista rezervari la acest eveniment.\n");
+        return;
+    }
+    printf("Rezervari pentru %s:\n", evenimente[idx].nume_eveniment);
+    for (int i = 0; i < evenimente[idx].nr_rezervari; i++) {
+        printf("%d. %s\n", i+1, evenimente[idx].rezervari[i]);
+    }
+}
+
+void rezerva_bilet() {
+    afiseaza_evenimente();
+    if (nr_evenimente == 0) return;
+    int idx;
+    printf("Alege eveniment: ");
+    scanf("%d", &idx);
+    idx--;
+    if (idx < 0 || idx >= nr_evenimente) {
+        printf("Eveniment invalid.\n");
+        return;
+    }
+    if (evenimente[idx].locuri_disponibile <= 0) {
+        printf("Nu mai sunt locuri disponibile!\n");
+        return;
+    }
+    printf("Nume client: ");
+    getchar();
+    char nume[MAX_NUME];
+    fgets(nume, MAX_NUME, stdin);
+    nume[strcspn(nume, "\n")] = 0;
+
+    strcpy(evenimente[idx].rezervari[evenimente[idx].nr_rezervari++], nume);
+    evenimente[idx].locuri_disponibile--;
+    printf("Rezervare efectuata!\n");
+}
+
+void anuleaza_rezervare() {
+    afiseaza_evenimente();
+    if (nr_evenimente == 0) return;
+    int idx;
+    printf("Alege eveniment: ");
+    scanf("%d", &idx);
+    idx--;
+    if (idx < 0 || idx >= nr_evenimente) {
+        printf("Eveniment invalid.\n");
+        return;
+    }
+    printf("Nume client pentru anulare: ");
+    getchar();
+    char nume[MAX_NUME];
+    fgets(nume, MAX_NUME, stdin);
+    nume[strcspn(nume, "\n")] = 0;
+
+    int gasit = 0;
+    for (int i = 0; i < evenimente[idx].nr_rezervari; i++) {
+        if (strcmp(evenimente[idx].rezervari[i], nume) == 0) {
+            gasit = 1;
+            for (int j = i; j < evenimente[idx].nr_rezervari-1; j++)
+                strcpy(evenimente[idx].rezervari[j], evenimente[idx].rezervari[j+1]);
+            evenimente[idx].nr_rezervari--;
+            evenimente[idx].locuri_disponibile++;
+            printf("Rezervare anulata!\n");
+            break;
+        }
+    }
+    if (!gasit) printf("Rezervarea nu a fost gasita!\n");
+}
+
+int main() {
+    int opt;
+    do {
+        printf("\n===== MENIU =====\n");
+        printf("1. Adauga eveniment\n");
+        printf("2. Afiseaza evenimente\n");
+        printf("3. Rezerva bilet\n");
+        printf("4. Afiseaza rezervari la un eveniment\n");
+        printf("5. Anuleaza rezervare\n");
+        printf("6. Iesire\n");
+        printf("Optiune: ");
+        scanf("%d", &opt);
+
+        switch(opt) {
+            case 1: adauga_eveniment(); break;
+            case 2: afiseaza_evenimente(); break;
+            case 3: rezerva_bilet(); break;
+            case 4: afiseaza_rezervari(); break;
+            case 5: anuleaza_rezervare(); break;
+            case 0: printf("La revedere!\n"); break;
+            default: printf("Optiune invalida!\n");
+        }
+    } while(opt != 0);
+    return 0;
+}
