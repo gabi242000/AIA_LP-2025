@@ -1,0 +1,72 @@
+1. Ce componentă este creierul unui calculator?
+a) Hard disk
+b) RAM
+c) CPU
+d) GPU
+c
+2. Ce fel de animal este un axolotl?
+a) Pește
+b) Amfibian
+c) Reptila
+d) Mamifer
+b
+3. Ce tip de memorie este volatilă?
+a) ROM
+b) SSD
+c) HDD
+d) RAM
+d
+4. Câte state compun Statele Unite ale Americii?
+a) 50
+b) 51
+c) 48
+d) 52
+a
+5. Un circuit logic „AND” produce 1 doar dacă:
+a) Ambele intrări sunt 1
+b) Cel puțin o intrare e 0
+c) Oricare dintre intrări e 1
+d) Toate intrările sunt 0
+a
+6. Ce țară are cei mai mulți vulcani activi?
+a) Japonia
+b) Islanda
+c) Filipine
+d) Indonezia
+d
+7. Care este cea mai înaltă cascadă din lume?
+a) Cascada Niagara
+b) Cascada Angel
+c) Cascada Victoria
+d) Iguazu
+b
+8. Care este cel mai mic stat din lume ca suprafață?
+a) Monaco
+b) San Marino
+c) Vatican
+d) Liechtenstein
+c
+9. Ce țară produce cel mai mult cafea în lume?
+a) Etiopia
+b) Columbia
+c) Vietnam
+d) Brazilia
+d
+10. Primul mamifer clonat dintr-o celula adulta a fost...
+a) o capra.
+b) o vaca
+c) o oaie.
+d) un catel
+c
+11. Câte elemente sunt în tabelul periodic?
+a) 120
+b) 150
+c) 132
+d) 118
+d
+12. Care este animalul național al Scoției?
+a) Cal
+b) Capră
+c) Vacă
+d) Unicorn
+d

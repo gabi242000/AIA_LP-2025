@@ -1,0 +1,72 @@
+1. Care este funcția principală a unei diode?
+a) Să stocheze energie
+b) Să permită curentului să treacă într-un singur sens
+c) Să crească tensiunea curentului
+d) Să măsoare temperatura
+b
+2. Ce reprezintă acronimul “NASA”?
+a) National Aeronautics and Space Association
+b) National Association of Space Activities
+c) North American Space Agency
+d) National Aeronautics and Space Administration
+d
+3. Care este derivata funcției f(x) = sin(x)?
+a)  cos(x)
+b) -sin(x)
+c) -cos(x)
+d)  1
+a
+4. Cum se numește primul computer electronic modern din istorie?
+a) ENIAC
+b) Abac
+c) NEAC
+d) Computer central
+a
+5. Cine a fost prima femeie care a câștigat un Premiu Nobel?
+a) Lise Meitner
+b) Gerty Cori
+c) Marie Curie
+d) Alice Ball
+c
+6. Ce înseamnă „HTML” în informatică?
+a) HighText Machine Language
+b) HyperText Markup Language
+c) HyperTool Marking Line
+d) HighTech Markup Language
+b
+7. În cadrul unui circuit electric, ce se întâmplă cu rezistența totală atunci când rezistențele sunt conectate în paralel?
+a) Crește
+b) Rămâne constantă
+c) Scade
+d) Nu se poate determina
+c
+8. Ce țară a fost prima care a acordat dreptul de vot femeilor?
+a) Noua Zeelandă
+b) Suedia
+c) Franța
+d) Statele Unite
+a
+9. Ce descrie legea gazelor ideale?
+a) Relația între presiunea și volumul gazelor la temperatură constantă
+b) Relația dintre presiune, volum și temperatură gazului
+c) Relația dintre cantitatea de substanță și temperatura unui gaz
+d) Comportamentul unui gaz la temperaturi foarte scăzute
+b
+10. Ce substanță are cea mai mare conductivitate electrică la temperaturi normale?
+a) Aur
+b) Cupru
+c) Argint
+d) Grafit
+c
+11. Legea lui Ohm este:
+a) U = I × R
+b) P = I × U
+c) R = U / P
+d) U = P × R
+a
+12. Care este funcția unui osciloscop?
+a) Măsoară tensiunea în mod continuu
+b) Afișează variația semnalului în timp
+c) Testează rezistența electrică
+d) Generează semnale electrice
+b
