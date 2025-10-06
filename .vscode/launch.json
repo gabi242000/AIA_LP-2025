@@ -1,6 +1,20 @@
 {
     "configurations": [
         {
+            "type": "java",
+            "name": "Ex2",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Tema1.Ex2",
+            "projectName": "AIA_LP-2025_74802d6c"
+        },
+        {
+            "type": "java",
+            "name": "Ex1",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Tema1.Ex1",
+            "projectName": "AIA_LP-2025_74802d6c"
+        },
+        {
             "name": "C/C++: gcc.exe build and debug active file",
             "type": "cppdbg",
             "request": "launch",
