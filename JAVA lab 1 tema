@@ -1,0 +1,57 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+public class Tema1 {
+	public static void main(String[] args) {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.print("Introdu nr ");
+		try {
+			String input = reader.readLine();
+			int nr = Integer.parseInt(input);
+			if (nr < 0) {
+				System.out.println("eroare");
+			} else {
+				if (nr % 2 == 0) {
+					System.out.println("PAR");
+				} else {
+					System.out.println("IMPAR");
+				}
+			}
+
+		} catch (NumberFormatException | IOException e) {
+			System.out.println("eroare");
+		}
+	}
+}
+
+
+
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+public class Tema2 {
+	public static void main(String[] args) {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+		try {
+			int a = Integer.parseInt(reader.readLine());
+			int b = Integer.parseInt(reader.readLine());
+			int c = Integer.parseInt(reader.readLine());
+
+			int suma = a + b + c;
+			double media = suma / 3.0;
+			int max = Math.max(a, Math.max(b, c));
+			int min = Math.min(a, Math.min(b, c));
+
+			System.out.println("sum = " + suma);
+			System.out.println("ma = " + media);
+			System.out.println("nr mic = " + maxim);
+			System.out.println("nr mare = " + minim);
+
+		} catch (NumberFormatException | IOException e) {
+			System.out.println("eroare");
+		}
+	}
+}
