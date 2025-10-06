@@ -1,0 +1,40 @@
+package temalab1;
+
+import java.io.*;
+public class ex2 {
+public static void main(String[] args) throws IOException {
+    InputStreamReader isr = new InputStreamReader(System.in);
+    BufferedReader br = new BufferedReader(isr);
+    
+    System.out.print("Introduceți primul număr întreg: ");
+    int a = Integer.parseInt(br.readLine());
+
+    System.out.print("Introduceți al doilea număr întreg: ");
+    int b = Integer.parseInt(br.readLine());
+
+    System.out.print("Introduceți al treilea număr întreg: ");
+    int c = Integer.parseInt(br.readLine());
+
+    System.out.println("Suma numerelor este: " + suma(a,b,c));
+    System.out.println("Media aritmetică este: " + medie(a,b,c));
+    System.out.println("Cel mai mare număr este: " + maxim(a,b,c));
+    System.out.println("Cel mai mic număr este: " + minim(a,b,c));
+ }
+
+public static int suma(int a, int b, int c) {
+    return a + b + c;
+ }
+
+public static double medie(int a, int b, int c) {
+    return suma(a, b, c) / 3.0;
+ }
+
+public static int maxim(int a, int b, int c) {
+    return Math.max(a, Math.max(b, c));
+ }
+
+public static int minim(int a, int b, int c) {
+    return Math.min(a, Math.min(b, c));
+  }
+}
+
