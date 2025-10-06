@@ -1,0 +1,24 @@
+package temalab1;
+
+import java.io.*;
+public class ex1 {
+public static void main(String[] args) throws IOException {
+    	
+    InputStreamReader isr = new InputStreamReader(System.in);
+    BufferedReader br = new BufferedReader(isr);
+    System.out.print("Introduceți un șir de caractere: ");
+    String s = br.readLine();
+    boolean cifre = true;
+    for(int i=0; i<s.length(); i++){
+        char c = s.charAt(i);  if (c < '0' || c > '9') { 
+                                 cifre = false;
+                                 break; }  }
+    if (cifre==true && s.length()!=0) {
+                     int n = Integer.parseInt(s);
+                       System.out.println("Numărul introdus este: " + n);
+                          if (n % 2 == 0)   System.out.println("Numărul este par");
+                         else   System.out.println("Numărul este impar"); } 
+    else System.out.println("Valoarea introdusă nu este un număr natural valid");   
+ }   
+}
+
