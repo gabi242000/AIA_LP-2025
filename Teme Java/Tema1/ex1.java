@@ -12,7 +12,7 @@ public class ex1 {
             	break;}}
 
         	if (ok==0) {
-        System.out.println("Valoarea introdusă nu este un număr natural valid!");
+        System.out.println("Valoarea introdusa nu este un numar natural valid!");
         }  
         	else {int x=Integer.parseInt(s);
         System.out.println("Numarul introdus este: " + x);
