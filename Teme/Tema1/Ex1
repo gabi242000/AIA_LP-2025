@@ -1,0 +1,33 @@
+package tema1;
+
+import java.io.*;
+
+public class Ex1 {
+
+    public static void main(String[] args) throws IOException {
+
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String str;
+
+        str = br.readLine();
+
+        try {
+            Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            System.out.println("Input invalid");
+            return;
+        }
+
+        int n = Integer.parseInt(str);
+
+        System.out.print(n);
+
+        if (n % 2 == 0)
+            System.out.print(" este par");
+        else if (n % 2 == 1)
+            System.out.print(" este impar");
+
+
+    }
+}
