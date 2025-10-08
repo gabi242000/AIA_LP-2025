@@ -1,0 +1,27 @@
+package tema1;
+
+import java.io.*;
+import java.math.*;
+
+import static java.lang.System.out;
+
+public class Ex2 {
+
+    public static void main(String[] args) throws IOException {
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        String str;
+
+        str = br.readLine();
+        int n1 = Integer.parseInt(str);
+        str = br.readLine();
+        int n2 = Integer.parseInt(str);
+        str = br.readLine();
+        int n3 = Integer.parseInt(str);
+
+        System.out.println(n1+n2+n3);
+        System.out.println((n1+n2+n3)/3);
+        System.out.println(Math.max(Math.max(n1,n2),n3));
+        System.out.println(Math.min(Math.min(n1,n2),n3));
+    }
+}
