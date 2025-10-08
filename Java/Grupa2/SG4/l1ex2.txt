@@ -1,0 +1,37 @@
+import java.io.*;
+
+public class Afisare {
+    public static void main(String[] args) throws IOException {
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+
+        int[] numere = new int[3]; 
+
+        for (int i = 0; i < 3; i++) {
+            System.out.print("Introduceti numarul " + (i + 1) + ": ");
+            String s = br.readLine();
+
+            try {
+                numere[i] = Integer.parseInt(s);
+            } catch (NumberFormatException e) {
+                System.out.println("Nu ati introdus un numar intreg valid!");
+                i--; 
+            }
+        }
+
+        int suma = numere[0] + numere[1] + numere[2];
+        double media = suma / 3.0;
+        int max = numere[0];
+        int min = numere[0];
+
+        for (int i = 1; i < 3; i++) {
+            if (numere[i] > max) max = numere[i];
+            if (numere[i] < min) min = numere[i];
+        }
+
+        System.out.println("Suma numerelor este: " + suma);
+        System.out.println("Media aritmetica este: " + media);
+        System.out.println("Cel mai mare numar este: " + max);
+        System.out.println("Cel mai mic numar este: " + min);
+    }
+}

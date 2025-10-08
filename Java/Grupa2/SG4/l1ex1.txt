@@ -1,0 +1,20 @@
+import java.io.*;
+
+public class Afisare {
+    public static void main(String[] args) throws IOException {
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+
+        System.out.println("Introduceti un numar natural:");
+        String s = br.readLine();
+        if(s.matches("\\d+")){
+         int n = Integer.parseInt(s);
+         if (n % 2 == 0)
+        System.out.println("Numarul este par");
+        else
+        System.out.println("Numarul este impar");
+        }else{
+        System.out.println("Valoarea introdusa nu este un numar natural valid!");
+    }
+}
+}
