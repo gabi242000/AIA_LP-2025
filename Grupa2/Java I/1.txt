@@ -1,0 +1,52 @@
+//Problema 1
+import java.io.*;
+//public class Main{
+//    public static void main(String[] args) throws IOException{
+//        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+//        int nr1, nr2, nr3;
+//        nr1 = Integer.parseInt(read.readLine());
+//        nr2 = Integer.parseInt(read.readLine());
+//        nr3 = Integer.parseInt(read.readLine());
+//        int suma = nr1 + nr2 + nr3;
+//        double medie = suma / 3.0;
+//        System.out.println("Suma numerelor este " +suma);
+//        System.out.println("Media aritmetica a numerelor este " +medie);
+//        // avem 3 numere deci 6 cazuri daca aplicam formula aranjamentelor/permutari
+//        if(nr1 > nr2 && nr2 > nr3)
+//            System.out.println("Cel mai mare este " + nr1 + " iar cel mai mic este " + nr3);
+//        else if(nr1 > nr3 && nr3 > nr2)
+//            System.out.println("Cel mai mare este " + nr1 + " iar cel mai mic este " + nr2);
+//        else if(nr2 > nr3 && nr3 > nr1)
+//            System.out.println("Cel mai mare este " + nr2 + " iar cel mai mic este " + nr1);
+//        else if(nr2 > nr1 && nr1 > nr3)
+//            System.out.println("Cel mai mare este " + nr2 + " iar cel mai mic este " + nr3);
+//        else if(nr3 > nr1 && nr1 > nr2)
+//            System.out.println("Cel mai mare este " + nr3 + " iar cel mai mic este " + nr2);
+//        else if(nr3 > nr2 && nr2 > nr1)
+//            System.out.println("Cel mai mare este " + nr3 + " iar cel mai mic este " + nr1);
+//
+//    }
+//}
+
+
+public class Main{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String linie = br.readLine();
+        linie = linie.trim();
+
+        if (!linie.matches("\\d+")) {
+            System.out.println("Valoarea introdusă nu este un număr natural valid.");
+            return;
+        }
+
+        int num = Integer.parseInt(linie);
+        System.out.println(num);
+        if (num % 2 == 0) {
+            System.out.println("Par");
+        }
+        else {
+            System.out.println("Impar");
+        }
+    }
+}
