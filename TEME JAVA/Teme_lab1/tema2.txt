@@ -1,0 +1,32 @@
+package tema2_lab1;
+import java.io. *;
+public class tema2 {
+	public static void main(String[] args) throws IOException {
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		System.out.print("Introdu primul numar: ");
+		String s1 = br.readLine();
+		int n1 = Integer.parseInt(s1);
+		System.out.print("Introdu al doilea numar: ");
+		String s2 = br.readLine();
+		int n2 = Integer.parseInt(s2);
+		System.out.print("Introdu al treilea numar: ");
+		String s3 = br.readLine();
+		int n3 = Integer.parseInt(s3);
+		int suma=0;
+		suma = n1+ n2+ n3;
+		System.out.println("Suma este: " + suma);
+		double media=0;
+		media=(double)suma/3;
+		System.out.println("Media aritmetica este: " + media);
+		int maxim= n1;
+		if(n2>maxim) maxim=n2;
+		if(n3>maxim) maxim=n3;
+		System.out.println("Maximul este: " + maxim);
+		int minim= n1;
+		if(n2<minim) minim=n2;
+		if(n3<minim) minim=n3;
+		System.out.println("Minimul este: " + minim);
+	}
+
+}

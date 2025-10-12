@@ -1,0 +1,31 @@
+package tema1_lab1;
+import java.io.* ;
+public class tema1 {
+	public static void main(String[] args) throws IOException{
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		System.out.print("introdu un sir: ");
+		String s = br.readLine();
+		boolean esteValid=true;
+		if(s.length() != 0) {
+			for (int i = 0; i < s.length(); i++) {
+			    char c = s.charAt(i);
+			    if (!Character.isDigit(c)) { 
+                    esteValid = false;       
+                    break;                   
+                }
+            }
+		}
+            if (esteValid) { 
+            	System.out.println("numar natural valid");
+            	int n = Integer.parseInt(s);
+                if (n % 2 == 0)
+                    System.out.println("numar par");
+                else
+                    System.out.println("numar impar");
+            }
+             else 
+                System.out.println("numar invalid");
+
+  }
+}
