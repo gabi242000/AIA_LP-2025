@@ -1,0 +1,27 @@
+TEMA 2
+
+import java.io.*;
+
+
+public class T2 {
+    public static void main(String[] args) throws IOException {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+
+        System.out.print("Introdu un numar natural: ");
+        String numar = br.readLine();
+
+        int max = -1;
+        int min = 10;
+
+        for (int i = 0; i < numar.length(); i++) {
+            int cifra = numar.charAt(i) - '0';
+            if (cifra > max) max = cifra;
+            if (cifra < min) min = cifra;
+        }
+
+        System.out.println("Cifra maxima este: " + max);
+        System.out.println("Cifra minima este: " + min);
+    }
+}

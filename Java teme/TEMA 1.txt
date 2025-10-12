@@ -1,0 +1,74 @@
+TEMA 1
+
+package Proiect;
+
+import java.io.*;
+
+public class t1 {
+    public static void main(String[] args) throws IOException {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+
+        System.out.print("Introduceți un șir de caractere: ");
+        String sir = br.readLine();
+
+        if (sir.matches("\\d+")) {
+            int numar = Integer.parseInt(sir);
+            System.out.println("Numărul introdus este: " + numar);
+
+            if (numar % 2 == 0)
+                System.out.println("Numărul este par.");
+            else
+                System.out.println("Numărul este impar.");
+        } else {
+            System.out.println("Valoarea introdusă nu este un număr natural valid.");
+        }
+    }
+}
+
+
+
+
+
+
+
+TEMA 2
+
+package Proiect;
+import java.io.*;
+
+public class t1p2 {
+    public static void main(String[] args) throws IOException {
+        
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+
+        
+        System.out.print("Introduceți primul număr: ");
+        int a = Integer.parseInt(br.readLine());
+
+        System.out.print("Introduceți al doilea număr: ");
+        int b = Integer.parseInt(br.readLine());
+
+        System.out.print("Introduceți al treilea număr: ");
+        int c = Integer.parseInt(br.readLine());
+
+        
+        int suma = a + b + c;
+
+        
+        double media = suma / 3.0;
+
+        
+        int maxim = Math.max(a, Math.max(b, c));
+        int minim = Math.min(a, Math.min(b, c));
+
+       
+        System.out.println("\nRezultate:");
+        System.out.println("Suma: " + suma);
+        System.out.println("Media: " + media);
+        System.out.println("Cel mai mare număr: " + maxim);
+        System.out.println("Cel mai mic număr: " + minim);
+    }
+}
