@@ -1,0 +1,48 @@
+package Lab2_ex1;
+
+import java.util.Scanner;
+import java.io.*;
+
+public class ex1 {
+
+	public static void main(String[] args) throws IOException {
+	Scanner sc = new Scanner(System.in);
+	int v[] = citireVector(sc);
+	System.out.println("Vectorul este: ");
+	for(int i = 0; i < v.length ; i++ ) {
+		System.out.println("v("+i+")= "+ v[i]);
+	}
+	
+	
+	System.out.println("Vectorul par este: ");
+	for (int i = 0; i < v.length; i++) {
+        if (v[i] % 2 == 0) {
+            System.out.println(v[i]);
+        }
+    }
+    
+    System.out.println("Suma este: " + sumaPara(v));
+    
+}
+	
+	public static int[] citireVector( Scanner sc) {
+		System.out.println("Introdu numarul de elemente al vectorului:");
+		int n = sc.nextInt();
+		int v[] = new int[n];
+		System.out.println("Introdu elementele vectorului: ");
+		for(int i = 0; i < v.length ; i++ ) {
+			v[i] = sc.nextInt();
+		}
+		return v;
+	}
+	
+	public static int sumaPara(int[] v ) {
+		int suma = 0;
+        for (int i = 0; i < v.length; i++) {
+            if (v[i] % 2 == 0) {
+                suma += v[i];
+            }
+        }
+        return suma;
+    }
+}
