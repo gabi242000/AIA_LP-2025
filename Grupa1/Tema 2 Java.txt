@@ -1,0 +1,70 @@
+Ex1.
+
+import java.io.*;
+import java.util.Scanner;
+
+public class Main {
+    
+    public static int[] citireVector(int n, Scanner sc) {
+        int[] v = new int[n];
+        System.out.println("Introduceți elementele vectorului:");
+        for (int i = 0; i < n; i++) {
+            System.out.print("v[" + i + "] = ");
+            v[i] = sc.nextInt();
+        }
+        return v;
+    }
+
+    public static int sumaPare(int[] v) {
+        int suma = 0;
+        System.out.print("Elementele pare sunt: ");
+        for (int x : v) {
+            if (x % 2 == 0) {
+                System.out.print(x + " ");
+                suma += x;
+            }
+        }
+        System.out.println();
+        return suma;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Introduceți dimensiunea vectorului: ");
+        int n = sc.nextInt();
+        
+        int[] vector = citireVector(n, sc);
+        int suma = sumaPare(vector);
+        
+        System.out.println("Suma elementelor pare este: " + suma);
+    }
+}
+
+
+Ex2.
+
+import java.io.*;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args ) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Introduceti un numar natural: ");
+        int n = sc.nextInt();
+        
+        int max = 0, min = 9;
+        
+        while (n > 0) {
+            int cifra = n % 10;
+            if(cifra > max) max = cifra;
+            if(cifra < min) min = cifra;
+            n /= 10;
+        }
+        
+        
+        System.out.println("Cifra mare: " + max);
+        System.out.println("Cifra mica: " + min);
+    }
+}
