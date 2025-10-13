@@ -1,0 +1,23 @@
+package testjava;
+
+import java.io.*;
+public class ex1 {
+	public static void main(String[] args) throws IOException {
+		try {
+		System.out.println("Introdu un numar: ");
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		String s = br.readLine();
+		int nr = Integer.parseInt(s);
+		
+		if (nr % 2 == 0) {
+			System.out.println("Numarul este par");
+		} else {
+			System.out.println("Numarul introdus este impar");
+		}
+	} catch (Exception e) {
+		System.out.println("Nu ai introdus un numar valid!");
+	}
+	
+	}
+}
