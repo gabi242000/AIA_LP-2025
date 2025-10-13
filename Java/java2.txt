@@ -1,0 +1,55 @@
+//online gdb de data asta
+//ex1
+import java.util.Scanner;
+
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+		System.out.println("Introdu dimensiunea vectorului");
+		int n = sc.nextInt();
+		int[] v = new int[n];
+		
+		System.out.println("Introdu elementele vectorului");
+		int i, suma =0;
+		for(i = 0; i<n; i++)
+		{
+		    v[i] = sc.nextInt();
+		}
+		System.out.println("Elementele pare sunt: ");
+		for(i = 0; i<n; i++)
+		{
+		    if(v[i]%2==0)
+		    {
+		        System.out.println(v[i]+" ");
+		        suma += v[i];
+		    }
+	    }
+	    System.out.println("Suma elem pare este: " + suma);
+	}
+}
+//ex2
+import java.util.Scanner;
+
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+		System.out.println("Introdu un numar:");
+		int n = sc.nextInt();
+		
+		int max=0;
+		int min=9;
+		
+		int copye = n;
+		while(copye>0)
+		{
+		    int c = copye%10;
+		    if(c>max) max = c;
+		    if(c<min)min = c;
+		    copye/=10;
+		}
+		
+	    System.out.println("Cifra max: " + max + "\nCifra min: " + min);
+	}
+}
