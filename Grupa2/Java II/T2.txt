@@ -1,0 +1,64 @@
+//P1
+//import java.io.*;
+//public class Main {
+//    public static void main(String[] args) throws IOException {
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//        int n;
+//        n = Integer.parseInt(reader.readLine());
+//        int v[] = new int[n];
+//        //citim array.ul cu functia ceruta
+//        citire(n,v);
+//        //afisam elementele pare asa cum se specifica in enunt
+//        for (int i = 0; i < n; i++) {
+//            if(v[i] % 2 == 0) {
+//                System.out.print(v[i] + " ");
+//            }
+//        }
+//        System.out.println();
+//        //afisam suma elementelor pare
+//        System.out.println(suma_pare(n,v));
+//    }
+//    public static void citire(int n, int v[]) throws IOException {
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//        for (int i = 0; i < n; i++) {
+//            v[i] = Integer.parseInt(reader.readLine());
+//        }
+//    }
+//    public static int suma_pare(int n, int v[])  {
+//        int suma = 0;
+//        for (int i = 0; i < n; i++) {
+//            if (v[i] % 2 == 0) {
+//                suma += v[i];
+//            }
+//        }
+//        return suma;
+//    }
+//}
+//P2
+//import java.io.*;
+//public class Main {
+//    public static void main(String[] args) throws IOException {
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//        int n = Integer.parseInt(reader.readLine());
+//        cifre_cerute(n);
+//
+//    }
+//    public static void cifre_cerute(int n){
+//        if (n<10) {
+//            System.out.println(n);
+//            return;
+//        }
+//        int cifra_maxima = 0, cifra_minima = 10;
+//        while(n != 0){
+//            int cifra = n%10;
+//            if(cifra_maxima < cifra){
+//                cifra_maxima = cifra;
+//            }
+//            if(cifra_minima > cifra){
+//                cifra_minima = cifra;
+//            }
+//            n/=10;
+//        }
+//        System.out.println("Cifra maxima " + cifra_maxima+ " ,cifra minima " + cifra_minima);
+//    }
+//}
