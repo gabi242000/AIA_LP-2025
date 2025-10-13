@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Introd dimensiune pliz: ");
+        int n = sc.nextInt();
+        int[] v = new int[n];
+        
+        System.out.println("Introd elem pliz:");
+        for (int i = 0; i < n; i++) {
+            System.out.print("v[" + i + "] = ");
+            v[i] = sc.nextInt();
+        }
+        
+        int sumaPare = 0;
+        System.out.print("Nr pare: ");  
+        for (int i = 0; i < n; i++) {
+            if (v[i] % 2 == 0) {
+                System.out.print(v[i] + " ");
+                sumaPare += v[i];
+            }
+        }
+        
+        System.out.println();
+        System.out.println("Suma elementelor pare este: " + sumaPare);
+        
+        sc.close();
+    }
+}
+
+
+
+
+
+
+
+
+import java.util.Scanner;
+
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int n= sc.nextInt();
+	    int mare=0, mic=9;
+	    
+	    while(n>9){
+	        if(mic>n%10)
+	        mic=n%10;
+	        if(mare<n%10)
+	        mare=n%10;
+	        n=n/10;
+	        
+	    }
+	    if(mic>n)
+	        mic=n;
+	        if(mare<n)
+	        mare=n;
+	System.out.print("numaru mare este   "+ mare + "   numaru mic este   "+ mic);
+	}
+}
+
