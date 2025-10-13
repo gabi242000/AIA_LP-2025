@@ -1,0 +1,53 @@
+Tema 1
+1.
+
+import java.io.*;
+
+public class ex1 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Introdu un sir de caractere: ");
+        String input = br.readLine();
+
+        try {
+            int n = Integer.parseInt(input);
+            if (n < 0) {
+                System.out.println("Valoarea introdusa nu este un numar natural valid.");
+            } else {
+                System.out.println("Numarul introdus este: " + n);
+                if (n % 2 == 0)
+                    System.out.println("Numarul este par.");
+                else
+                    System.out.println("Numarul este impar.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Valoarea introdusa nu este un numar natural valid.");
+        }
+    }
+}
+
+2.
+import java.io.*;
+
+public class Ex2 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        System.out.print("Introdu primul numar: ");
+        int a = Integer.parseInt(br.readLine());
+        System.out.print("Introdu al doilea numar: ");
+        int b = Integer.parseInt(br.readLine());
+        System.out.print("Introdu al treilea numar: ");
+        int c = Integer.parseInt(br.readLine());
+        
+        int suma = a + b + c;
+        double media = suma / 3.0;
+        int max = Math.max(a, Math.max(b, c));
+        int min = Math.min(a, Math.min(b, c));
+        
+        System.out.println("Suma = " + suma);
+        System.out.println("Media = " + media);
+        System.out.println("Cel mai mare numar = " + max);
+        System.out.println("Cel mai mic numar = " + min);
+    }
+}
