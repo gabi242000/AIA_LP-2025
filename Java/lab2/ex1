@@ -1,0 +1,48 @@
+package javalab2;
+import java.io.*;
+public class ex1 {
+	public static void main(String[] args ) throws IOException {
+		System.out.println("Introdu dimensiunea vectorului: ");
+		int x = citesteV();
+		int suma = 0;
+		System.out.println("Introdu " + x + " valori");
+		int v[] = new int[x];
+		for ( int i = 0; i < v.length; i++) {
+			
+			v[i] = citesteV();
+			if(v[i] % 2 == 0) {
+				suma += v[i];
+				
+				
+			}	
+		}
+		System.out.print("Elementele pare sunt: ");
+		for (int i = 0; i < v.length; i++) {
+			if(v[i] % 2 == 0) {
+				System.out.print(v[i] + ", ");
+			}
+		}
+		System.out.println(" ");
+		System.out.println("Suma elementelor pare este: " + suma);
+	}
+	
+		
+	public static  int citesteV() throws IOException {
+	InputStreamReader isr = new InputStreamReader(System.in);
+	BufferedReader br = new BufferedReader(isr);
+	String s = br.readLine();
+	return Integer.parseInt(s);
+	
+	
+		
+		
+		
+	}
+}
+
+
+
+
+
+
+	
