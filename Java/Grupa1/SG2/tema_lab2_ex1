@@ -1,0 +1,30 @@
+package temalab2;
+import java.io.*;
+public class ex1lab2 {
+	public static void main(String [] args) throws IOException{
+		System.out.println("Introduceti primul numar: ");
+		int x=citesteNr();
+		System.out.println("Numarul introdus este: "+ x);
+		System.out.println("Introduceti vectorul: ");
+		int v[] = new int[x];
+		for(int i=0;i<v.length;i++)
+			v[i]=citesteNr();
+		System.out.println("Elementele pare sunt: ");
+		for(int i=0;i<v.length;i++) 
+		if(v[i]%2==0)	System.out.println(v[i]+" ");
+		System.out.println("Suma elementelor pare este: "+ SumaNr(v));
+	}
+		
+public static int citesteNr() throws IOException{
+	InputStreamReader isr= new InputStreamReader(System.in);
+	BufferedReader br = new BufferedReader(isr);
+	String s = br.readLine();
+	return Integer.parseInt(s);
+
+}
+public static int SumaNr(int v[]) throws IOException { int suma=0;
+	for(int i=0;i<v.length;i++) 
+		if(v[i]%2==0) suma+=v[i];
+	return suma;
+}
+}
