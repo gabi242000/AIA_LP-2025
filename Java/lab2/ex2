@@ -1,0 +1,33 @@
+package javalab2;
+import java.io.*;
+public class ex2 {
+	public static void main(String[] args) throws IOException {
+		System.out.println("Introdu un numar natural: ");
+		int x = citesteNr();
+		int max = 0;
+		int min = 9;
+		int copie = x;
+		while (copie > 0) {
+			int cifra = copie % 10;
+			if (cifra > max) {
+				max = cifra;
+			}
+			if (cifra < min) {
+				min = cifra;
+			}
+			copie /= 10;
+		}
+		System.out.println("Numarul introdus de tine este: "  + x);
+		System.out.println("Cea mai mare cifra este " + max);
+		System.out.println("Cea mai mica cifra este " +min);
+	}
+	
+	
+	
+	public static  int citesteNr() throws IOException {
+	InputStreamReader isr = new InputStreamReader(System.in);
+	BufferedReader br = new BufferedReader(isr);
+	String s = br.readLine();
+	return Integer.parseInt(s);
+	}
+}
