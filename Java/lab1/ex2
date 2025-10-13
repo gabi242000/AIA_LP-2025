@@ -1,0 +1,34 @@
+package testjava;
+
+import java.io.*;
+
+public class ex2 {
+	public static void main(String[] args) throws IOException {
+		System.out.print("Introdu primul numar: ");
+		InputStreamReader isra = new InputStreamReader(System.in);
+		BufferedReader bra = new BufferedReader(isra);
+		String s = bra.readLine();
+		int a = Integer.parseInt(s);
+		
+		System.out.print("Introdu al doilea numar: ");
+		InputStreamReader isrb = new InputStreamReader(System.in);
+		BufferedReader brb = new BufferedReader(isrb);
+		String sb = brb.readLine();
+		int b = Integer.parseInt(sb);
+		
+		System.out.print("Introdu al treilea numar: ");
+		InputStreamReader isrc = new InputStreamReader(System.in);
+		BufferedReader brc = new BufferedReader(isrc);
+		String sc= brc.readLine();
+		int c = Integer.parseInt(sc);
+		
+		int suma = a + b + c;
+		int min = Math.min(a, Math.min(b, c));
+		int aritmetica = (a+b+c)/3;
+		
+		System.out.println("Suma numerelor este " + suma);
+		System.out.println("Cel mai mic numar este " + min);
+		System.out.println("Media aritmetica a numerelor este " +aritmetica);
+		
+	}
+}
