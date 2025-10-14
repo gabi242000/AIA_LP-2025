@@ -1,0 +1,34 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        int n;
+        System.out.println("Marimea vec: ");
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        int []vec = new int[n];
+        citire(vec, n);
+        afisare(vec, n);
+    }
+
+    public static int[] citire(int[] vec, int n) {
+        System.out.println("Introduceti elem vec: ");
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0; i < n; i++) {
+            vec[i] = sc.nextInt();
+        }
+        return vec;
+    }
+
+    public static void afisare(int[] vec, int n) {
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            if (vec[i] % 2 == 0) {
+                System.out.println("elem par: " + vec[i]);
+                sum +=vec[i];
+            }
+        }
+        System.out.println("Suma elem pare: " + sum);
+
+    }
+}
