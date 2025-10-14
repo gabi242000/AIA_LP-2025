@@ -1,0 +1,22 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        int n;
+        System.out.println("numar: ");
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        int aux,min=10,max=-1;
+        while(n>0){
+            aux=n%10;
+            if(aux>max){
+                max=aux;
+            }
+            if(aux<min){
+                min=aux;
+            }
+            n/=10;
+        }
+        System.out.println("min: "+min+" max: "+max);
+    }
+}
