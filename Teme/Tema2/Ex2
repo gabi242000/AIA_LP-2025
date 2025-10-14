@@ -1,0 +1,34 @@
+package tema2;
+
+import java.io.*;
+import java.math.*;
+import java.util.Scanner;
+
+import static java.lang.System.out;
+
+public class Ex2 {
+
+
+
+    public static void main(String[] args){
+       Scanner scan = new Scanner(System.in);
+       System.out.println("Introduceti un numar natural");
+       int n = Integer.parseInt(scan.nextLine());;
+       int d1 = 0, d2 = n % 10;
+
+       while (n != 0){
+           if (n % 10 > d1){
+               d1 = n%10;
+           }
+
+           if (n % 10 < d2){
+               d2 = n%10;
+           }
+
+           n /= 10;
+       }
+
+       System.out.println("Cea mai mare cifra este: " + d1);
+       System.out.println("Cea mai mica cifra este: " + d2);
+    }
+}
