@@ -1,0 +1,20 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Introduceți un număr natural: ");
+        int numar = scanner.nextInt();
+        int minDigit = 9;
+        int maxDigit = 0;
+        int copie = numar;
+
+        while (copie > 0) {
+            int cifra = copie % 10;
+            if (cifra < minDigit) minDigit = cifra;
+            if (cifra > maxDigit) maxDigit = cifra;
+            copie /= 10;
+        }
+        System.out.println("Cifra minimă este: " + minDigit);
+        System.out.println("Cifra maximă este: " + maxDigit);
+    }
+}
