@@ -1,0 +1,86 @@
+/*
+facut in online gdb, nu prea inteleg cerinta
+Matrice magica = fiecare linie, coloana, diagonala principala si secundara sa aiba aceiasi suma -> afisez suma si mesajul "Matrice magica partial"
+Submatrice CENTRALA & dimensiune impara => Verificam matricile din centru de la cea mai mare la cea mai mica (matricea in sine nu se pune sau doar un elem)
+=> nu calculam pentru matrici pare, deoarece matricea centrala nu are cum sa fie impara
+*/
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+		System.out.print("Introduceti dimensiunea matricii:");
+		int n = sc.nextInt();
+		System.out.println(n);
+		if(n<=0 || n%2==0)
+		{
+		    System.out.println("Martice nemagica");
+		    return;
+		}
+		//Citire/generare matricea
+		int[][] v = new int[n][n];
+		for(int i=0;i<n;i++)
+		    for(int j=0;j<n;j++)
+		    {
+		        v[i][j] = sc.nextInt();
+		    }
+		    
+		//verificat 1
+		if(verificaMatriceMagica(v, 0+2, n-2))
+		    System.out.println("Submatrice magica");
+	    else
+	        System.out.println("Martice nemagica");
+	}
+	public static boolean verificaMatriceMagica(int[][] v, int start, int fin)
+	{
+	    //fin -=2;
+	    //start += 2;
+	    int suma = 0, suma2=0, ok=1;
+	    
+	    if((fin-start)<=1)
+	        return false;
+	    //init
+	    for(int i = start; i < fin; i++)
+	        suma+=v[start][i];
+	    //verif 1
+	    
+	    for(int i = start; i < fin; i++)
+	    {
+		    for(int j = start; j < fin; j++)
+		    {
+		        suma2+=v[i][j];
+		    }
+		    if(suma2!=suma)
+		        ok=0;
+		    suma2=0;
+	    }
+	    //verif 2
+	    for(int i = start; i < fin; i++)
+	    {
+		    for(int j = start; j < fin; j++)
+		    {
+		        suma2+=v[j][i];
+		    }
+		    if(suma2!=suma)
+		        ok=0;
+		    suma2=0;
+	    }
+	    //verif diag principala
+	    for(int i = start; i < fin; i++)
+	        suma2+=v[i][i];
+	    if(suma2!=suma)
+		        ok=0;
+		    suma2=0;
+	    //verif diag secundara
+	    for(int i = start; i < fin; i++)
+	        suma2+=v[i][fin-i-1];
+	   if(suma2!=suma)
+		        ok=0;
+		    suma2=0;
+		    
+	    if(ok==1)
+	        return true;
+	    else
+	    return verificaMatriceMagica(v, start+=2, fin-=2);
+	}
+}
