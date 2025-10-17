@@ -1,0 +1,78 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        int n;
+        System.out.println("Introduceti marimea matricii (sa fie nr impar: ");
+        Scanner sc = new Scanner(System.in);
+        n= sc.nextInt();
+        int [][]a = new int[n][n];
+        System.out.println("Introduceti elementele matricei: ");
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                a[i][j]=sc.nextInt();
+            }
+        }
+        int aux=0,sum;
+        for(int i=0;i<n;i++){
+            aux +=a[0][i];
+        }
+        sum = aux;
+        //linii
+        aux=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                aux += a[i][j];
+            }
+            if(sum!=aux){
+                ded();
+                return;
+            }
+            aux=0;
+        }
+        //coloane
+        aux=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                aux += a[j][i];
+            }
+            if(sum!=aux){
+                ded();
+                return;
+            }
+            aux=0;
+        }
+        //diagonale
+        aux=0;
+        for(int i=0;i<n;i++){
+           for(int j=0;j<n;j++){
+               if(i==j){
+                   aux+=a[i][j];
+               }
+           }
+        }
+        if(sum!=aux){
+            ded();
+            return;
+        }
+        aux=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(i+j==n-1){
+                    aux+=a[i][j];
+                }
+            }
+        }
+        if(sum!=aux){
+            ded();
+            return;
+        }
+
+        System.out.println("matricea este magica");
+        return;
+    }
+
+    public static void ded(){
+    System.out.println("matricea nu este magica");
+    }
+}
