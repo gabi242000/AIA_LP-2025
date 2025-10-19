@@ -1,0 +1,61 @@
+import java.util.Scanner;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduceti numarul matricei: ");
+        
+        int n = sc.nextInt();
+        System.out.println("Introduceti continutul matricei: ");
+        int[][] A = new int[n][n];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                A[i][j] = sc.nextInt();
+
+        if (n <= 0) {
+            System.out.println("Matrice nemagică");
+            return;
+        }
+
+        int k = (n % 2 == 1) ? n : n - 1;
+        int start = (n - k) / 2;
+
+        long[] sumRow = new long[k];
+        long[] sumCol = new long[k];
+        long diagMain = 0, diagSec = 0;
+
+        for (int i = 0; i < k; i++) {
+            for (int j = 0; j < k; j++) {
+                int val = A[start + i][start + j];
+                sumRow[i] += val;
+                sumCol[j] += val;
+                if (i == j) diagMain += val;
+                if (i + j == k - 1) diagSec += val;
+            }
+        }
+
+        long ref = sumRow[0];
+        boolean ok = true;
+
+        for (int i = 0; i < k && ok; i++)
+            if (sumRow[i] != ref)
+                ok = false;
+
+        for (int j = 0; j < k && ok; j++)
+            if (sumCol[j] != ref)
+                ok = false;
+
+        if (ok && (diagMain != ref || diagSec != ref))
+            ok = false;
+
+        if (ok) {
+            System.out.println(ref);
+            System.out.println("Matrice magică parțial");
+        } else {
+            System.out.println("Matrice nemagică");
+        }
+
+        sc.close();
+    }
+}
