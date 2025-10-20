@@ -1,0 +1,54 @@
+package temalab3;
+import java.io.*;
+public class ex1 {
+    public static void main(String[] args) throws IOException {
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        System.out.print("n = ");
+        String s = br.readLine();
+        int n = Integer.parseInt(s);
+        int[][] a = new int[n][n];
+        System.out.println("Introduceti elementele matricei:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                String lin = br.readLine();     
+                a[i][j] = Integer.parseInt(lin);
+            }
+        }
+        int dim;
+        if (n % 2 == 1) dim = n;
+        else dim = n - 1;
+        int inceput = (n - dim) / 2;
+        int suma1 = 0;
+        for (int j = 0; j < dim; j++) 
+            suma1 += a[inceput][inceput + j];
+        boolean magic = true;
+        for (int i = 0; i < dim && magic; i++) {
+            int suma = 0;
+            for (int j = 0; j < dim; j++) {
+                suma += a[inceput + i][inceput + j];
+            }
+            if (suma != suma1) magic = false;
+        }
+        for (int j = 0; j < dim && magic; j++) {
+            int suma = 0;
+            for (int i = 0; i < dim; i++) 
+                suma += a[inceput + i][inceput + j];
+            
+            if (suma != suma1) magic = false;
+        }
+        if (magic) {
+            int sumaprinc = 0, sumasec = 0;
+            for (int i = 0; i < dim; i++) {
+                sumaprinc += a[inceput + i][inceput + i];
+                sumasec  += a[inceput + i][inceput + dim - 1 - i];
+            }
+            if (sumaprinc != suma1 || sumasec != suma1) magic = false;
+        }
+        if (magic) {
+            System.out.println("Suma comuna = " + suma1);
+            System.out.println("Matrice magica partial");
+        } else 
+            System.out.println("Matrice nemagica");
+    }
+}
