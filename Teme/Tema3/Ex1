@@ -1,0 +1,76 @@
+package tema3;
+
+import java.io.*;
+import java.math.*;
+import java.util.Scanner;
+
+import static java.lang.System.out;
+
+public class Ex1 {
+
+    public static boolean matriceMagica(int[][] m) {
+
+        int sum = 0, sumC = 0, sumL = 0, sumD = 0;
+
+        for (int i = 0; i < m.length; i++) {
+            sum += m[i][i];
+        }
+
+        for (int i = 0; i < m.length; i++) {
+                for (int j = 0; j < m.length; j++) {
+                    sumL += m[i][j];
+                    sumC += m[j][i];
+                }
+
+                if(sumC != sum && sum != sumC)
+                    return false;
+
+                sumC = 0;
+                sumL = 0;
+        }
+
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m.length; j++) {
+                if(i + j == m.length - 1)
+                    sumD += m[i][j];
+            }
+        }
+
+        if(sumD != sum)
+            return false;
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+
+        int[][] matrice = new int[n][n];
+        int[][] matriceMica = new int[n - 2][n - 2];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                matrice[i][j] = scan.nextInt();
+            }
+            System.out.println();
+        }
+
+        for (int i = 0, k = 1; i < n - 2; i++, k++) {
+            for (int j = 0, l = 1; j < n - 2; j++, l++) {
+                matriceMica[i][j] = matrice[k][l];
+                System.out.print(matriceMica[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+
+
+        if (matriceMagica(matriceMica)) {
+            System.out.println("Matrice magica partial");
+        } else
+            System.out.println("Matrice nemagica");
+        
+        //Din cerinta am inteles ca submatricea este magica daca sumele liniilor, coloanelor si diagonalelor sunt egale
+    }
+}
