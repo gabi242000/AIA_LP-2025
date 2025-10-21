@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class MagicPartialSimple {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[][] A = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                A[i][j] = sc.nextInt();
+            }
+        }
+    
+        int k = (n % 2 == 1) ? n : n - 1;
+        int start = (n - k) / 2;
+        int suma = 0;
+        for (int j = start; j < start + k; j++) {
+            suma += A[start][j];
+        }
+        boolean magic = true;
+        for (int i = start; i < start + k && magic; i++) {
+            int s = 0;
+            for (int j = start; j < start + k; j++) {
+                s += A[i][j];
+            }
+            if (s != suma) magic = false;
+        }
+        for (int j = start; j < start + k && magic; j++) {
+            int s = 0;
+            for (int i = start; i < start + k; i++) {
+                s += A[i][j];
+            }
+            if (s != suma) magic = false;
+        }
+        int d1 = 0, d2 = 0;
+        for (int i = 0; i < k; i++) {
+            d1 += A[start + i][start + i];
+            d2 += A[start + i][start + (k - 1 - i)];
+        }
+        if (d1 != suma || d2 != suma) magic = false;
+        if (magic) {
+            System.out.println(suma);
+            System.out.println("Matrice magica partial");
+        } else {
+            System.out.println("Matrice nemagica");
+        }
+
+        sc.close();
+    }
+}
