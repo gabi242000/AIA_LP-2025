@@ -1,0 +1,86 @@
+package labb3;
+import java.util.*;
+
+public class temaLL3 {
+	public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Introdu numarul de linii si coloane: ");
+        int n = sc.nextInt();
+		if (n<3) {
+			System.out.println("Nu se pot forma matrici de dimensiune impara cu aceasta dimensiune");
+			return;
+		}
+        int[][] A = new int[n][n];
+
+        System.out.println("Introdu elementele matricei:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                A[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("Matricea initiala:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print(A[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        int m;
+        if (n % 2 == 1) {
+            m = n;
+        } else {
+            m = n - 1;
+        }
+
+        int start = (n - m) / 2;
+
+        int[][] B = new int[m][m];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < m; j++) {
+                B[i][j] = A[start + i][start + j];
+            }
+        }
+
+        System.out.println("Submatricea centrala:");
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < m; j++) {
+                System.out.print(B[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        int suma = 0;
+        for (int j = 0; j < m; j++) suma += B[0][j];
+        boolean magica = true;
+
+        for (int i = 1; i < m; i++) {
+            int s = 0;
+            for (int j = 0; j < m; j++) s += B[i][j];
+            if (s != suma) magica = false;
+        }
+
+        for (int j = 0; j < m; j++) {
+            int s = 0;
+            for (int i = 0; i < m; i++) s += B[i][j];
+            if (s != suma) magica = false;
+        }
+
+        int s1 = 0, s2 = 0;
+        for (int i = 0; i < m; i++) {
+            s1 += B[i][i];
+            s2 += B[i][m - 1 - i];
+        }
+        if (s1 != suma || s2 != suma) magica = false;
+
+        if (magica) {
+            System.out.println("Matrice magica partiala! Suma comuna = " + suma);
+        } else {
+            System.out.println("Matrice nemagica.");
+        }
+
+        sc.close();
+    }
+}
