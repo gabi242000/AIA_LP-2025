@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class MatriceMagicaP {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[][] A = new int[n][n];
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+                A[i][j] = in.nextInt();
+        }
+        int m = (n % 2 == 1) ? n : n - 1;
+        int start = (n - m) / 2;        
+        int end = start + m - 1;       
+        int target = 0;
+        for (int j = start; j <= end; j++) target += A[start][j];
+        boolean mag = true;
+        for (int i = start; i <= end && mag; i++) {
+            int s = 0;
+            for (int j = start; j <= end; j++) s += A[i][j];
+            if (s != target) mag = false;
+        }
+        for (int j = start; j <= end && mag; j++) {
+            int s = 0;
+            for (int i = start; i <= end; i++) s += A[i][j];
+            if (s != target) mag = false;
+        }
+        int d1 = 0;
+        for (int k = 0; k < m; k++) d1 += A[start + k][start + k];
+        if (d1 != target) mag = false;
+        int d2 = 0;
+        for (int k = 0; k < m; k++) d2 += A[start + k][end - k];
+        if (d2 != target) mag = false;
+
+        if (mag == true) {
+            System.out.println(target);
+            System.out.println("Matrice magica partial");
+        } else {
+            System.out.println("Matrice care nu e magica partial");
+        }
+
+        in.close();
+    }
+}
