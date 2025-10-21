@@ -1,0 +1,73 @@
+ex 1
+import java.io.*; 
+
+public class Ex1_VectorPari {
+
+   
+    public static int[] citireVector(int n) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int[] v = new int[n];
+        System.out.println("Introduceți elementele vectorului:");
+        for (int i = 0; i < n; i++) {
+            System.out.print("v[" + i + "] = ");
+            v[i] = Integer.parseInt(br.readLine());
+        }
+        return v;
+    }
+
+    public static int sumaPare(int[] v) {
+        int suma = 0;
+        System.out.print("Elementele pare sunt: ");
+        for (int i = 0; i < v.length; i++) {
+            if (v[i] % 2 == 0) {
+                System.out.print(v[i] + " ");
+                suma += v[i];
+            }
+        }
+        System.out.println(); 
+        return suma;
+    }
+
+   
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Introduceți dimensiunea vectorului: ");
+        int n = Integer.parseInt(br.readLine());
+
+        int[] vector = citireVector(n);    
+        int suma = sumaPare(vector);        
+        System.out.println("Suma elementelor pare este: " + suma);
+    }
+}
+
+
+ex2
+
+import java.io.*;
+
+public class Ex2_MaxMinCifre_While {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Introduceți un număr natural: ");
+        int n = Integer.parseInt(br.readLine());
+
+        int maxDigit = 0;
+        int minDigit = 9;
+        int copie = n; 
+
+        
+        while (n > 0) {
+            int cifra = n % 10;     
+            if (cifra > maxDigit) maxDigit = cifra;
+            if (cifra < minDigit) minDigit = cifra;
+            n = n / 10;             
+        }
+
+        System.out.println("Pentru numărul " + copie + ":");
+        System.out.println("Cifra maximă este: " + maxDigit);
+        System.out.println("Cifra minimă este: " + minDigit);
+    }
+}
