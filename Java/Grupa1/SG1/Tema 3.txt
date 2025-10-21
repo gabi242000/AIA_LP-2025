@@ -1,0 +1,46 @@
+Tema 3
+import java.util.*;
+
+public class Tema3 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[][] A = new int[n][n];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                A[i][j] = sc.nextInt();
+
+        int size = (n % 2 == 1) ? n : n - 1;
+        int start = (n - size) / 2;
+        int[][] B = new int[size][size];
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                B[i][j] = A[start + i][start + j];
+
+        int sum = 0;
+        for (int j = 0; j < size; j++) sum += B[0][j];
+
+        boolean magic = true;
+        for (int i = 0; i < size && magic; i++) {
+            int s = 0;
+            for (int j = 0; j < size; j++) s += B[i][j];
+            if (s != sum) magic = false;
+        }
+
+        for (int j = 0; j < size && magic; j++) {
+            int s = 0;
+            for (int i = 0; i < size; i++) s += B[i][j];
+            if (s != sum) magic = false;
+        }
+
+        int sd1 = 0, sd2 = 0;
+        for (int i = 0; i < size; i++) {
+            sd1 += B[i][i];
+            sd2 += B[i][size - i - 1];
+        }
+        if (sd1 != sum || sd2 != sum) magic = false;
+
+        if (magic) System.out.println("Matrice magica partial, suma = " + sum);
+        else System.out.println("Matrice nemagica");
+    }
+}
