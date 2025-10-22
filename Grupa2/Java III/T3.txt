@@ -1,0 +1,56 @@
+import java.io.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int size = Integer.parseInt(br.readLine());
+        int [][] matrix = new int[size][size];
+        for(int i = 0; i < size; i++)
+            for(int j = 0; j < size; j++)
+                matrix[i][j] = Integer.parseInt(br.readLine());
+        //Pana acum am declarat si citit o matrice
+        //dimensiune impara
+        if (size % 2 != 0) {
+            int sumaDeReferinta = 0;
+            boolean flag = true;
+            for(int i = 0; i < size; i++)
+                sumaDeReferinta += matrix[i][i];
+            for(int i = 0; i < size; i++){
+                int sumaLinie=0, sumaColoana=0;
+                for(int j = 0; j < size; j++){
+                    sumaLinie += matrix[i][j];
+                    sumaColoana += matrix[j][i];
+                }
+                if(sumaLinie != sumaDeReferinta && sumaColoana != sumaDeReferinta){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                System.out.println("Yes");
+            else
+                System.out.println("No");
+        }
+        //dimensiune para
+        else{
+            int sumaDeReferinta = 0;
+            boolean flag = true;
+            for(int i = 1; i < size; i++)
+                sumaDeReferinta += matrix[i][i];
+            for(int i = 1; i < size; i++){
+                int sumaLinie=0, sumaColoana=0;
+                for(int j = 1; j < size; j++){
+                    sumaLinie += matrix[i][j];
+                    sumaColoana += matrix[j][i];
+                }
+                if(sumaLinie != sumaDeReferinta && sumaColoana != sumaDeReferinta){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                System.out.println("Yes");
+            else
+                System.out.println("No");
+        }
+    }
+}
