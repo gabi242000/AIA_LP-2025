@@ -1,1 +1,77 @@
+package tema3;
+import java.util.Scanner;
+public class ex1 
+{
+	public static void main(String[] args) 
+	{
+		Scanner in = new Scanner (System.in);
+		System.out.print("Introduceti dimensiunea n: ");
+		int n = in.nextInt();
+		int[][] a = new int[n][n];
+		System.out.println("Introduceti elementele matricei:");
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				a[i][j] = in.nextInt();
+			}
+		}
+		int k;
+		if (n%2==0)
+		{
+			k=n-1;
+		}
+		else
+		{
+			k=n;
+		}
+		int suma = 0;
+		for (int i = 1; i <= k; i++)
+		{
+			for ( int j = 1; j <= k; j++)
+			{
+				if (i==j)
+				{
+					suma = suma + a[i][j];
+				}
+			}
+		}
+		int suma2 = 0;
+		for (int i = 1; i <= k; i++)
+		{
+			for ( int j = 1; j <= k; j++)
+			{
+				if (i+j == k+1)
+				{
+					suma2 = suma2 + a[i][j];
+				}
+			}
+		}
+		if (suma != suma2)
+		{
+			System.out.println("Matrice nemagica.");
+		}
+		else
+		{
+			for (int i = 1; i <= k; i++)
+			{
+				suma2 = 0;
+				for (int j = 1; j <= k; j++)
+				{
+					suma2 = suma2 + a[i][j];
+				}
+				if (suma != suma2)
+				{
+					System.out.println("Matrice nemagica.");
+					break;
+				}
+			}
+			if (suma == suma2)
+			{
+				System.out.println("Matrice magica partial.");
+			}
+		}
+	}
+
+}
 
