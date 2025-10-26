@@ -1,0 +1,34 @@
+package lab4tema;
+import java.util.Scanner;
+
+public class FacturaServiciu {
+    private String denumireServiciu;
+    private double tarifOra;
+    private int numarOre;
+    private double valoareTotala;
+public void  calcvaloareTotala() {
+        valoareTotala = tarifOra * numarOre;
+    }
+public void afisareFactura() {
+        System.out.println("Serviciu: " + denumireServiciu);
+        System.out.println("Tarif ora: " + tarifOra);
+        System.out.println("Numar ore: " + numarOre);
+        System.out.println("Valoare totala: " + valoareTotala);
+    }
+public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        FacturaServiciu f = new FacturaServiciu();
+
+        System.out.print("Introduceti denumirea serviciului: ");
+        f.denumireServiciu = sc.nextLine();
+
+        System.out.print("Introduceti tariful pe ora: ");
+        f.tarifOra = sc.nextDouble();
+
+        System.out.print("Introduceti numarul de ore: ");
+        f.numarOre = sc.nextInt();
+
+        f.calcvaloareTotala();
+        f.afisareFactura();
+    }
+}
