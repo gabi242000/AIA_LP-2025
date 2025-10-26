@@ -1,0 +1,67 @@
+////Problema 1
+//class Animal{
+//    private String nume;
+//    private String specie;
+//    private int varsta;
+//
+//    public Animal(){
+//        this.nume = "Necunoscut";
+//        this.specie = "Necunoscută";
+//        this.varsta = 0;
+//    }
+//    public void afisareAnimal(){
+//        System.out.println("Animalul " + nume + " face parte din specia " + specie + " si are varsta " + varsta);
+//    }
+//}
+
+
+////Problema2
+//import java.util.Scanner;
+//class Masina{
+//    private String marca;
+//    private String model;
+//    private int anFabricare;
+//    private String culoare;
+//    private float pret;
+//
+//    public Masina(String marca, String model, int anFabricare, String culoare, float pret){
+//        this.marca = marca;
+//        this.model = model;
+//        this.anFabricare = anFabricare;
+//        this.culoare = culoare;
+//        this.pret = pret;
+//    }
+//    public void afisareMasina(){
+//        System.out.println(marca + ' ' + model + ' ' + anFabricare + ' ' + culoare + ' ' + pret);
+//
+//    }
+//}
+//public class Main{
+//    static public void main(String[] args){
+//        Scanner reader = new Scanner(System.in);
+//        String marca = reader.nextLine();
+//        String model = reader.nextLine();
+//        int anFabricare = Integer.parseInt(reader.nextLine());
+//        String culoare = reader.nextLine();
+//        float pret = Float.parseFloat(reader.next());
+//        Masina masina1 = new Masina(marca, model, anFabricare, culoare, pret);
+//        masina1.afisareMasina();
+//    }
+//}
+
+
+////Problema 3 
+//class FacturaServiciu {
+//    private String denumireServiciu;
+//    private float tarifOra;
+//    private float numarOre;
+//    private float valoareTotala;
+//
+//    public void valoareTotala(){
+//        valoareTotala = (numarOre * tarifOra);
+//    }
+//    public void afisareFactura(){
+//        System.out.println(denumireServiciu + ' ' + tarifOra + ' ' + numarOre + ' ' +valoareTotala);
+//    }
+//
+//}
