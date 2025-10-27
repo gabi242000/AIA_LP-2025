@@ -1,0 +1,35 @@
+package tema4;
+
+import java.util.Scanner;
+
+public class Masina {
+
+    private String marca, model, culoare;
+    private int an_fabricatie;
+    private double pret;
+
+    public Masina(String marca, String model, String culoare, int an_fabricatie, double pret) {
+        this.marca = marca;
+        this.model = model;
+        this.culoare = culoare;
+        this.an_fabricatie = an_fabricatie;
+        this.pret = pret;
+    }
+
+    public void afisareMasina() {
+        System.out.println(marca);
+        System.out.println(model);
+        System.out.println(culoare);
+        System.out.println(an_fabricatie);
+        System.out.println(pret);
+
+    }
+
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+
+        Masina masina = new Masina(scan.next(), scan.next(), scan.next(), scan.nextInt(), scan.nextDouble());
+
+        masina.afisareMasina();
+    }
+}
