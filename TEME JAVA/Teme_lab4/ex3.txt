@@ -1,0 +1,42 @@
+package temalab4ex3;
+import java.util.*;
+public class FacturaServiciu {
+    private String denumireServiciu;
+    private double tarifOra;
+    private double numarOre;
+    private double valoareTotala;
+    
+    public FacturaServiciu (String denumireServiciu, double tarifOra, double numarOre) {
+    	this.denumireServiciu= denumireServiciu;
+    	this.tarifOra= tarifOra;
+    	this.numarOre= numarOre;
+    	this.valoareTotala= 0;	
+    }
+    
+    public double valoareTotala() {
+    	 valoareTotala = tarifOra * numarOre;
+    	return valoareTotala;
+    }
+    
+    public void afisareFactura() {
+    	System.out.println("Denumirea serviciului: " + denumireServiciu);
+    	System.out.println("Tarif ora: " + tarifOra + " lei");
+    	System.out.println("Numar ore: " + numarOre);
+    	System.out.printf("Valoare totala: %.2f lei%n", valoareTotala());
+    }
+    
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Introduceti datele serviciului: ");
+		System.out.print("Introduceti denumirea serviciului: ");
+		String denumireServiciu = sc.nextLine();
+		System.out.print("Introduceti tariful pe ora: ");
+		double tarifOra = sc.nextDouble();
+		System.out.print("Introduceti numarul de ore: ");
+		double numarOre = sc.nextDouble();
+		System.out.println("Informatii serviciu prestat: ");
+		FacturaServiciu fs = new FacturaServiciu(denumireServiciu, tarifOra, numarOre);
+		fs.afisareFactura();
+        sc.close();
+	}
+}
