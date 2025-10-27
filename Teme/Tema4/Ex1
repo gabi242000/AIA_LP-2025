@@ -1,0 +1,24 @@
+package tema4;
+
+public class Animal {
+    private String nume, specie;
+    private int varsta;
+
+    public Animal() {
+        nume = "Necunoscut";
+        specie = "Necunoscut";
+        varsta = 0;
+    }
+
+    public void afisareAnimal() {
+        System.out.println(nume);
+        System.out.println(specie);
+        System.out.println(varsta);
+    }
+
+    public static void main(String[] args) {
+        Animal animal = new Animal();
+
+        animal.afisareAnimal();
+    }
+}
