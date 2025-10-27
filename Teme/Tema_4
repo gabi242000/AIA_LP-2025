@@ -1,0 +1,86 @@
+import java.util.Scanner;
+import java.math.*;
+
+static class Animal{
+    private String nume, specie;
+    private int varsta;
+   public Animal(){
+        nume="Necunoscut";
+        specie="Necunoscut";
+        varsta=0;
+    }
+    public void AfisareAnimal(){
+        System.out.println("Animalul este "+nume+" de tipul "+specie+" si are varsta de "+varsta+" ani.");
+    }
+}
+//masinoooo vrooooooooooooom
+static class Masina{
+    private String marca,model,culoare;
+    private int an_fabricare;
+    private double pret;
+    Masina(String marca , String model ,String culoare , int an_fabricare , double pret ){
+        this.marca=marca;
+        this.an_fabricare=an_fabricare;
+        this.pret=pret;
+        this.model=model;
+    }
+    public void AfisareMasina(){
+        System.out.println("Masina este "+marca+" de tipul "+model+" cu culoarea "+culoare+" si este fabricata in anul "+an_fabricare+".");
+    }
+}
+static class FacturaServiciu{
+    private String denumire;
+    private double pretOra,numarOre,valoareTotala;
+    FacturaServiciu(String denumire , double pretOra , double numarOre){
+        this.denumire=denumire;
+        this.pretOra=pretOra;
+        this.numarOre=numarOre;
+        valoareTotala=pretOra*numarOre;
+    }
+    public void AfisareFacturaServiciu(){
+        System.out.println("Denumirea serviciului este "+denumire+" pretul serviciului este de "+pretOra+" lei si numarul de ore este de "+numarOre+".");
+        System.out.println("Valoarea totala este de "+valoareTotala+" lei.");
+    }
+}
+public static void TestAnimal(){
+    Animal animalul = new Animal();
+    animalul.AfisareAnimal();
+}
+public static void TestVroooom(){
+    Scanner sc = new Scanner(System.in);
+     String marca,model,culoare;
+     int an_fabricare;
+     double pret;
+    System.out.println("introduceti marca masinii");
+    marca = sc.nextLine();
+    System.out.println("introduceti model masinii");
+    model = sc.nextLine();
+    System.out.println("introduceti culoarea masinii");
+    culoare = sc.nextLine();
+    System.out.println("introduceti anul fabricarii masinii");
+    an_fabricare = sc.nextInt();
+    System.out.println("introduceti pretul masinii");
+    pret = sc.nextDouble();
+    Masina masina = new Masina(marca,model,culoare,an_fabricare,pret);
+    masina.AfisareMasina();
+}
+public static void TestFacturaServiciu(){
+    Scanner sc = new Scanner(System.in);
+    String denumire;
+    double pretOra,numarOre;
+    System.out.println("introduceti denumirea serviciului");
+    denumire = sc.nextLine();
+    System.out.println("introduceti pretul serviciului");
+    pretOra = sc.nextDouble();
+    System.out.println("introduceti numarul de ore serviciului");
+    numarOre = sc.nextDouble();
+    FacturaServiciu factura = new FacturaServiciu(denumire,pretOra,numarOre);
+    factura.AfisareFacturaServiciu();
+}
+
+public static void main(String[] args) throws IOException{
+    //Sunt toate aici!
+    //TestAnimal();
+    //TestVroooom();
+    //TestFacturaServiciu();
+}
