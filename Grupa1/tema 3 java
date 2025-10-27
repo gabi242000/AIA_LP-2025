@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+public class MatriceMagicaPartiala {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        
+        int n = sc.nextInt();
+        int[][] A = new int[n][n];
+        
+    
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                A[i][j] = sc.nextInt();
+            }
+        }
+        
+        
+        int m = (n % 2 == 1) ? n : n - 1;
+        int start = (n - m) / 2;
+        int end = start + m;
+        
+        
+        int[][] B = new int[m][m];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < m; j++) {
+                B[i][j] = A[start + i][start + j];
+            }
+        }
+        
+        
+        int[] sumeLinii = new int[m];
+        for (int i = 0; i < m; i++) {
+            int suma = 0;
+            for (int j = 0; j < m; j++) {
+                suma += B[i][j];
+            }
+            sumeLinii[i] = suma;
+        }
+        
+        
+        int[] sumeColoane = new int[m];
+        for (int j = 0; j < m; j++) {
+            int suma = 0;
+            for (int i = 0; i < m; i++) {
+                suma += B[i][j];
+            }
+            sumeColoane[j] = suma;
+        }
+        
+        
+        int diagPrincipala = 0, diagSecundara = 0;
+        for (int i = 0; i < m; i++) {
+            diagPrincipala += B[i][i];
+            diagSecundara += B[i][m - 1 - i];
+        }
+        
+        
+        int sumaComuna = sumeLinii[0];
+        boolean magica = true;
+        
+        for (int s : sumeLinii) if (s != sumaComuna) magica = false;
+        for (int s : sumeColoane) if (s != sumaComuna) magica = false;
+        if (diagPrincipala != sumaComuna || diagSecundara != sumaComuna) magica = false;
+        
+        
+        if (magica) {
+            System.out.println(sumaComuna);
+            System.out.println("matrice magica partial");
+        } else {
+            System.out.println("matrice nemagica");
+        }
+        
+        sc.close();
+    }
+}
