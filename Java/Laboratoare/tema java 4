@@ -1,0 +1,105 @@
+public class Animal {
+    String nume;
+    String specie;
+    int varsta;
+
+    public Animal() {
+        nume = "necunoscut";
+        specie = "necunoscuta";
+        varsta = 0;
+    }
+
+    void afisareAnimal() {
+        System.out.println("nume: " + nume);
+        System.out.println("specie: " + specie);
+        System.out.println("varsta: " + varsta);
+    }
+
+    public static void main(String[] args) {
+        Animal a = new Animal();
+        a.afisareAnimal();
+    }
+}
+
+
+.....................................................
+
+import java.util.Scanner;
+
+public class Masina {
+    String marca;
+    String model;
+    int an_fabricare;
+    String culoare;
+    double pret;
+
+    public Masina(String marca, String model, int an_fabricare, String culoare, double pret) {
+        this.marca = marca;
+        this.model = model;
+        this.an_fabricare = an_fabricare;
+        this.culoare = culoare;
+        this.pret = pret;
+    }
+
+    void afisareMasina() {
+        System.out.println("marca: " + marca);
+        System.out.println("model: " + model);
+        System.out.println("an fabricatie: " + an_fabricare);
+        System.out.println("culoare: " + culoare);
+        System.out.println("pret: " + pret);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("brand cata valoare ");
+        String marca = sc.nextLine();
+
+        System.out.print("modelu?");
+        String model = sc.nextLine();
+
+        System.out.print("inainte sau dupa revolutie? (an?) ");
+        int an = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("skin?");
+        String culoare = sc.nextLine();
+
+        System.out.print("cat e paguba?");
+        double pret = sc.nextDouble();
+
+        Masina m = new Masina(marca, model, an, culoare, pret);
+        System.out.println("\nInfos");
+        m.afisareMasina();
+
+        sc.close();
+    }
+}
+
+......................................................................
+
+public class FacturaServiciu {
+    String denumireServiciu;
+    double tarifOra;
+    int numarOre;
+    double valoareTotala;
+
+    public FacturaServiciu(String denumireServiciu, double tarifOra, int numarOre) {
+        this.denumireServiciu = denumireServiciu;
+        this.tarifh = tarifh;
+        this.numarh = numarh;
+        this.valoareTotala = tarifh * numarh;
+    }
+
+    void afisareFactura() {
+        System.out.println("denumire  " + denumireServiciu);
+        System.out.println("tarif : " + tarifh);
+        System.out.println("nr h: " + numarh);
+        System.out.println("val tot " + valoareTotala);
+    }
+
+    public static void main(String[] args) {
+        FacturaServiciu f = new FacturaServiciu("Consultanta", 150.0, 4);
+        f.afisareFactura();
+    }
+}
