@@ -1,0 +1,38 @@
+package tema4;
+
+import java.util.Scanner;
+
+
+public class FacturaServiciu {
+    private String denumireServiciu;
+    private int numarOre;
+    private double tarifOra, valoareTotala;
+
+    public FacturaServiciu(String denumireServiciu,int numarOre, double tarifOra) {
+        this.denumireServiciu = denumireServiciu;
+        this.numarOre = numarOre;
+        this.tarifOra = tarifOra;
+    }
+
+    public void valoareTotala() {
+        valoareTotala = tarifOra*numarOre;
+    }
+
+    public void afisareFactura(){
+
+        System.out.println(denumireServiciu);
+        System.out.println(numarOre);
+        System.out.println(tarifOra);
+        System.out.println(valoareTotala);
+    }
+
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+
+        FacturaServiciu factura = new FacturaServiciu(scan.nextLine(),scan.nextInt(),scan.nextDouble());
+
+        factura.valoareTotala();
+        factura.afisareFactura();
+
+    }
+}
