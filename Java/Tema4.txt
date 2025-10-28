@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+class Animal{
+    String nume, specie;
+    int varsta;
+    public Animal(){
+        nume="Necunoscut";
+        specie="Necunoscuta";
+        varsta = 0;
+    }
+    public void afisareAnimal()
+    {
+        System.out.println("Nume: " + nume);
+        System.out.println("Specie: " + specie);
+        System.out.println("Varsta: " + varsta);
+    }
+}
+
+class FacturaServiciu {
+    String denumireServiciu;
+    int tarifOra, numarOre, valoareTotala;
+
+    public void valTotala() {
+        valoareTotala = tarifOra * numarOre;
+    }
+
+    FacturaServiciu(String denumireServiciu, int tarifOra, int numarOre) {
+        this.denumireServiciu = denumireServiciu;
+        this.tarifOra = tarifOra;
+        this.numarOre = numarOre;
+    }
+
+    public void afisareFactura() {
+        System.out.println("Denumire serviciu: " + denumireServiciu);
+        System.out.println("Tarif ora: " + tarifOra);
+        System.out.println("Numar ore: " + numarOre);
+        valTotala();
+        System.out.println("Valoare totala: " + valoareTotala);
+    }
+}
+class Masina {
+    String marca, model, culoare;
+    int an_fabricare, pret;
+
+    public Masina(String marca, String model, String culoare, int an_fabricare, int pret) {
+        this.marca = marca;
+        this.model = model;
+        this.culoare = culoare;
+        this.an_fabricare = an_fabricare;
+        this.pret = pret;
+    }
+
+    public void afisareMasina() {
+        System.out.println("Marca :" + marca);
+        System.out.println("Model :" + model);
+        System.out.println("An de fabricatie :" + an_fabricare);
+        System.out.println("Culoare :" + culoare);
+        System.out.println("Pret :" + pret);
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Animal animal = new Animal();
+        animal.afisareAnimal();
+        System.out.println();
+
+        System.out.println("introdu Masina(String marca, String model, String culoare, int an_fabricare, int pret)");
+        Masina masina = new Masina(sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextInt(), sc.nextInt());
+        masina.afisareMasina();
+
+        System.out.println("FacturaServiciu(String denumireServiciu, int tarifOra, int numarOre)");
+	sc.nextLine();//da eroare fara idk, are ceva legatura cu curatat dupa next Int
+        FacturaServiciu factura = new FacturaServiciu(sc.nextLine(), sc.nextInt(), sc.nextInt());
+        factura.afisareFactura();
+    }
+}
