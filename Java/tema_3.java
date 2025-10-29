@@ -5,7 +5,7 @@ public class tema_3 {
 	public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Introdu dimecsiunea  matricei:");
+        System.out.print("Introdu dimensiunea  matricei:");
         int n = sc.nextInt();
 		if (n<3) {
 			System.out.println("Nu pot fi formate submatrici cu aceasta dimensiune!");
@@ -72,4 +72,5 @@ public class tema_3 {
 
         sc.close();
     }
+
 }
