@@ -1,1 +1,46 @@
-
+package tema2;
+import java.io.*;
+public class ex1 
+{
+	private static int n;
+	public static int[] citireVector() throws IOException
+	{
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		System.out.println("Introduceti numarul de elemente:");
+		n = Integer.parseInt(br.readLine());
+		int v[] = new int[n];
+		System.out.println("Introduceti elementele:");
+		for( int i = 0; i < n; i++)
+		{
+			v[i] = Integer.parseInt(br.readLine());
+		}
+		return v;
+	}
+	public static int Suma(int[] v) throws IOException
+	{
+		int suma = 0;
+		for (int i = 0; i < n; i ++)
+		{
+			if(v[i] % 2 == 0)
+			{
+				suma = suma + v[i];
+			}
+		}
+		return suma;
+	}
+	public static void main(String[] args) throws IOException
+	{
+		int v[] = citireVector();
+		int i;
+		System.out.println("Elementele pare ale vectorului sunt:");
+		for (i = 0; i < n; i ++)
+		{
+			if(v[i] % 2 == 0)
+			{
+				System.out.println(v[i]);
+			}
+		}
+		System.out.println("Suma elementelor pare este " + Suma(v));
+	}
+}
