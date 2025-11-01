@@ -2,9 +2,9 @@ package tema4;
 
 public class Animal 
 {
-	String nume;
-	String specie;
-	int varsta;
+	private String nume;
+	private String specie;
+	private int varsta;
 	
 	Animal()
 	{
