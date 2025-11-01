@@ -1,1 +1,28 @@
+package tema1;
 
+import java.io.*;
+
+public class Problema2 
+{
+	public static void main(String[] args) throws IOException
+	{
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader (isr);
+		System.out.println("Introduceti 3 numere intregi: ");
+		int x = Integer.parseInt(br.readLine());
+		int y = Integer.parseInt(br.readLine());
+		int z = Integer.parseInt(br.readLine());
+		int suma=x+y+z;
+		int ma=suma/3;
+		int max;
+		if(x>=y && x>=z)
+			max = x;
+		else if(y>=x && y>=z)
+			max = y;
+		else
+			max = z;
+		System.out.println("Suma:" + suma);
+		System.out.println("Medie aritmetica:" + ma);
+		System.out.println("Maximul:" + max);
+	}
+}
