@@ -1,0 +1,115 @@
+public class Animal {
+    private String nume;
+    private String specie;
+    private int varsta;
+
+    
+    public Animal() {
+        this.nume = "Necunoscut";
+        this.specie = "Necunoscuta";
+        this.varsta = 0;
+    }
+
+    
+    public void afisareAnimal() {
+        System.out.println("=== Informații despre animal ===");
+        System.out.println("Nume: " + nume);
+        System.out.println("Specie: " + specie);
+        System.out.println("Varsta: " + varsta + " ani");
+    }
+    public static void main(String[] args) {
+        Animal a = new Animal();
+        a.afisareAnimal();
+    }
+}
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Masina {
+    private String marca;
+    private String model;
+    private int an_fabricare;
+    private String culoare;
+    private double pret;
+
+    
+    public Masina(String marca, String model, int an_fabricare, String culoare, double pret) {
+        this.marca = marca;
+        this.model = model;
+        this.an_fabricare = an_fabricare;
+        this.culoare = culoare;
+        this.pret = pret;
+    }
+
+    
+    public void afisareMasina() {
+        System.out.println("\n=== Informatii despre masina ===");
+        System.out.println("Marca: " + marca);
+        System.out.println("Model: " + model);
+        System.out.println("An fabricatie: " + an_fabricare);
+        System.out.println("Culoare: " + culoare);
+        System.out.println("Pret: " + pret + " lei");
+    }
+
+   
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Introduceți marca: ");
+        String marca = reader.readLine();
+
+        System.out.print("Introduceți modelul: ");
+        String model = reader.readLine();
+
+        System.out.print("Introduceti anul fabricatiei: ");
+        int an = Integer.parseInt(reader.readLine());
+
+        System.out.print("Introduceți culoarea: ");
+        String culoare = reader.readLine();
+
+        System.out.print("Introduceți pretul: ");
+        double pret = Double.parseDouble(reader.readLine());
+
+        Masina masina = new Masina(marca, model, an, culoare, pret);
+        masina.afisareMasina();
+    }
+}
+
+
+public class FacturaServiciu {
+    private String denumireServiciu;
+    private double tarifOra;
+    private int numarOre;
+    private double valoareTotala;
+
+    
+    public FacturaServiciu(String denumireServiciu, double tarifOra, int numarOre) {
+        this.denumireServiciu = denumireServiciu;
+        this.tarifOra = tarifOra;
+        this.numarOre = numarOre;
+        this.valoareTotala = calculeazaValoareTotala();
+    }
+
+    
+    private double calculeazaValoareTotala() {
+        return tarifOra * numarOre;
+    }
+
+    // Metodă de afișare
+    public void afisareFactura() {
+        System.out.println("\n=== Factura Serviciu ===");
+        System.out.println("Serviciu: " + denumireServiciu);
+        System.out.println("Tarif/ora: " + tarifOra + " lei");
+        System.out.println("Numar ore: " + numarOre);
+        System.out.println("Valoare totala: " + valoareTotala + " lei");
+    }
+
+    
+    public static void main(String[] args) {
+        FacturaServiciu factura = new FacturaServiciu("Reparatie PC", 75.5, 4);
+        factura.afisareFactura();
+    }
+}
