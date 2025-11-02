@@ -33,10 +33,10 @@ public class Tema2 {
         System.out.print("Introduceți primul numar: ");
         int a = Integer.parseInt(reader.readLine());
 
-        System.out.print("Introduceți al doilea numar: ");
+        System.out.print("Introduceti al doilea numar: ");
         int b = Integer.parseInt(reader.readLine());
 
-        System.out.print("Introduceți al treilea numar: ");
+        System.out.print("Introduceti al treilea numar: ");
         int c = Integer.parseInt(reader.readLine());
 
         int suma = a + b + c;
