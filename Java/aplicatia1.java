@@ -1,6 +1,8 @@
 package temalab1;
 import java.io.*;
 
+//tema 1
+
 public class aplicatia1 {
 
 	public static void main(String[] args)throws IOException {
@@ -31,5 +33,6 @@ public class aplicatia1 {
 			}
 		}
 	}
+
 
 
