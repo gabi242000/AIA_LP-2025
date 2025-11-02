@@ -1,0 +1,55 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Tema1 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Introduceti un numar natural: ");
+        String input = reader.readLine;
+        if (input.matches("\\d+")) {
+            int numar = Integer.parseInt(input);
+            System.out.println("Numarul introdus este: " + numar);
+            if (numar % 2 == 0) {
+                System.out.println("Numarul este par.");
+            } else {
+                System.out.println("Numarul este impar.");
+            }
+        } else {
+            System.out.println("Valoarea introdusa nu este un numar natural valid!");
+        }
+    }
+}
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Tema2 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Introduceți primul numar: ");
+        int a = Integer.parseInt(reader.readLine());
+
+        System.out.print("Introduceți al doilea numar: ");
+        int b = Integer.parseInt(reader.readLine());
+
+        System.out.print("Introduceți al treilea numar: ");
+        int c = Integer.parseInt(reader.readLine());
+
+        int suma = a + b + c;
+        double media = suma / 3.0;
+        int maxim = Math.max(a, Math.max(b, c));
+        int minim = Math.min(a, Math.min(b, c));
+
+        System.out.println("\nRezultate:");
+        System.out.println("Suma = " + suma);
+        System.out.println("Media aritmetica = " + media);
+        System.out.println("Cel mai mare numar = " + maxim);
+        System.out.println("Cel mai mic numar = " + minim);
+    }
+}
+
+
