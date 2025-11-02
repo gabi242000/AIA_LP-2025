@@ -1,0 +1,77 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class TemaLab2_1 {
+
+    public static int[] citesteVector(int n, BufferedReader reader) throws IOException {
+        int[] vector = new int[n];
+        System.out.println("Introduceti elementele vectorului:");
+        for (int i = 0; i < n; i++) {
+            System.out.print("Elementul [" + (i + 1) + "] = ");
+            vector[i] = Integer.parseInt(reader.readLine());
+        }
+        return vector;
+    }
+
+    public static int sumaElementePare(int[] vector) {
+        int suma = 0;
+        System.out.print("Elementele pare din vector sunt: ");
+        for (int val : vector) {
+            if (val % 2 == 0) {
+                System.out.print(val + " ");
+                suma += val;
+            }
+        }
+        System.out.println();
+        return suma;
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Introduceti dimensiunea vectorului: ");
+        int n = Integer.parseInt(reader.readLine());
+
+        int[] vector = citesteVector(n, reader);
+        int suma = sumaElementePare(vector);
+
+        System.out.println("Suma elementelor pare este: " + suma);
+    }
+}
+
+
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class TemaLab2_2 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Introduceti un numar natural: ");
+        String input = reader.readLine();
+
+        // Verificăm dacă este un număr natural valid
+        if (!input.matches("\\d+")) {
+            System.out.println("Valoarea introdusa nu este un numar natural valid");
+            return;
+        }
+
+        int numar = Integer.parseInt(input);
+        int cifraMax = 0;
+        int cifraMin = 9;
+
+        while (numar > 0) {
+            int cifra = numar % 10;
+            if (cifra > cifraMax) cifraMax = cifra;
+            if (cifra < cifraMin) cifraMin = cifra;
+            numar /= 10;
+        }
+
+        System.out.println("Cea mai mare cifra este: " + cifraMax);
+        System.out.println("Cea mai mică cifra este: " + cifraMin);
+    }
+}
