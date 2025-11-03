@@ -1,0 +1,28 @@
+package tema;
+import java.io.*;
+
+public class exercitiu1 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Introduceti un nr");
+        String input = br.readLine();
+
+        try {
+            int number = Integer.parseInt(input);
+            if (number < 0) {
+                System.out.println("Valoare valida");
+            } else {
+                System.out.println("Numarul este " + number);
+                if (number % 2 == 0) {
+                    System.out.println("Par");
+                } else {
+                    System.out.println("Impar");
+                }
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("Valoare invalida");
+        }
+    }
+}
