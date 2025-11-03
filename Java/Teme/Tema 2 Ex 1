@@ -1,0 +1,39 @@
+package tema;
+import java.io.*;
+
+public class exercitiu2 {
+	public static void main(String[] args) throws IOException{
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		
+		System.out.println("Introduceti nr de elemente");
+		int n = Integer.parseInt(br.readLine());
+		
+		int vector[]=Citire(n,br);
+		
+		
+		
+		System.out.println("Suma este: " + NrPare(vector));
+		
+	}
+	
+	public static int[] Citire(int n, BufferedReader br) throws IOException {
+        int[] v = new int[n];
+        System.out.println("Introduceti elementele vectorului:");
+        for (int i = 0; i < n; i++) {
+            v[i] = Integer.parseInt(br.readLine());
+        }
+        return v;
+    }
+	
+	public static int NrPare(int[] vector){
+		
+		int suma=0;
+		for(int i=0;i<vector.length;i++) {
+			if(vector[i]%2==0)
+				suma+=vector[i];
+		}
+			
+		return suma;
+	}
+}
