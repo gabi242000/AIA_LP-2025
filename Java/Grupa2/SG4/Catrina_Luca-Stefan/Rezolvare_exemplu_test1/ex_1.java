@@ -1,0 +1,98 @@
+package exemplu_test;
+
+import java.util.Scanner;
+
+class Matrice {
+	private int n;
+	private int[][] a;
+	
+	public Matrice(int n, Scanner sc) {
+		
+		this.n = n;
+		this.a = new int[n][n];
+		
+		System.out.println("Introduceti elementele matricei: ");
+		
+		for(int i = 0; i < n; i++)
+			for(int j = 0; j < n; j++)
+				a[i][j] = sc.nextInt();
+		
+	}
+	
+	public void afisareMatrice() {
+		for(int i = 0; i < n; i++) {
+			for(int j = 0; j < n; j++) {
+				System.out.print(a[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public int sumaDiagonalaPrincipala() {
+		
+		int suma = 0;
+		
+		for(int i = 0; i < n; i++)
+			for(int j = 0; j < n; j++)
+				if(i == j)
+					suma += a[i][j];
+		return suma;
+	}
+	
+	public int sumaDiagonalaSecundara() {
+		
+		int suma = 0;
+		
+		for(int i = 0; i < n; i++)
+			for(int j = 0; j < n; j++)
+				if(i + j == n - 1)
+					suma += a[i][j];
+		return suma;
+	}
+	
+	public boolean esteSimetrica() {
+		
+		for(int i = 0; i < n; i++)
+			for(int j = 0; j < n; j++)
+				if(a[i][j] != a[j][i])
+					return false;
+		return true;
+		
+	}
+}
+
+public class ex_1 {
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int n;
+		
+		while(true) {
+			System.out.println("Introduceti dimensiunea matricei: ");
+			n = sc.nextInt();
+			if(n > 0)
+				break;
+			else
+				System.out.println("Valoare incorecta!");
+		}
+		
+		Matrice a = new Matrice(n, sc);
+		
+		a.afisareMatrice();
+		int sumaDiagP = a.sumaDiagonalaPrincipala();
+		int sumaDiagS = a.sumaDiagonalaSecundara();
+		
+		System.out.println(sumaDiagP);
+		System.out.println(sumaDiagS);
+		
+		if(a.esteSimetrica())
+			System.out.println("Matricea este simetrica.");
+		else
+			System.out.println("Matricea nu este simetrica.");
+		
+		sc.close();
+	}
+
+}

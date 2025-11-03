@@ -1,0 +1,67 @@
+package exemplu_test;
+
+import java.util.Scanner;
+
+class Produs{
+	
+	private String denumire;
+	private double pret;
+	private int cantitate;
+	
+	public Produs(String denumire, double pret, int cantitate) {
+		
+		this.denumire = denumire;
+		this.pret = pret;
+		this.cantitate = cantitate;
+	}
+	
+	public double valoareTotala() {
+		
+		return pret * cantitate;
+	}
+	
+	public void afisareProdus() {
+		
+		System.out.println("Denumirea produsului este: " + denumire);
+		System.out.println("Pretul produsului este: " + pret);
+		System.out.println("Cantitatea produsului este: " + cantitate);
+		System.out.println("Valoarea totala a produsului este: " + valoareTotala());
+	}
+}
+
+public class ex_3 {
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Introduceti numarul de produse: ");
+		int nrProduse = sc.nextInt();
+		sc.nextLine();
+		
+		Produs[][] produse = new Produs[nrProduse][nrProduse];
+		
+		for(int i = 0; i < nrProduse; i++) {
+			
+			System.out.println("---Produsul nr. " + (i + 1) + " ---");
+			
+			System.out.println("Introduceti denumirea produsului: ");	
+			String denumire = sc.nextLine();
+			System.out.println("Introduceti pretul produsului: ");	
+			double pret = sc.nextDouble();
+			
+			System.out.println("Introduceti cantitatea produsului: ");	
+			int cantitate = sc.nextInt();
+			sc.nextLine();
+			produse[i][i] = new Produs(denumire, pret, cantitate);
+		}
+		
+		for(int i = 0; i < nrProduse; i++) {
+			produse[i][i].afisareProdus();
+			System.out.println();
+			
+		}
+		sc.close();
+	}
+
+}
