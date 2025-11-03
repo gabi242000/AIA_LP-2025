@@ -1,0 +1,23 @@
+package tema;
+import java.io.*;
+
+public class exercitiu2 {
+	public static void main(String[] args) throws IOException{
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		System.out.println("Introduceti numarul");
+		int n = Integer.parseInt(br.readLine());
+		int maxim=0,minim=n%10;
+		while(n!=0) {
+			if(n%10>maxim)
+				maxim=n%10;
+			if(n%10<minim)
+				minim=n%10;
+			n=n/10;
+		}
+		
+		System.out.println("Maxim: " + maxim + " Minim: " + minim);
+		
+	}
+	
+}
