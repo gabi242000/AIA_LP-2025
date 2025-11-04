@@ -1,0 +1,100 @@
+// Problema 1
+class Animal {
+    String nume;
+    String specie;
+    int varsta;
+
+    Animal() {
+        nume = "Necunoscut";
+        specie = "Necunoscută";
+        varsta = 0;
+    }
+
+    void afisareAnimal() {
+        System.out.println("Nume: " + nume);
+        System.out.println("Specie: " + specie);
+        System.out.println("Vârstă: " + varsta);
+    }
+}
+
+public class Main1 {
+    public static void main(String[] args) {
+        Animal a = new Animal();
+        a.afisareAnimal();
+    }
+}
+
+// Problema 2
+import java.util.Scanner;
+
+class Masina {
+    String marca;
+    String model;
+    int an_fabricare;
+    String culoare;
+    double pret;
+
+    Masina(String marca, String model, int an_fabricare, String culoare, double pret) {
+        this.marca = marca;
+        this.model = model;
+        this.an_fabricare = an_fabricare;
+        this.culoare = culoare;
+        this.pret = pret;
+    }
+
+    void afisareMasina() {
+        System.out.println("Marca: " + marca);
+        System.out.println("Model: " + model);
+        System.out.println("An fabricare: " + an_fabricare);
+        System.out.println("Culoare: " + culoare);
+        System.out.println("Preț: " + pret);
+    }
+}
+
+public class Main2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String marca = sc.nextLine();
+        String model = sc.nextLine();
+        int an = sc.nextInt();
+        sc.nextLine();
+        String culoare = sc.nextLine();
+        double pret = sc.nextDouble();
+        Masina m = new Masina(marca, model, an, culoare, pret);
+        m.afisareMasina();
+    }
+}
+
+// Problema 3
+class FacturaServiciu {
+    String denumireServiciu;
+    double tarifOra;
+    int numarOre;
+    double valoareTotala;
+
+    FacturaServiciu(String denumireServiciu, double tarifOra, int numarOre) {
+        this.denumireServiciu = denumireServiciu;
+        this.tarifOra = tarifOra;
+        this.numarOre = numarOre;
+        this.valoareTotala = valoareTotala();
+    }
+
+    double valoareTotala() {
+        return tarifOra * numarOre;
+    }
+
+    void afisareFactura() {
+        System.out.println("Serviciu: " + denumireServiciu);
+        System.out.println("Tarif/oră: " + tarifOra);
+        System.out.println("Număr ore: " + numarOre);
+        System.out.println("Valoare totală: " + valoareTotala);
+    }
+}
+
+public class Main3 {
+    public static void main(String[] args) {
+        FacturaServiciu f = new FacturaServiciu("Consultanță", 150.0, 5);
+        f.afisareFactura();
+    }
+}
+
