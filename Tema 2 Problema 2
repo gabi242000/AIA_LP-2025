@@ -1,0 +1,27 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class CifreMinimMax {
+    public static void main(String[] args) {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Introdu un numar natural: ");
+        try {
+            String s = br.readLine().trim();
+            if (!s.matches("\\d+")) {
+                System.out.println("Nu ai introdus un numar natural valid.");
+                return;
+            }
+            int min = 9, max = 0;
+            for (char ch : s.toCharArray()) {
+                int d = ch - '0';
+                if (d < min) min = d;
+                if (d > max) max = d;
+            }
+            System.out.println("Cifra minima: " + min);
+            System.out.println("Cifra maxima: " + max);
+        } catch (IOException e) {
+            System.out.println("Eroare la citire: " + e.getMessage());
+        }
+    }
+}
