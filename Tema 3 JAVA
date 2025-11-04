@@ -1,0 +1,75 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class MatriceMagicaPartial {
+    public static void main(String[] args) {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            System.out.print("Introdu n (dimensiunea matricei patratice): ");
+            int n = Integer.parseInt(br.readLine().trim());
+            if (n <= 0) {
+                System.out.println("n trebuie sa fie > 0");
+                return;
+            }
+            int[][] A = new int[n][n];
+            System.out.println("Introdu elementele matricei:");
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    while (true) {
+                        System.out.print("A[" + i + "][" + j + "] = ");
+                        String s = br.readLine().trim();
+                        try {
+                            A[i][j] = Integer.parseInt(s);
+                            break;
+                        } catch (NumberFormatException ex) {
+                            System.out.println("Introdu un numar intreg valid.");
+                        }
+                    }
+                }
+            }
+            int m = (n % 2 == 1) ? n : n - 1;
+            int start = (n - m) / 2;
+            int end = start + m - 1;
+            int sumaRef = 0;
+            for (int j = start; j <= end; j++) sumaRef += A[start][j];
+            boolean esteMagica = true;
+            for (int i = start; i <= end; i++) {
+                int s = 0;
+                for (int j = start; j <= end; j++) s += A[i][j];
+                if (s != sumaRef) {
+                    esteMagica = false;
+                    break;
+                }
+            }
+            if (esteMagica) {
+                for (int j = start; j <= end; j++) {
+                    int s = 0;
+                    for (int i = start; i <= end; i++) s += A[i][j];
+                    if (s != sumaRef) {
+                        esteMagica = false;
+                        break;
+                    }
+                }
+            }
+            if (esteMagica) {
+                int sDiag1 = 0, sDiag2 = 0;
+                for (int k = 0; k < m; k++) {
+                    sDiag1 += A[start + k][start + k];
+                    sDiag2 += A[start + k][end - k];
+                }
+                if (sDiag1 != sumaRef || sDiag2 != sumaRef) esteMagica = false;
+            }
+            if (esteMagica) {
+                System.out.println("Suma comuna: " + sumaRef);
+                System.out.println("Matrice magica partial");
+            } else {
+                System.out.println("Matrice nemagica");
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare la citire: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Introducere invalida. Trebuie sa introduci numere intregi.");
+        }
+    }
+}
