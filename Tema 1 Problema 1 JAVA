@@ -1,0 +1,25 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class VerificaNumarNatural {
+    public static void main(String[] args) {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Introdu un sir (numar natural): ");
+        try {
+            String s = br.readLine().trim();
+            if (s.matches("\\d+")) {
+                long value = Long.parseLong(s);
+                System.out.println("Numarul introdus este: " + value);
+                if (value % 2 == 0) System.out.println("Numarul este par.");
+                else System.out.println("Numarul este impar.");
+            } else {
+                System.out.println("Valoarea introdusa nu este un numar natural valid.");
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare la citire: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Numarul este prea mare pentru a fi procesat ca long, dar e compus doar din cifre.");
+        }
+    }
+}
