@@ -1,0 +1,61 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class VectorPare {
+    public static void main(String[] args) {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            int n = 0;
+            while (true) {
+                System.out.print("Dimensiunea vectorului (n>0): ");
+                String line = br.readLine().trim();
+                try {
+                    n = Integer.parseInt(line);
+                    if (n > 0) break;
+                    else System.out.println("n trebuie sa fie > 0.");
+                } catch (NumberFormatException ex) {
+                    System.out.println("Introdu un numar intreg valid.");
+                }
+            }
+            int[] v = citireVector(br, n);
+            System.out.print("Elementele pare din vector: ");
+            int sumaPare = sumaElementePare(v);
+            boolean gasit = false;
+            for (int x : v) {
+                if (x % 2 == 0) {
+                    System.out.print(x + " ");
+                    gasit = true;
+                }
+            }
+            if (!gasit) System.out.print("(nu exista elemente pare)");
+            System.out.println();
+            System.out.println("Suma elementelor pare: " + sumaPare);
+        } catch (IOException e) {
+            System.out.println("Eroare la citire: " + e.getMessage());
+        }
+    }
+
+    public static int[] citireVector(BufferedReader br, int n) throws IOException {
+        int[] v = new int[n];
+        for (int i = 0; i < n; i++) {
+            while (true) {
+                System.out.print("v[" + i + "] = ");
+                String s = br.readLine().trim();
+                try {
+                    v[i] = Integer.parseInt(s);
+                    break;
+                } catch (NumberFormatException ex) {
+                    System.out.println("Introdu un numar intreg valid.");
+                }
+            }
+        }
+        return v;
+    }
+
+    public static int sumaElementePare(int[] v) {
+        int suma = 0;
+        for (int x : v) if (x % 2 == 0) suma += x;
+        return suma;
+    }
+}
