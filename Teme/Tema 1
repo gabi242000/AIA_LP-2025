@@ -1,0 +1,72 @@
+Ex 1:
+import java.io.BufferedReader;
+	import java.io.IOException;
+	import java.io.InputStreamReader;
+	
+	public class VerificareNumarNatural {
+	    public static void main(String[] args) {
+	        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	
+	        System.out.print("Introduceți un șir de caractere: ");
+	        try {
+	            String input = reader.readLine();
+	
+	            
+	            if (input.matches("[0-9]+")) {
+	                int numar = Integer.parseInt(input);
+	
+	                System.out.println("Numărul introdus este: " + numar);
+	
+	                if (numar % 2 == 0) {
+	                    System.out.println("Numărul este par.");
+	                } else {
+	                    System.out.println("Numărul este impar.");
+	                }
+	            } else {
+	                System.out.println("Valoarea introdusă nu este un număr natural valid.");
+	            }
+	        } catch (IOException e) {
+	            System.out.println("A apărut o eroare la citirea de la tastatură.");
+	        }
+	    }
+	} 
+
+
+
+Ex 2 :  
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class TreiNumereStatistici {
+    public static void main(String[] args) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            
+            System.out.print("Introduceți primul număr întreg: ");
+            int a = Integer.parseInt(reader.readLine());
+
+            System.out.print("Introduceți al doilea număr întreg: ");
+            int b = Integer.parseInt(reader.readLine());
+
+            System.out.print("Introduceți al treilea număr întreg: ");
+            int c = Integer.parseInt(reader.readLine());
+            int suma = a + b + c;
+            double media = suma / 3.0;
+            int maxim = Math.max(a, Math.max(b, c));
+            int minim = Math.min(a, Math.min(b, c));
+            System.out.println("\nRezultate:");
+            System.out.println("Suma numerelor: " + suma);
+            System.out.printf("Media aritmetică: %.2f\n", media);
+            System.out.println("Cel mai mare număr: " + maxim);
+            System.out.println("Cel mai mic număr: " + minim);
+
+        } catch (NumberFormatException e) {
+            System.out.println("Valoarea introdusă nu este un număr întreg valid.");
+        } catch (IOException e) {
+            System.out.println("Eroare la citirea de la tastatură.");
+        }
+    }
+} 
