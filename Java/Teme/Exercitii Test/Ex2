@@ -1,0 +1,67 @@
+package test;
+
+import java.util.Scanner;
+
+class Student{
+	private static double[] note;
+	private String nume;
+	private int varsta;
+	
+	
+	public Student(int varsta, String nume){
+		Scanner sc = new Scanner(System.in);
+		this.nume = nume;
+		this.varsta = varsta;
+		
+		
+	}
+	
+	public static double media() {
+		double medie=0;
+		for(int i=0;i<note.length;i++) {
+			medie += note[i];
+		}
+		medie=medie/note.length;
+		return medie;
+	}
+	
+	public void afisare() {
+		System.out.println("Nume: " + nume + " Varsta: " + varsta + " Medie: " + media());
+		System.out.println("Notele sunt: ");
+		for(int i=0;i<note.length;i++) {
+			System.out.println(note[i]);
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		double mediemax=0;
+		String studentmax=null;
+		int nrstudenti = sc.nextInt();
+		
+		for(int j=0;j<nrstudenti;j++) {
+		sc.nextLine();
+		System.out.println("Introduceti datele elevului: ");
+		String nume = sc.nextLine();
+		
+		int varsta = sc.nextInt();
+		int nr = sc.nextInt();
+		note = new double[nr];
+		for(int i=0;i<nr;i++) {
+				note[i]=sc.nextDouble();
+		}
+		
+		if(media()>mediemax) {
+			mediemax=media();
+			studentmax=nume;
+		}
+		
+		Student s = new Student(varsta, nume);
+		s.afisare();
+		}
+		System.out.println("Mediemax: " + mediemax + " Student: " + studentmax);
+	}
+}
+	
+
