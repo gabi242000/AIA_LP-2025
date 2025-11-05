@@ -1,0 +1,62 @@
+package test;
+import java.util.Scanner;
+
+class Triunghi{
+	private double l1;
+	private double l2;
+	private double l3;
+	
+	public Triunghi(double l1, double l2, double l3){
+		this.l1 = l1;
+		this.l2 = l2;
+		this.l3 = l3;
+	}
+	
+	public boolean esteValid() {
+		if(l1+l2<=l3 || l2+l3<=l1 || l1+l3<=l2)
+			return false;
+		else
+			return true;
+	}
+	
+	public double perimetru() {
+		double p=0;
+		p=l1+l2+l3;
+		return p;
+	}
+	
+	public double arie() {
+		double a=0;
+		double sp = (l1+l2+l3)/2;
+		a=Math.sqrt(sp*(sp-l1)*(sp-l2)*(sp-l3));
+		return a;
+	}
+	
+	public void afisare() {
+		if(esteValid() == true) {
+			System.out.println("Triunghi valid");
+			System.out.println("Perimetru = " + perimetru());
+			System.out.println("Arie = " + arie());
+		}
+		else
+			System.out.println("Triunghi invalid");
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n;
+		System.out.println("Introduceti nr triunghiuri: ");
+		n = sc.nextInt();
+		for(int i=0;i<n;i++) {
+			System.out.println("Introduceti laturile: ");
+			double l1 = sc.nextDouble();
+			double l2 = sc.nextDouble();
+			double l3 = sc.nextDouble();
+			
+			Triunghi t=new Triunghi(l1, l2, l3);
+			t.afisare();
+		}
+		
+	}
+	
+}
