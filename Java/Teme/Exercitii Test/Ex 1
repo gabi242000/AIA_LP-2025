@@ -1,0 +1,87 @@
+package test;
+import java.util.Scanner;
+
+class Matrice3x3{
+	private double[][]a;
+	
+	public Matrice3x3() {
+		Scanner sc = new Scanner(System.in);
+		a = new double[3][3];
+		
+		System.out.println("Introdu Elemente: ");
+		for(int i=0;i<3;i++)
+			for(int j=0;j<3;j++)
+				a[i][j]=sc.nextInt();
+	}
+	
+	void afisare() {
+		System.out.println("Elementele matricei sunt: ");
+		for(int i=0;i<3;i++) {
+			for(int j=0;j<3;j++)
+				System.out.print(a[i][j] + " ");
+			System.out.println("");
+		}
+		
+		if(esteSimetrica()==true)
+			System.out.println("Matricea este simetrica");
+		else
+			System.out.println("Matricea nu este simetrica");
+		
+		System.out.println("Determinantul este: " + determinant());
+		if(determinant()!=0) {
+			System.out.println("Inversa matricei se poate calcula");
+			System.out.println("Transpusa este: " );
+			//inversa();
+		}
+		else
+			System.out.println("Nu se poate calcula inversa matricei");
+		
+		
+		
+		
+		
+	}
+	
+	double determinant() {
+		double det=0;
+		det=(a[0][0]*a[1][1]*a[2][2])+(a[2][0]*a[0][1]*a[1][2])+(a[0][2]*a[1][0]*a[2][1])-(a[2][0]*a[1][1]*a[0][2])-(a[0][0]*a[2][1]*a[1][2])-(a[2][2]*a[0][1]*a[1][0]);
+		return det;
+	}
+	
+	boolean esteSimetrica() {
+		boolean ct=true;
+	
+		for(int i=0;i<3;i++) 
+			for(int j=0;j<3;j++) {
+				if(a[i][j]==a[2-i][2-j])
+					ct=true;
+				else
+					ct= false;
+			}
+		return ct;
+	}
+	
+	void inversa() {
+		double[][] transpusa=null;
+		for(int i=0;i<3;i++) 
+			for(int j=0;j<3;j++) {
+				transpusa[j][i]=a[i][j];
+			}
+		
+		for(int i=0;i<3;i++) {
+			for(int j=0;j<3;j++)
+				System.out.print(transpusa[i][j] + " ");
+			System.out.println("");
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		Matrice3x3 a = new Matrice3x3();
+		
+		a.afisare();
+		
+	}
+	
+}
