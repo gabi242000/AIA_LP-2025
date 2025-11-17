@@ -1,0 +1,74 @@
+package lab7ex4;
+import java.util.*;
+ class Persoana{
+	protected String nume;
+	protected String cnp;
+	public Persoana(String nume, String cnp) {
+		this.nume=nume;
+		this.cnp=cnp;
+	}
+	void afiseazaInfo() {
+		System.out.println("Nume: "+nume+", cnp: "+cnp);
+	}
+}
+ 
+ class Student extends Persoana{
+	 private double media;
+	 public Student(String nume, String cnp, double media) {
+		 super(nume, cnp); 
+		 this.media=media;
+	 }	 
+	 void afiseazaInfo() {
+		 System.out.println("Nume student: "+ nume+", cnp: "+cnp+", media: "+media);
+	 }
+ }
+ 
+ class Profesor extends Persoana{
+	 private String specializare;
+	 private double salariu;
+	 public Profesor(String nume, String cnp,String specializare, double salariu) {
+		 super(nume, cnp); 
+		 this.specializare=specializare;
+		 this.salariu=salariu;
+	 }	 
+	 void afiseazaInfo() {
+		 System.out.println("Nume profesor: "+ nume+", cnp: "+cnp+", specializare: "+specializare+", salariu: "+salariu);
+	 }
+ }
+public class TestUniversitate {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Introdu nr persoane: ");
+		int n= sc.nextInt();
+		sc.nextLine();
+		Persoana[] persoane = new Persoana[n];
+		for(int i=0; i<n; i++) {
+			System.out.println("Persoana "+(i+1));
+			System.out.println("Tipul persoanei (1-student, 2-profesor): ");
+			int tip=sc.nextInt();
+			sc.nextLine();
+			System.out.print("Nume: ");
+			String nume=sc.nextLine();
+			System.out.print("cnp: ");
+			String cnp=sc.nextLine();
+			if(tip==1) {
+				System.out.print("Medie: ");
+				double medie= sc.nextDouble();
+				persoane[i]= new Student(nume,cnp,medie);
+			}
+			else if(tip==2) {
+				System.out.print("Specializare: ");
+				String specializare= sc.nextLine();
+				System.out.print("Salariu: ");
+				double salariu= sc.nextDouble();
+				persoane[i]= new Profesor(nume,cnp,specializare,salariu);	
+			}
+			sc.nextLine();
+		}
+        System.out.println("Lista persoane: ");
+        for(int i=0; i<persoane.length; i++) persoane[i].afiseazaInfo();
+        sc.close();
+	}
+
+}
