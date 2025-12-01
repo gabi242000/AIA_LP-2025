@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        String fisierIntrare = "angajati.txt";
+        String fisierPesteMedie = "venit_peste_medie.txt";
+        String fisierRaport = "raport_angajati.txt";
+        if (!Files.exists(Paths.get(fisierIntrare))) {
+            System.out.println("Fișierul '" + fisierIntrare + "' nu există!");
+            return;
+        }
+        List<String> linii = new ArrayList<>();
+        List<Double> salarii = new ArrayList<>();
+        double salariuMax = 0;
+        String angajatMax = "";
+        try (BufferedReader br = new BufferedReader(new FileReader(fisierIntrare))) {
+
+            String linie;
+            while ((linie = br.readLine()) != null) {
+                linii.add(linie);
+                String[] parti = linie.split("\\s+"); // nume prenume salariu
+                double salariu = Double.parseDouble(parti[2]);
+                salarii.add(salariu);
+                if (salariu > salariuMax) {
+                    salariuMax = salariu;
+                    angajatMax = parti[0] + " " + parti[1];
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("Eroare la citire!");
+            return;
+        }
+
+        if (salarii.isEmpty()) {
+            System.out.println("Fișierul nu conține date.");
+            return;
+        }
+        double suma = 0;
+        for (double s : salarii) {
+            suma += s;
+        }
+        double salariuMediu = suma / salarii.size();
+        try (PrintWriter pw = new PrintWriter(new FileWriter(fisierPesteMedie))) {
+            for (String linie : linii) {
+                String[] parti = linie.split("\\s+");
+                double salariu = Double.parseDouble(parti[2]);
+
+                if (salariu > salariuMediu) {
+                    pw.println(linie);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea fișierului peste medie.");
+        }
+        try (PrintWriter pw = new PrintWriter(new FileWriter(fisierRaport))) {
+            pw.println("Număr total de angajați: " + salarii.size());
+            pw.println("Salariul mediu: " + salariuMediu);
+            pw.println("Angajatul cu salariul maxim: " + angajatMax + " (" + salariuMax + ")");
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea raportului.");
+        }
+        System.out.println("Gata! Fișierele au fost generate.");
+    }
+}
