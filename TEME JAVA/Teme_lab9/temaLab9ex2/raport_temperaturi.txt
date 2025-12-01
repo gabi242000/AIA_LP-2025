@@ -1,0 +1,4 @@
+Temperatura medie: 7.25
+Temperatura minima: -4.0
+Temperatura maxima: 20.0
+Numar valori negative: 4

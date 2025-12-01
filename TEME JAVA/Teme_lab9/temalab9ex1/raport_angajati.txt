@@ -1,0 +1,3 @@
+Numar total de angajati: 4
+Salariu mediu: 6875.0
+Angajat cu salariu maxim: Ionescu Cosmina 8100.0
