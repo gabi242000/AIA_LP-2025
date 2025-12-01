@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        String fisierIntrare = "temperaturi.txt";
+        String fisierRaport = "raport_temperaturi.txt";
+        String fisierNeg = "temp_sub_zero.txt";
+        if (Files.exists(Paths.get(fisierIntrare))) {
+            System.out.println("Eroare: fișierul '" + fisierIntrare + "' nu există!");
+            return;
+        }
+
+        List<Double> temperaturi = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fisierIntrare))) {
+            String linie;
+            while ((linie = br.readLine()) != null) {
+                try {
+                    double temp = Double.parseDouble(linie.trim());
+                    temperaturi.add(temp);
+                } catch (NumberFormatException e) {
+                    System.out.println("Valoare invalidă găsită în fișier: " + linie);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare la citirea fișierului!");
+            return;
+        }
+
+        if (temperaturi.isEmpty()) {
+            System.out.println("Fișierul nu conține temperaturi valide.");
+            return;
+        }
+
+        double suma = 0;
+        double min = temperaturi.get(0);
+        double max = temperaturi.get(0);
+        int subZero = 0;
+
+        for (double t : temperaturi) {
+            suma += t;
+            if (t < min) min = t;
+            if (t > max) max = t;
+            if (t < 0) subZero++;
+        }
+        double medie = suma / temperaturi.size();
+        try (PrintWriter pw = new PrintWriter(new FileWriter(fisierNeg))) {
+            for (double t : temperaturi) {
+                if (t < 0) pw.println(t);
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea fișierului temperaturi negative!");
+        }
+        try (PrintWriter pw = new PrintWriter(new FileWriter(fisierRaport))) {
+            pw.println("Număr total valori: " + temperaturi.size());
+            pw.println("Temperatura medie: " + medie);
+            pw.println("Temperatura minimă: " + min);
+            pw.println("Temperatura maximă: " + max);
+            pw.println("Număr temperaturi sub 0°C: " + subZero);
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea raportului!");
+        }
+        System.out.println("Raport generat cu succes!");
+    }
+}
