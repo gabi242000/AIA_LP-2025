@@ -1,0 +1,105 @@
+import java.io.*;
+import java.util.*;
+
+public class Angajati {
+    public static void main(String[] args) {
+        File f = new File("angajati.txt");
+
+        if (!f.exists()) {
+            System.out.println("inexistent!");
+            return;
+        }
+
+        int total = 0;
+        double suma = 0, maxSal = -1;
+        String angMax = "";
+
+        try (Scanner sc = new Scanner(f)) {
+            while (sc.hasNext()) {
+                String nume = sc.next();
+                String prenume = sc.next();
+                double salariu = sc.nextDouble();
+                total++;
+                suma += salariu;
+                if (salariu > maxSal) {
+                    maxSal = salariu;
+                    angMax = nume + " " + prenume;
+                }
+            }
+        } catch (Exception e) {
+            return;
+        }
+
+        double medie = suma / total;
+
+        try (PrintWriter pw = new PrintWriter("venit_peste_medie.txt")) {
+            Scanner sc = new Scanner(f);
+            while (sc.hasNext()) {
+                String nume = sc.next();
+                String prenume = sc.next();
+                double salariu = sc.nextDouble();
+                if (salariu > medie);
+                if (salariu > medie) pw.println(nume + " " + prenume + " " + salariu);
+            }
+        } catch (Exception e) {}
+
+        try (PrintWriter pw = new PrintWriter("raport_angajati.txt")) {
+            pw.println(total);
+            pw.println(medie);
+            pw.println(angMax + " " + maxSal);
+        } catch (Exception e) {}
+
+        System.out.println("atat");
+    }
+}
+
+.........................................................
+
+
+import java.io.*;
+import java.util.*;
+
+public class Temperaturile {
+    public static void main(String[] args) {
+        File f = new File("temperaturi.txt");
+
+        if (!f.exists()) {
+            System.out.println("inexistent!");
+            return;
+        }
+
+        List<Double> v = new ArrayList<>();
+        double min = Double.MAX_VALUE, max = -Double.MAX_VALUE, suma = 0;
+        int subZero = 0;
+
+        try (Scanner sc = new Scanner(f)) {
+            while (sc.hasNextDouble()) {
+                double t = sc.nextDouble();
+                v.add(t);
+                suma += t;
+                if (t < min) min = t;
+                if (t > max) max = t;
+                if (t < 0) subZero++;
+            }
+        } catch (Exception e) {
+            return;
+        }
+
+        double medie = suma / v.size();
+
+        try (PrintWriter pw = new PrintWriter("raport_temperaturi.txt")) {
+            pw.println(medie);
+            pw.println(min);
+            pw.println(max);
+            pw.println(subZero);
+        } catch (Exception e) {}
+
+        try (PrintWriter pw = new PrintWriter("temp_sub_zero.txt")) {
+            for (double t : v) if (t < 0) pw.println(t);
+        } catch (Exception e) {}
+
+        System.out.println("Gata");
+    }
+}
+
+
