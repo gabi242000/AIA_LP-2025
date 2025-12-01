@@ -1,0 +1,103 @@
+package temalab9;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
+
+public class ex2 {
+
+    public static void main(String[] args) {
+        File fisier = new File("temperaturi.txt");
+
+        if (!fisier.exists()) {
+           System.out.println("Eroare: Fișierul temperaturi.txt nu există.");
+            return;
+        }
+
+        double sumaTemperaturi = 0;
+        int numarInregistrari = 0;
+        double temperaturaMinima = Double.MAX_VALUE;
+        double temperaturaMaxima = Double.MIN_VALUE;
+        int subZeroCount = 0;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+        
+                try {
+                    double temp = Double.parseDouble(line.trim());
+                    numarInregistrari++;
+                    
+           
+                    sumaTemperaturi += temp;
+                    
+
+                    if (temp < temperaturaMinima) {
+                        temperaturaMinima = temp;
+                    }
+                    if (temp > temperaturaMaxima) {
+                        temperaturaMaxima = temp;
+                    }
+          
+                    if (temp < 0) {
+                        subZeroCount++;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Avertisment: Valoare non-numerică în fișier: " + line);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare la citirea fișierului temperaturi.txt.");
+            return;
+        }
+
+        if (numarInregistrari == 0) {
+            System.out.println("Fișierul nu conține înregistrări valide.");
+            return;
+        }
+
+     
+        double temperaturaMedie = sumaTemperaturi / numarInregistrari;
+        System.out.println("\nTemperatură medie calculată: " + String.format("%.2f", temperaturaMedie));
+
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("raport_temperaturi.txt"))) {
+            bw.write("RAPORT TEMPERATURI 24H");
+            bw.newLine();
+            bw.write("Temperatura medie: " + String.format("%.2f", temperaturaMedie) + "°C");
+            bw.newLine();
+            bw.write("Temperatura minimă: " + String.format("%.2f", temperaturaMinima) + "°C");
+            bw.newLine();
+            bw.write("Temperatura maximă: " + String.format("%.2f", temperaturaMaxima) + "°C");
+            bw.newLine();
+            bw.write("Numărul de valori sub 0°C: " + subZeroCount);
+            System.out.println(" Raportul raport_temperaturi.txt a fost generat.");
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea în raport_temperaturi.txt.");
+        }
+
+      
+        try (BufferedReader br = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter bw = new BufferedWriter(new FileWriter("temp_sub_zero.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                try {
+                    double temp = Double.parseDouble(line.trim());
+                
+                    if (temp < 0) {
+                        bw.write(String.format("%.2f", temp));
+                        bw.newLine();
+                    }
+                } catch (NumberFormatException e) {
+            
+                }
+            }
+            System.out.println(" Fișierul temp_sub_zero.txt a fost generat.");
+        } catch (IOException e) {
+         System.out.println("Eroare la scrierea în temp_sub_zero.txt.");
+        }
+    }
+}
