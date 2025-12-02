@@ -1,0 +1,3 @@
+Numar total de angajati: 5
+Salariul mediu este: 2580
+Angajatul cu salariul cel mai mare:gybgyiak eduard 5000
