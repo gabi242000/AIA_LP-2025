@@ -1,0 +1,106 @@
+import java.until.Scanner;
+
+public class Guest{
+    int id ;
+    String name;
+    String email;
+    int discount ;
+    String locatie;
+    
+    public Guest (int id,String email,String name,String locatie,int discount){
+        this.id =id;
+        this.email=email;
+        this.name=name;
+        this.discount=discount;
+        this.locatie=locatie;
+        
+    }
+    public Guest(){}
+    public int getid(){
+        return id;
+    }
+    public String getName(){
+        return name;
+    }
+     public String getEmail(){
+        return email;
+     }
+      public String getLocatie(){
+        return locatie;
+}
+    public int getDiscount(){
+        return discount;
+}
+    public void setId(int id){
+        this.id=id;
+    }
+   public void setName(String name){
+       this.name=name;
+   }
+   public void setEmail(String email){
+       this.email=email;
+   }
+    public void setDiscount(int discount){
+       this.discount=discount;
+   }
+     public void setLoicatie(String locatie){
+       this.locatie=locatie;
+   }
+}
+public class Room{
+    int id;
+    int etaj;
+    int capacitate;
+    String tip;
+    String descriere;
+    double pret;
+    boolean valabilitate;
+    public Room( int id,int etaj, int capacitate,String tip, String descriere,double pret,boolean valabilitate)
+    this.id =id;
+    this.etaj=etaj;
+    this.capacitate=capacitate;
+    this.tip=tip;
+    this.descriere=descriere;
+    this.pret=pret;
+    this.valabilitate=valabilitate;
+}
+public Room(){
+    public int getId(){
+        return id;
+    }
+    public int getEtaj(){
+        return etaj;
+    }
+    public int getCapacitate(){
+        return capacitate;
+    }
+      public int getTip(){
+        return tip;
+    }
+    public int getDescriere(){
+        return descriere;
+    }
+    public double getPret(){
+        return pret;
+    }
+        public boolean isValabilitate(){
+        return valabilitate;
+    }
+     public void setId(int id){
+        this.id=id;
+    }
+     public void setCapacitate(int capacitate){
+        this.capacitate=capacitate;
+    }
+     public void setEtaj(int etaj){
+        this.etaj=etaj;
+    }
+     public void setTip(String tip){
+        this.tip=tip;
+    }
+}
+}
+
+
+ // Sl. dr. ing. Oana Flangea
+ //drd. ing. Olteanu Gabriela

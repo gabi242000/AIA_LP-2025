@@ -1,0 +1,33 @@
+import java.util.Scanner;
+public class Main {
+    public static int[] citireVector() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Introduceți dimensiunea vectorului: ");
+        int n = scanner.nextInt();
+        int[] vector = new int[n];
+        System.out.println("Introduceți elementele vectorului:");
+        for (int i = 0; i < n; i++) {
+            System.out.print("Elementul " + (i + 1) + ": ");
+            vector[i] = scanner.nextInt();
+        }
+        return vector;
+    }
+    public static int sumaElementePare(int[] vector) {
+        int suma = 0;
+        System.out.println("\nElementele pare din vector sunt:");
+        for (int elem : vector) {
+            if (elem % 2 == 0) {
+                System.out.print(elem + " ");
+                suma += elem;
+            }
+        }
+        System.out.println(); 
+        return suma;
+    }
+    public static void main(String[] args) {
+        int[] vector = citireVector();               
+        int sumaPare = sumaElementePare(vector);      
+
+        System.out.println("Suma elementelor pare este: " + sumaPare);
+    }
+}

@@ -1,0 +1,26 @@
+public class FacturaServiciu {
+    private String denumireServiciu;
+    private double tarifOra;
+    private int numarOre;
+    private double valoareTotala;
+    public FacturaServiciu(String denumireServiciu, double tarifOra, int numarOre) {
+        this.denumireServiciu = denumireServiciu;
+        this.tarifOra = tarifOra;
+        this.numarOre = numarOre;
+        this.valoareTotala = calculeazaValoareTotala();
+    }
+    private double calculeazaValoareTotala() {
+        return tarifOra * numarOre;
+    }
+    public void afisareFactura() {
+        System.out.println("Factura Serviciu ");
+        System.out.println("Denumire serviciu: " + denumireServiciu);
+        System.out.println("Tarif pe ora: " + tarifOra + " lei");
+        System.out.println("Numar ore: " + numarOre);
+        System.out.println("Valoare totala: " + valoareTotala + " lei");
+    }
+    public static void main(String[] args) {
+        FacturaServiciu f1 = new FacturaServiciu("Consultanta IT", 120.5, 3);
+        f1.afisareFactura();
+    }
+}

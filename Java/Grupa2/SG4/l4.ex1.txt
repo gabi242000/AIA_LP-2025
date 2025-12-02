@@ -1,0 +1,43 @@
+public class Animal 
+{
+	private String nume;
+	private String specie;
+	private int varsta;
+	public Animal () {
+	    nume ="necunoscut";
+	    specie="necunoscuta";
+	    varsta=0;
+	}
+	public void afisareAnimal() {
+	System.out.println("nume:" + nume);
+	System.out.println("specie:" + specie);
+	System.out.println("varsta:" + varsta);
+	
+}
+public static void main(String[]args){
+    Animal a1=new Animal();
+    System.out.println("Detalii animal:");
+    a1.afisareAnimal();
+}
+}public class Animal 
+{
+	private String nume;
+	private String specie;
+	private int varsta;
+	public Animal () {
+	    nume ="necunoscut";
+	    specie="necunoscuta";
+	    varsta=0;
+	}
+	public void afisareAnimal() {
+	System.out.println("nume:" + nume);
+	System.out.println("specie:" + specie);
+	System.out.println("varsta:" + varsta);
+	
+}
+public static void main(String[]args){
+    Animal a1=new Animal();
+    System.out.println("Detalii animal:");
+    a1.afisareAnimal();
+}
+}
