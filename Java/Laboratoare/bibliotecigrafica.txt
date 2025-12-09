@@ -1,0 +1,13 @@
+package grafica; // Pachetul în care se află clasa (organizare proiect)
+
+import java.awt.EventQueue; // Gestionează rularea interfeței grafice în thread-ul corect
+
+import javax.swing.JFrame; // Fereastra principală
+import javax.swing.JPanel; // Container pentru componente
+import javax.swing.border.EmptyBorder; // Margini goale pentru layout
+import javax.swing.JLabel; // Etichete text
+import javax.swing.JTextField; // Câmpuri de introducere text
+import javax.swing.JButton; // Butoane
+import java.awt.Font; // Setarea fontului
+import java.awt.event.ActionListener; // Ascultă acțiuni (click pe buton)
+import java.awt.event.ActionEvent; // Evenimentul generat de acțiune
