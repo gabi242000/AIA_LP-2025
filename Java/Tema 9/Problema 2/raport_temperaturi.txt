@@ -1,0 +1,5 @@
+Numar valori citite: 24
+Temperatura medie: 4.833333333333333
+Temperatura minima: -3.0
+Temperatura maxima: 12.8
+Numar valori sub 0°C: 5

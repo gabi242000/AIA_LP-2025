@@ -1,0 +1,3 @@
+Numarul total de angajati este: 5
+Salariul mediu este: 4280.0
+Angajatul cu salariul maxim este: Gyb Eduard
