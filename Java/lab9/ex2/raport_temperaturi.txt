@@ -1,0 +1,4 @@
+Temperatura medie: 1.6666666666666667
+Temperatura minima: -3.0
+Temperatura maxima: 6.0
+Numar valori sub 0°C: 3
