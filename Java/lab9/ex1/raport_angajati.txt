@@ -1,0 +1,4 @@
+Numar total angajati: 3
+Salariu mediu: 3833.3333333333335
+Angajat cu salariu maxim: Marcel Pavel
+Salariu maxim: 5700.0
