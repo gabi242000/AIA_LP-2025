@@ -1,0 +1,148 @@
+Ex1 
+
+import java.util.Scanner; 
+
+public class Animal {
+    
+    String nume;
+    String specie;
+    int varsta;
+
+    
+    public Animal() {
+        this.nume = "Necunoscut";
+        this.specie = "Necunoscută";
+        this.varsta = 0;
+    }
+
+       public void afisareAnimal() {
+        System.out.println("Nume: " + this.nume);
+        System.out.println("Specie: " + this.specie);
+        System.out.println("Vârsta: " + this.varsta + " ani");
+    }
+
+    public static void main(String[] args) {
+        
+        Animal necunoscut = new Animal();
+       
+        necunoscut.afisareAnimal();
+    }
+}
+
+Ex2
+
+import java.util.Scanner;
+
+public class Masina {
+    
+    String marca;
+    String model;
+    int an_fabricare;
+    String culoare;
+    double pret;
+
+    
+    public Masina(String marca, String model, int an_fabricare, String culoare, double pret) {
+        this.marca = marca;
+        this.model = model;
+        this.an_fabricare = an_fabricare;
+        this.culoare = culoare;
+        this.pret = pret;
+    }
+
+    
+    public void afisareMasina() {
+        
+        System.out.println("Marca: " + this.marca);
+        System.out.println("Model: " + this.model);
+        System.out.println("An fabricare: " + this.an_fabricare);
+        System.out.println("Culoare: " + this.culoare);
+        System.out.println("Preț: " + String.format("%.2f", this.pret) + " EUR");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+       
+        
+
+        System.out.print("Introdu Marca: ");
+        String marca = scanner.nextLine();
+        
+        System.out.print("Introdu Modelul: ");
+        String model = scanner.nextLine();
+        
+        System.out.print("Introdu Anul Fabricatiei: ");
+        int an = scanner.nextInt();
+        scanner.nextLine(); 
+        
+        System.out.print("Introdu Culoarea: ");
+        String culoare = scanner.nextLine();
+        
+        System.out.print("Introdu Pretul (ex: 15000.50): ");
+        double pret = scanner.nextDouble();
+        
+
+        Masina masinaMea = new Masina(marca, model, an, culoare, pret);
+        
+        
+        masinaMea.afisareMasina();
+        
+        scanner.close();
+    }
+}
+
+Ex3
+
+import java.util.Scanner;
+
+public class FacturaServiciu {
+  
+    String denumireServiciu;
+    double tarifOra;
+    int numarOre;
+    double valoareTotala; 
+
+    
+    public FacturaServiciu(String denumireServiciu, double tarifOra, int numarOre) {
+        this.denumireServiciu = denumireServiciu;
+        this.tarifOra = tarifOra;
+        this.numarOre = numarOre;
+        this.calculeazaValoareTotala(); 
+    }
+
+   
+    public void calculeazaValoareTotala() {
+        this.valoareTotala = this.tarifOra * this.numarOre;
+    }
+
+    
+    public void afisareFactura() {
+        System.out.println("Serviciu: " + this.denumireServiciu);
+        System.out.println("Tarif Orar: " + String.format("%.2f", this.tarifOra) + " lei/ora");
+        System.out.println("Numar Ore Prestate: " + this.numarOre + " ore");
+        System.out.println("Valoare Totală Facturată: " + String.format("%.2f", this.valoareTotala) + " lei");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("--- Testul 3: Clasa FacturaServiciu ---");
+        
+        
+        System.out.print("Introdu Denumirea Serviciului: ");
+        String serviciu = scanner.nextLine();
+        
+        System.out.print("Introdu Tariful Orar (lei): ");
+        double tarif = scanner.nextDouble();
+        
+        System.out.print("Introdu Numarul de Ore Prestate: ");
+        int ore = scanner.nextInt();
+
+        
+        FacturaServiciu factura1 = new FacturaServiciu(serviciu, tarif, ore);
+        
+
+        factura1.afisareFactura();
+        
+        scanner.close();
+    }
+}

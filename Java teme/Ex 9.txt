@@ -1,0 +1,240 @@
+Ex 1
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Angajat {
+    String nume;
+    String prenume;
+    double salariu;
+
+    public Angajat(String nume, String prenume, double salariu) {
+        this.nume = nume;
+        this.prenume = prenume;
+        this.salariu = salariu;
+    }
+    
+
+    public String toFileString() {
+        return nume + " " + prenume + " Salariu: " + String.format("%.2f", salariu);
+    }
+}
+
+public class GestiuneAngajati {
+
+    private static final String FISIER_INTRARE = "angajati.txt";
+    private static final String FISIER_RAPORT_MEDIE = "venit_peste_medie.txt";
+    private static final String FISIER_RAPORT_GENERAL = "raport_angajati.txt";
+
+    public static void main(String[] args) {
+                List<Angajat> listaAngajati = new ArrayList<>();
+        double sumaSalarii = 0;
+        Angajat angajatMaxim = null;
+
+        
+        File fisierIntrare = new File(FISIER_INTRARE);
+        if (!fisierIntrare.exists()) {
+            System.err.println("Eroare: Fișierul de intrare '" + FISIER_INTRARE + "' nu există.");
+            return;
+        }
+
+        try (Scanner cititor = new Scanner(fisierIntrare)) {
+            while (cititor.hasNextLine()) {
+                String linie = cititor.nextLine();
+                
+                String[] date = linie.split("\\s+"); 
+                
+                if (date.length == 3) {
+                    try {
+                        double salariu = Double.parseDouble(date[2].replace(',', '.')); 
+                        
+                        Angajat a = new Angajat(date[0], date[1], salariu);
+                        listaAngajati.add(a);
+                        sumaSalarii += salariu;
+                        
+                        if (angajatMaxim == null || salariu > angajatMaxim.salariu) {
+                            angajatMaxim = a;
+                        }
+                        
+                    } catch (NumberFormatException e) {
+                        System.err.println("Avertisment: Linia '" + linie + "' conține un salariu invalid și a fost omisă.");
+                    }
+                } else {
+                    System.err.println("Avertisment: Linia '" + linie + "' are format incorect (trei campuri așteptate) și a fost omisă.");
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Eroare la citirea fișierului: " + e.getMessage());
+            return;
+        }
+
+        int numarAngajati = listaAngajati.size();
+        if (numarAngajati == 0) {
+            System.out.println("Nu s-au găsit angajați valizi în fișier. Rapoartele nu pot fi generate.");
+            return;
+        }
+
+               double salariuMediu = sumaSalarii / numarAngajati;
+        
+        System.out.println("Salariul mediu calculat: " + String.format("%.2f", salariuMediu));
+
+        
+        try (PrintWriter scriitorMedie = new PrintWriter(new FileWriter(FISIER_RAPORT_MEDIE))) {
+            int count = 0;
+            for (Angajat a : listaAngajati) {
+                if (a.salariu > salariuMediu) {
+                    scriitorMedie.println(a.toFileString());
+                    count++;
+                }
+            }
+            System.out.println("S-au scris " + count + " angajați în raportul '" + FISIER_RAPORT_MEDIE + "'.");
+        } catch (IOException e) {
+            System.err.println("Eroare la scrierea fișierului '" + FISIER_RAPORT_MEDIE + "': " + e.getMessage());
+        }
+
+
+        try (PrintWriter scriitorGeneral = new PrintWriter(new FileWriter(FISIER_RAPORT_GENERAL))) {
+            scriitorGeneral.println("--- Raport Angajati ---");
+            scriitorGeneral.println("Număr total de angajați: " + numarAngajati);
+            scriitorGeneral.println("Salariul mediu: " + String.format("%.2f", salariuMediu));
+            if (angajatMaxim != null) {
+                scriitorGeneral.println("Angajatul cu salariu maxim: " + angajatMaxim.nume + " " + angajatMaxim.prenume + 
+                                      " (Salariu: " + String.format("%.2f", angajatMaxim.salariu) + ")");
+            }
+            System.out.println("Raportul general a fost scris în '" + FISIER_RAPORT_GENERAL + "'.");
+        } catch (IOException e) {
+            System.err.println("Eroare la scrierea fișierului '" + FISIER_RAPORT_GENERAL + "': " + e.getMessage());
+        }
+    }
+    
+   
+    private static void createDummyAngajatiFile() {
+        try (PrintWriter dWriter = new PrintWriter(new FileWriter(FISIER_INTRARE))) {
+            dWriter.println("Popescu Ion 4500.50");
+            dWriter.println("Ionescu Maria 6200");
+            dWriter.println("Vasilescu Mihai 3100");
+            dWriter.println("Georgescu Ana 7800.75");
+            dWriter.println("Dobre Elena 5000");
+            System.out.println("Fișierul '" + FISIER_INTRARE + "' a fost creat pentru test.");
+        } catch (IOException e) {
+             System.err.println("Eroare la crearea fișierului de test: " + e.getMessage());
+        }
+    }
+}
+
+
+
+
+Ex 2
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Collections;
+
+public class AnalizaTemperaturilor {
+
+    private static final String FISIER_INTRARE = "temperaturi.txt";
+    private static final String FISIER_RAPORT = "raport_temperaturi.txt";
+    private static final String FISIER_SUB_ZERO = "temp_sub_zero.txt";
+
+    public static void main(String[] args) {
+       
+        List<Double> listaTemperaturi = new ArrayList<>();
+        
+        
+        File fisierIntrare = new File(FISIER_INTRARE);
+        if (!fisierIntrare.exists()) {
+            System.err.println("Eroare: Fișierul de intrare '" + FISIER_INTRARE + "' nu există. Oprire.");
+            return;
+        }
+
+        try (Scanner cititor = new Scanner(fisierIntrare)) {
+            while (cititor.hasNextLine()) {
+                String linie = cititor.nextLine();
+                try {
+                    
+                    double temperatura = Double.parseDouble(linie.replace(',', '.').trim()); 
+                    listaTemperaturi.add(temperatura);
+                } catch (NumberFormatException e) {
+                    System.err.println("Avertisment: Linia '" + linie + "' conține o valoare non-numerică și a fost omisă.");
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Eroare la citirea fișierului: " + e.getMessage());
+            return;
+        }
+
+        
+        if (listaTemperaturi.isEmpty()) {
+            System.out.println("Nu s-au găsit temperaturi valide în fișier. Rapoartele nu pot fi generate.");
+            return;
+        }
+
+        
+        double sumaTotala = 0;
+        int contorSubZero = 0;
+        
+        double temperaturaMinima = Collections.min(listaTemperaturi);
+        double temperaturaMaxima = Collections.max(listaTemperaturi);
+
+        List<Double> temperaturiNegative = new ArrayList<>();
+
+        for (double t : listaTemperaturi) {
+            sumaTotala += t;
+            if (t < 0) {
+                contorSubZero++;
+                temperaturiNegative.add(t);
+            }
+        }
+
+        double temperaturaMedie = sumaTotala / listaTemperaturi.size();
+        
+        System.out.println("\n--- Statistici Temperaturi ---");
+        System.out.println("Temperatura medie: " + String.format("%.2f", temperaturaMedie));
+        
+        
+        try (PrintWriter scriitorRaport = new PrintWriter(new FileWriter(FISIER_RAPORT))) {
+            scriitorRaport.println("--- Raport Analiza Temperaturi (24h) ---");
+            scriitorRaport.println("Număr total de înregistrări: " + listaTemperaturi.size());
+            scriitorRaport.println("Temperatura medie: " + String.format("%.2f", temperaturaMedie) + "°C");
+            scriitorRaport.println("Temperatura minimă: " + String.format("%.2f", temperaturaMinima) + "°C");
+            scriitorRaport.println("Temperatura maximă: " + String.format("%.2f", temperaturaMaxima) + "°C");
+            scriitorRaport.println("Numărul valorilor sub 0°C: " + contorSubZero);
+            System.out.println("Raportul statistic a fost scris în '" + FISIER_RAPORT + "'.");
+        } catch (IOException e) {
+            System.err.println("Eroare la scrierea fișierului '" + FISIER_RAPORT + "': " + e.getMessage());
+        }
+
+        
+        try (PrintWriter scriitorSubZero = new PrintWriter(new FileWriter(FISIER_SUB_ZERO))) {
+            for (double t : temperaturiNegative) {
+                scriitorSubZero.println(String.format("%.2f", t));
+            }
+            System.out.println("S-au scris " + temperaturiNegative.size() + " temperaturi negative în '" + FISIER_SUB_ZERO + "'.");
+        } catch (IOException e) {
+            System.err.println("Eroare la scrierea fișierului '" + FISIER_SUB_ZERO + "': " + e.getMessage());
+        }
+    }
+    
+    
+    private static void createDummyTempFile() {
+        try (PrintWriter dWriter = new PrintWriter(new FileWriter(FISIER_INTRARE))) {
+            dWriter.println("10.5");
+            dWriter.println("5.0");
+            dWriter.println("-2.3");
+            dWriter.println("12.1");
+            dWriter.println("-5.5");
+            dWriter.println("0.0");
+            dWriter.println("3.8");
+            dWriter.println("-1.0");
+            dWriter.println("7.2");
+            System.out.println("Fișierul '" + FISIER_INTRARE + "' a fost creat pentru test.");
+        } catch (IOException e) {
+             System.err.println("Eroare la crearea fișierului de test: " + e.getMessage());
+        }
+    }
+}
