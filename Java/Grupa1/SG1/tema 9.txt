@@ -1,0 +1,223 @@
+1.
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class AngajatiApp {
+
+    static class Angajat {
+        String nume;
+        String prenume;
+        double salariu;
+
+        Angajat(String nume, String prenume, double salariu) {
+            this.nume = nume;
+            this.prenume = prenume;
+            this.salariu = salariu;
+        }
+
+        @Override
+        public String toString() {
+            return nume + " " + prenume + " " + salariu;
+        }
+    }
+
+    public static void main(String[] args) {
+        Path in = Paths.get("angajati.txt");
+        Path outPesteMedie = Paths.get("venit_peste_medie.txt");
+        Path raport = Paths.get("raport_angajati.txt");
+
+        if (!Files.exists(in)) {
+            System.out.println("Eroare: fisierul " + in + " nu exista.");
+            return;
+        }
+
+        List<Angajat> angajati = new ArrayList<>();
+
+        try {
+            List<String> linii = Files.readAllLines(in, StandardCharsets.UTF_8);
+
+            for (int i = 0; i < linii.size(); i++) {
+                String linie = linii.get(i).trim();
+                if (linie.isEmpty()) continue;
+
+                String[] parts = linie.split("\\s+");
+                if (parts.length < 3) {
+                    System.out.println("Linie invalida (prea putine campuri) la linia " + (i + 1) + ": " + linie);
+                    continue;
+                }
+
+                String nume = parts[0];
+                String prenume = parts[1];
+
+                String salariuStr = parts[parts.length - 1];
+                try {
+                    double salariu = Double.parseDouble(salariuStr);
+                    if (parts.length > 3) {
+                        StringBuilder pren = new StringBuilder(parts[1]);
+                        for (int k = 2; k < parts.length - 1; k++) {
+                            pren.append(" ").append(parts[k]);
+                        }
+                        prenume = pren.toString();
+                    }
+
+                    angajati.add(new Angajat(nume, prenume, salariu));
+                } catch (NumberFormatException e) {
+                    System.out.println("Linie invalida (salariu nenumeric) la linia " + (i + 1) + ": " + linie);
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("Eroare la citirea fisierului: " + e.getMessage());
+            return;
+        }
+
+        if (angajati.isEmpty()) {
+            System.out.println("Nu exista inregistrari valide in angajati.txt.");
+            return;
+        }
+
+        double suma = 0;
+        Angajat maxA = angajati.get(0);
+        for (Angajat a : angajati) {
+            suma += a.salariu;
+            if (a.salariu > maxA.salariu) maxA = a;
+        }
+        double medie = suma / angajati.size();
+
+        try (BufferedWriter bw = Files.newBufferedWriter(outPesteMedie, StandardCharsets.UTF_8,
+                StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
+
+            for (Angajat a : angajati) {
+                if (a.salariu > medie) {
+                    bw.write(a.toString());
+                    bw.newLine();
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea fisierului venit_peste_medie.txt: " + e.getMessage());
+            return;
+        }
+
+        try (BufferedWriter bw = Files.newBufferedWriter(raport, StandardCharsets.UTF_8,
+                StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
+
+            bw.write("Numar total angajati: " + angajati.size());
+            bw.newLine();
+            bw.write(String.format("Salariu mediu: %.2f", medie));
+            bw.newLine();
+            bw.write("Angajat cu salariul maxim: " + maxA.nume + " " + maxA.prenume
+                    + " (" + String.format("%.2f", maxA.salariu) + ")");
+            bw.newLine();
+
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea fisierului raport_angajati.txt: " + e.getMessage());
+            return;
+        }
+
+        System.out.println("Gata! Au fost generate: venit_peste_medie.txt si raport_angajati.txt");
+    }
+}
+
+
+2.
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TemperaturiApp {
+
+    public static void main(String[] args) {
+        Path in = Paths.get("temperaturi.txt");
+        Path raport = Paths.get("raport_temperaturi.txt");
+        Path subZero = Paths.get("temp_sub_zero.txt");
+
+        if (!Files.exists(in)) {
+            System.out.println("Eroare: fisierul " + in + " nu exista.");
+            return;
+        }
+
+        List<Double> temps = new ArrayList<>();
+
+        try {
+            List<String> linii = Files.readAllLines(in, StandardCharsets.UTF_8);
+            for (int i = 0; i < linii.size(); i++) {
+                String linie = linii.get(i).trim();
+                if (linie.isEmpty()) continue;
+
+                try {
+                    double t = Double.parseDouble(linie);
+                    temps.add(t);
+                } catch (NumberFormatException e) {
+                    System.out.println("Valoare invalida la linia " + (i + 1) + ": " + linie);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare la citirea fisierului: " + e.getMessage());
+            return;
+        }
+
+        if (temps.isEmpty()) {
+            System.out.println("Nu exista valori valide in temperaturi.txt.");
+            return;
+        }
+
+        double suma = 0;
+        double min = temps.get(0);
+        double max = temps.get(0);
+        int sub0 = 0;
+
+        for (double t : temps) {
+            suma += t;
+            if (t < min) min = t;
+            if (t > max) max = t;
+            if (t < 0) sub0++;
+        }
+        double medie = suma / temps.size();
+
+        try (BufferedWriter bw = Files.newBufferedWriter(subZero, StandardCharsets.UTF_8,
+                StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
+
+            for (double t : temps) {
+                if (t < 0) {
+                    bw.write(String.valueOf(t));
+                    bw.newLine();
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea fisierului temp_sub_zero.txt: " + e.getMessage());
+            return;
+        }
+
+        try (BufferedWriter bw = Files.newBufferedWriter(raport, StandardCharsets.UTF_8,
+                StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
+
+            bw.write("Numar masuratori: " + temps.size());
+            bw.newLine();
+            bw.write(String.format("Temperatura medie: %.2f", medie));
+            bw.newLine();
+            bw.write(String.format("Temperatura minima: %.2f", min));
+            bw.newLine();
+            bw.write(String.format("Temperatura maxima: %.2f", max));
+            bw.newLine();
+            bw.write("Numar valori sub 0°C: " + sub0);
+            bw.newLine();
+
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea fisierului raport_temperaturi.txt: " + e.getMessage());
+            return;
+        }
+
+        System.out.println("Gata! Au fost generate: raport_temperaturi.txt si temp_sub_zero.txt");
+    }
+}
