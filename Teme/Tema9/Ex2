@@ -1,0 +1,64 @@
+package tema9;
+
+import java.io.*;
+import java.math.*;
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.IOException;
+
+
+
+public class Ex2 {
+
+    public static void main(String[] args) {
+        int minim = 0, mediu = 0, maxim = 0, nrValSubZero = 0;
+        int[] temperaturi = new int[10];
+        File fisier = new File("temperaturi.txt");
+
+        if(!fisier.exists()){
+            System.out.println("Fisierul nu exista!");
+            return;
+        }
+
+        try(BufferedReader br = new BufferedReader(new FileReader("temperaturi.txt"))){
+            String linie;
+            linie = br.readLine();
+            minim = Integer.parseInt(linie);
+            for(int i = 0; i < temperaturi.length; i++){
+                if(i != 0)
+                linie = br.readLine();
+
+                int temperatura = Integer.parseInt(linie);
+                temperaturi[i] = Integer.parseInt(linie);
+                mediu += temperatura;
+                if(temperatura < minim) minim = temperatura;
+                if(temperatura > maxim) maxim = temperatura;
+                if(temperatura < 0) nrValSubZero++;
+            }
+
+            mediu /= temperaturi.length;
+        }catch(IOException e){
+            System.out.println("Eroare la citirea fisierului!");
+        }
+
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("raport_temperaturi.txt"))){
+            bw.write("Temperatura medie: " + mediu + "\n"
+                       + "Temperatura minima: " + minim + "\n"
+                       + "Temperatura maxima: " + maxim + "\n"
+                       + "Numarul de valori sub 0: " + nrValSubZero + "\n");
+        }catch (IOException e){
+            System.out.println("Eroare la scrierea in fisier");
+        }
+
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("temp_sub_zero.txt"))){
+            for(int a: temperaturi){
+                if(a < 0) bw.write(a + "\n");
+            }
+        }catch (IOException e){
+            System.out.println("Eroare la scrierea in fisier");
+        }
+    }
+}
