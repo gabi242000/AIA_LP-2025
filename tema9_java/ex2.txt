@@ -1,0 +1,52 @@
+import java.io.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        File fisier = new File("temperaturi.txt");
+        if (!fisier.exists()){
+            System.out.println("Fisierul temperaturi.txt nu exista");
+            return;
+        }
+        double suma = 0;
+        double minim = 1000;
+        double maxim = -1000;
+        int nr = 0;
+        int subzero = 0;
+        try(
+            BufferedReader br = new BufferedReader(new FileReader(fisier));
+            BufferedWriter bwnegative = new BufferedWriter(new FileWriter("temp_sub_zero.txt"))
+        ){
+            String linie;
+            while((linie = br.readLine()) != null){
+                double temp = Double.parseDouble(linie);
+                nr++;
+                if(temp < 0){
+                    subzero++;
+                    bwnegative.write(String.valueOf(temp));
+                    bwnegative.newLine();
+                }
+                if(temp < minim)
+                    minim = temp;
+                if(temp > maxim)
+                    maxim = temp;
+            }
+        }catch(IOException e){
+            System.out.println("Eroare la generarea fisierului temp_sub_zero.txt");
+            return;
+        }
+        double medie = suma / nr;
+        try (BufferedWriter bwraport = new BufferedWriter(new FileWriter("raport_temperaturi.txt"))){
+            bwraport.write("Temperatura medie: " + medie);
+            bwraport.newLine();
+            bwraport.write("Temperatura minima: " + minim);
+            bwraport.newLine();
+            bwraport.write("Temperatura maxima: " + maxim);
+            bwraport.newLine();
+            bwraport.write("Numar valori sub 0 grade: " + subzero);
+        }catch(IOException e){
+            System.out.println("Eroare la generarea fisierului raport_temperaturi.txt");
+            return;
+        }
+    }
+}
