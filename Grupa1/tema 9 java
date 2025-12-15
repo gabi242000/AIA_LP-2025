@@ -1,0 +1,181 @@
+1 .
+ import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
+class Angajat {
+    String nume;
+    String prenume;
+    double salariu;
+
+    Angajat(String nume, String prenume, double salariu) {
+        this.nume = nume;
+        this.prenume = prenume;
+        this.salariu = salariu;
+    }
+
+    
+    public String toString() {
+        return nume + " " + prenume + " " + salariu;
+    }
+}
+
+
+public class GestionareAngajati {
+
+    public static void main(String[] args) {
+
+        
+        File fisier = new File("angajati.txt");
+        if (!fisier.exists()) {
+            System.out.println("EROARE: fisierul angajati.txt nu exista!");
+            return;
+        }
+
+        List<Angajat> angajati = new ArrayList<>();
+        double sumaSalarii = 0;
+
+        
+        try (Scanner scanner = new Scanner(fisier)) {
+            while (scanner.hasNextLine()) {
+                String linie = scanner.nextLine().trim();
+                if (linie.isEmpty()) continue;
+
+                String[] date = linie.split("\\s+");
+                if (date.length != 3) continue; 
+
+                String nume = date[0];
+                String prenume = date[1];
+                double salariu = Double.parseDouble(date[2]);
+
+                Angajat a = new Angajat(nume, prenume, salariu);
+                angajati.add(a);
+                sumaSalarii += salariu;
+            }
+        } catch (Exception e) {
+            System.out.println("Eroare la citirea fisierului: " + e.getMessage());
+            return;
+        }
+
+        if (angajati.isEmpty()) {
+            System.out.println("Nu exista angajati in fisier!");
+            return;
+        }
+
+        
+        double salariuMediu = sumaSalarii / angajati.size();
+
+        
+        Angajat maxSalariu = angajati.get(0);
+        for (Angajat a : angajati) {
+            if (a.salariu > maxSalariu.salariu) {
+                maxSalariu = a;
+            }
+        }
+
+        
+        try (PrintWriter writer = new PrintWriter("venit_peste_medie.txt")) {
+            for (Angajat a : angajati) {
+                if (a.salariu > salariuMediu) {
+                    writer.println(a);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare la scriere venit_peste_medie.txt");
+        }
+
+        
+        try (PrintWriter writer = new PrintWriter("raport_angajati.txt")) {
+            writer.println("Salariu mediu: " + salariuMediu);
+            writer.println("Angajat cu salariul maxim:");
+            writer.println(maxSalariu);
+        } catch (IOException e) {
+            System.out.println("Eroare la scriere raport_angajati.txt");
+        }
+
+        System.out.println("Program rulat cu succes!");
+    }
+}  
+2.  import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class ProgramTemperaturi {
+
+    public static void main(String[] args) {
+
+        File fisier = new File("temperaturi.txt");
+        if (!fisier.exists()) {
+            System.out.println("EROARE: fisierul temperaturi.txt nu exista!");
+            return;
+        }
+
+        List<Double> temperaturi = new ArrayList<>();
+        double suma = 0;
+        double tempMin = Double.MAX_VALUE;
+        double tempMax = Double.MIN_VALUE;
+        int nrSubZero = 0;
+
+        
+        try (Scanner scanner = new Scanner(fisier)) {
+            while (scanner.hasNextLine()) {
+                String linie = scanner.nextLine().trim();
+                if (linie.isEmpty()) continue;
+
+                try {
+                    double temp = Double.parseDouble(linie);
+                    temperaturi.add(temp);
+                    suma += temp;
+
+                    if (temp < tempMin) tempMin = temp;
+                    if (temp > tempMax) tempMax = temp;
+                    if (temp < 0) nrSubZero++;
+
+                } catch (NumberFormatException e) {
+                    System.out.println("Linie invalida (nu este numar): " + linie);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Eroare la citirea fisierului: " + e.getMessage());
+            return;
+        }
+
+        if (temperaturi.isEmpty()) {
+            System.out.println("Fisierul nu contine temperaturi valide!");
+            return;
+        }
+
+        double temperaturaMedie = suma / temperaturi.size();
+
+        
+        try (PrintWriter writer = new PrintWriter("raport_temperaturi.txt")) {
+            writer.println("Temperatura medie: " + temperaturaMedie);
+            writer.println("Temperatura minima: " + tempMin);
+            writer.println("Temperatura maxima: " + tempMax);
+            writer.println("Numar temperaturi sub 0: " + nrSubZero);
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea raport_temperaturi.txt");
+        }
+
+        
+        try (PrintWriter writer = new PrintWriter("temp_sub_zero.txt")) {
+            for (double t : temperaturi) {
+                if (t < 0) {
+                    writer.println(t);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea temp_sub_zero.txt");
+        }
+
+        System.out.println("Procesare finalizata cu succes!");
+    }
+}
+
