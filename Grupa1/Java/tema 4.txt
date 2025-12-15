@@ -1,0 +1,91 @@
+public class Animal {
+		private String nume;
+		private String specie;
+		private int varsta;
+		
+		public void afisareAnimal() {
+			System.out.println("nume: " + nume);
+			System.out.println("specie: " + specie);
+			System.out.println("varsta: "+ varsta);
+		}
+		
+		public Animal(){
+			this.nume="Necunoscut";
+			this.specie="Necunoscuta";
+			this.varsta=0;
+		}
+		
+		public static void main(String[] args) {
+			Animal animal=new Animal();
+			System.out.println("detaii animal:");
+			animal.afisareAnimal();
+		}
+}
+
+public class FacturaServiciu {
+		private String denumireServiciu;
+		private double tarifOra;
+		private int numarOre;
+		
+		public double valoareTotala(){
+			return tarifOra*numarOre;
+		}
+		
+		public void afisareFactura() {
+			System.out.println("serviciu: " + denumireServiciu);
+			System.out.println("tarif / ora: " + tarifOra);
+			System.out.println("numar ore: " + numarOre);
+			System.out.println("valoarea totala: " + valoareTotala());
+		}
+		
+		public FacturaServiciu() {
+			this.denumireServiciu="reparatie";
+			this.numarOre=2;
+			this.tarifOra=120.5;
+		}
+		
+		public static void main (String[] args) {
+			FacturaServiciu factura = new FacturaServiciu();
+			factura.afisareFactura();
+		}
+}
+import java.util.Scanner;
+public class Masina {
+		private String marca;
+		private String model;
+		private int an_fabricare;
+		private String culoare;
+		private double pret;
+		
+		public Masina( String Marca, String Model, int An_fabricare, String Culoare, double Pret) {
+			this.marca=Marca;
+			this.model=Model;
+			this.an_fabricare=An_fabricare;
+			this.culoare=Culoare;
+			this.pret=Pret;
+		}
+		
+		public void afisareMasina() {
+			System.out.println("marca: " + marca);
+			System.out.println("model: " + model);
+			System.out.println("an fabricatie: " + an_fabricare);
+			System.out.println("culoare: " + culoare);
+			System.out.println("pret: "+ pret);
+		}
+		
+		public static void main (String[] args) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("introdu marca: ");
+			String marca=sc.nextLine();
+			System.out.println("introdu modelul: ");
+			String model=sc.nextLine();
+			System.out.println("introdu culoarea: ");
+			String culoare=sc.nextLine();
+			System.out.println("introdu anul fabricatiei: ");
+			int an_fabricatie=sc.nextInt();
+			System.out.println("introdu pretul: ");
+			double pret=sc.nextDouble();
+			Masina masina = new Masina(marca,model,an_fabricatie,culoare,pret);
+			masina.afisareMasina();
+		}
+}
