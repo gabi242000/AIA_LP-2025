@@ -1,0 +1,162 @@
+EX 1
+
+import java.io.IOException.*;
+import java.io.FileWriter.*;
+
+class Animal {
+   public String sunet(){
+       return "sunet";
+   }
+}
+class Caine extends Animal{
+    public String sunet(){
+        return "Ham ham ham";
+    }
+}
+
+class FileWriterEx extends Exception {
+    public FileWriterEx(String msg){
+        super(msg);
+    }
+}
+
+class ThreadAnimal extends Thread{
+    private Animal animal;
+    private String fileName;
+    
+    
+    public AnimalThread(String Animal,String fileName){
+        this.animal=animal;
+        this.fileName=fileName;
+    }
+    public void run(){
+        try(FileWriter fw=new FileWriter(fileName)){
+            fw.write("Sunet:"+animal.sunet());
+        }catch(IOException e){
+            try{
+                throw new FileWriterEx("nu pot..");
+            }catch(FileWriterEx ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+}
+public class Main{
+    public static void main (String[] args) {
+    Animal a=new Caine();
+    AnimalThread t=new AnimalThread(a,"animal.txt");
+    t.start();
+}
+}
+
+
+
+
+
+
+EX 2
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+class Vehicul{
+    public int vitezamax(){
+        return 0;
+    }
+}
+class Masina extends Vehicul{
+    public int vitezamax(){
+        return 180;
+    }
+}
+class TipVehiculException extends Exception{
+    public TipVehiculException(String msg){
+        super(msg);
+    }
+}
+class ThreadVehicul extends Thread{
+    private String filename;
+    public ThreadVehicul(String filename){
+        this.filename=filename;
+    }
+    public void run(){
+        try (BufferedReader br= new BufferedReader(new FileReader(filename))){
+            String tip =br.readLine();
+            if("Masina".equalsIgnoreCase(tip)){
+                Vehicul v= new Masina();
+                System.out.println("Viteza Max:"+v.vitezamax());
+                
+            }else{
+                throw new TipVehiculException("Tip invalid:"+tip);
+            }
+        }catch(IOException e){
+            System.out.println("Eroare la citire fisier");
+        }catch(TipVehiculException e){
+            System.out.println(e.getMessage());
+        }
+    }
+}
+class Main{
+    public static void main (String[] args) {
+        ThreadVehicul t= new ThreadVehicul("vehicul.txt");
+        t.start();
+    }
+}
+    
+
+EX 3
+
+import java.io.FileReader;
+import java.io.IOException;
+
+class Produs{
+    protected double pret;
+    
+    public Produs(double pret){
+        this.pret=pret;
+        
+    }
+    public double pretFinal(){
+        return pret;
+    }
+    
+}
+class ProdusAlimentar extends Produs{
+    public ProdusAlimentar(double pret){
+        return pret*0.9;
+    }
+}
+class PretInvalidExceptie extends Exception{
+    public PretInvalidExceptie(String msg){
+        super(msg);
+    }
+}
+
+class ProdusThread extends Thread {
+    private Produs produs;
+    private String fileName;
+}
+public void run(){
+    try{
+        if(produs.pret<0){
+            throw new PretInvalidExceptie("Pret Negativ!");
+        }
+        try(FileWriter fw=new FileWriter(fileName)){
+            fw.write("Pret Final:"+produs.pretFinal());
+        }
+        
+    }catch(PretInvalidExceptie e){
+        System.out.println(e.getMessage());
+    }catch(IOException  e){
+        System.out.printlm("Eroare");
+    }
+
+class Main{
+    public static void main (String[] args) {
+    Produs p=new ProdusAlimentar(100);
+    ProdusThread t=new ProdusThread(p,"produs.txt");
+    t.start();
+    }
+}
+ }   
