@@ -1,0 +1,76 @@
+package tema9;
+
+import java.io.*;
+import java.math.*;
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.IOException;
+
+class Angajat{
+    String nume, prenume;
+    int salariu;
+
+    public Angajat(String nume, String prenume, int salariu){
+        this.nume = nume;
+        this.prenume = prenume;
+        this.salariu = salariu;
+    }
+
+}
+
+public class Ex1 {
+
+    public static void main(String[] args) {
+
+        double salariuMediu = 0;
+        int salariuMaxim = 0;
+        String numeMaxim = " ";
+        File fisierAngajati = new File("angajati.txt");
+
+        if(!fisierAngajati.exists()){
+            System.out.println("Fisierul nu exista");
+            return;
+        }
+
+        Angajat[] angajati = new Angajat[4];
+
+        try(BufferedReader br = new BufferedReader(new FileReader(fisierAngajati))){
+
+            for(int i = 0; i < angajati.length; i++){
+                String[] linie = br.readLine().split(" ");
+                angajati[i] = new Angajat(linie[0], linie[1], Integer.parseInt(linie[2]));
+                salariuMediu += Integer.parseInt(linie[2]);
+
+                if(Integer.parseInt(linie[2]) > salariuMaxim){
+                    salariuMaxim = Integer.parseInt(linie[2]);
+                    numeMaxim = linie[0] + " " + linie[1];
+                }
+            }
+
+            salariuMediu /= angajati.length;
+        }catch(IOException e){
+            System.out.println("Eroare la citirea fisierului");
+        }
+
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("venit_peste_medie.txt"))){
+            for(Angajat a : angajati){
+                if(a.salariu > salariuMediu){
+                    bw.write(a.nume + " " + a.prenume + "\n");
+                }
+            }
+        }catch(IOException e){
+            System.out.println("Eroare la scrierea in fisier");
+        }
+
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("raport_angajati.txt"))){
+            bw.write("Total angajati: " + angajati.length + "\n"
+                    + "Salariu mediu: " + salariuMediu + "\n"
+                    + "Angajatul cu salariu maxim: " + numeMaxim + "\n");
+        }catch(IOException e){
+            System.out.println("Eroare la scrierea in fisier");
+        }
+    }
+}
