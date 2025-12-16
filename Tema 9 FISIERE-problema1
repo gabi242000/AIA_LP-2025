@@ -1,0 +1,80 @@
+import java.io.*;
+import java.util.*;
+
+class Angajat {
+    String nume;
+    String prenume;
+    double salariu;
+
+    Angajat(String nume, String prenume, double salariu) {
+        this.nume = nume;
+        this.prenume = prenume;
+        this.salariu = salariu;
+    }
+
+    @Override
+    public String toString() {
+        return nume + " " + prenume + " " + salariu;
+    }
+}
+
+public class AngajatiApp {
+
+    public static void main(String[] args) {
+        File fisier = new File("angajati.txt");
+
+        if (!fisier.exists()) {
+            System.out.println("Fisierul angajati.txt nu exista!");
+            return;
+        }
+
+        List<Angajat> angajati = new ArrayList<>();
+        double suma = 0;
+        Angajat maxSalariu = null;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fisier))) {
+            String linie;
+            while ((linie = br.readLine()) != null) {
+                String[] p = linie.split("\\s+");
+                Angajat a = new Angajat(p[0], p[1], Double.parseDouble(p[2]));
+                angajati.add(a);
+                suma += a.salariu;
+
+                if (maxSalariu == null || a.salariu > maxSalariu.salariu) {
+                    maxSalariu = a;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare la citire!");
+            return;
+        }
+
+        int total = angajati.size();
+        double medie = suma / total;
+
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("venit_peste_medie.txt"))) {
+            for (Angajat a : angajati) {
+                if (a.salariu > medie) {
+                    bw.write(a.toString());
+                    bw.newLine();
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare la scriere venit_peste_medie.txt");
+        }
+
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("raport_angajati.txt"))) {
+            bw.write("Numar total angajati: " + total);
+            bw.newLine();
+            bw.write("Salariu mediu: " + medie);
+            bw.newLine();
+            bw.write("Angajat cu salariu maxim: " + maxSalariu);
+        } catch (IOException e) {
+            System.out.println("Eroare la scriere raport_angajati.txt");
+        }
+
+        System.out.println("Problema 1 rezolvata cu succes.");
+    }
+}
