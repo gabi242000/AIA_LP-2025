@@ -1,0 +1,200 @@
+EX 1
+
+import java.io.IOException;
+import java.io.FileWriter;
+
+class Animal {
+    public String sunet() {
+        return "sunet";
+    }
+}
+
+class Caine extends Animal {
+    public String sunet() {
+        return "Ham ham ham";
+    }
+}
+
+class FileWriterEx extends Exception {
+    public FileWriterEx(String msg) {
+        super(msg);
+    }
+}
+
+class ThreadAnimal extends Thread {
+    private Animal animal;
+    private String fileName;
+
+    public ThreadAnimal(Animal animal, String fileName) {
+        this.animal = animal;
+        this.fileName = fileName;
+    }
+
+    public void run() {
+        try (FileWriter fw = new FileWriter(fileName)) {
+            fw.write("Sunet: " + animal.sunet());
+        } catch (IOException e) {
+            try {
+                throw new FileWriterEx("Nu pot scrie în fișier!");
+            } catch (FileWriterEx ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a = new Caine();
+        ThreadAnimal t = new ThreadAnimal(a, "animal.txt");
+        t.start();
+    }
+}
+
+
+
+
+
+
+EX 2
+
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+
+class Vehicul {
+    public int vitezaMaxima() {
+        return 0;
+    }
+}
+
+
+class Masina extends Vehicul {
+
+    @Override
+    public int vitezaMaxima() {
+        return 180;
+    }
+}
+
+
+class TipVehiculInvalidException extends Exception {
+    public TipVehiculInvalidException(String mesaj) {
+        super(mesaj);
+    }
+}
+
+class VehiculThread extends Thread {
+    private String numeFisier;
+
+    public VehiculThread(String numeFisier) {
+        this.numeFisier = numeFisier;
+    }
+
+    @Override
+    public void run() {
+        try (BufferedReader br = new BufferedReader(new FileReader(numeFisier))) {
+
+            String tip = br.readLine();
+
+            if (!"MASINA".equals(tip)) {
+                throw new TipVehiculInvalidException("Tip vehicul invalid!");
+            }
+
+            Vehicul v = new Masina();
+            System.out.println("Viteza maxima: " + v.vitezaMaxima());
+
+        } catch (TipVehiculInvalidException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Eroare la citirea fișierului");
+        }
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+
+        VehiculThread t = new VehiculThread("vehicul.txt");
+        t.start();
+    }
+}
+
+    
+
+EX 3
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+
+class Produs {
+    protected double pret;
+
+    public Produs(double pret) {
+        this.pret = pret;
+    }
+
+    public double pretFinal() {
+        return pret;
+    }
+}
+
+class ProdusAlimentar extends Produs {
+
+    public ProdusAlimentar(double pret) {
+        super(pret);
+    }
+
+    @Override
+    public double pretFinal() {
+        return pret * 0.9;
+    }
+}
+
+
+class PretInvalidException extends Exception {
+    public PretInvalidException(String mesaj) {
+        super(mesaj);
+    }
+}
+
+
+class ProdusThread extends Thread {
+    private Produs produs;
+    private String numeFisier;
+
+    public ProdusThread(Produs produs, String numeFisier) {
+        this.produs = produs;
+        this.numeFisier = numeFisier;
+    }
+
+    @Override
+    public void run() {
+        try {
+            if (produs.pret < 0) {
+                throw new PretInvalidException("Preț inițial negativ!");
+            }
+
+            try (FileWriter fw = new FileWriter(numeFisier)) {
+                fw.write("Preț final: " + produs.pretFinal());
+            }
+
+        } catch (PretInvalidException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea în fișier");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Produs p = new ProdusAlimentar(100);
+        ProdusThread t = new ProdusThread(p, "produs.txt");
+        t.start();
+    }
+}
