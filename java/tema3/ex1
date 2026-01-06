@@ -1,0 +1,66 @@
+tema3
+     import java.io.*;
+     class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        
+        System.out.print("n = ");
+        int n = Integer.parseInt(br.readLine());
+
+        
+        int[][] a = new int[n][n];
+        System.out.println("introdu elementele matricei:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                a[i][j] = Integer.parseInt(br.readLine());
+            }
+        }
+        int k;
+        if (n % 2 == 1)
+            k = n;
+        else
+            k = n - 1;
+
+        int start = (n - k) / 2;
+        boolean magica = true;
+        int sumaRef = 0;
+        for (int j = start; j < start + k; j++) {
+            sumaRef += a[start][j];
+        }
+        for (int i = start; i < start + k && magica; i++) {
+            int suma = 0;
+            for (int j = start; j < start + k; j++) {
+                suma += a[i][j];
+            }
+            if (suma != sumaRef)
+                magica = false;
+        }
+        for (int j = start; j < start + k && magica; j++) {
+            int suma = 0;
+            for (int i = start; i < start + k; i++) {
+                suma += a[i][j];
+            }
+            if (suma != sumaRef)
+                magica = false;
+        }
+        int sumaDiag1 = 0;
+        for (int i = 0; i < k; i++) {
+            sumaDiag1 += a[start + i][start + i];
+        }
+        if (sumaDiag1 != sumaRef)
+            magica = false;
+        int sumaDiag2 = 0;
+        for (int i = 0; i < k; i++) {
+            sumaDiag2 += a[start + i][start + k - 1 - i];
+        }
+        if (sumaDiag2 != sumaRef)
+            magica = false;
+        if (magica) {
+            System.out.println("Suma comuna = " + sumaRef);
+            System.out.println("Matrice magica partial");
+        } else {
+            System.out.println("Matrice nemagica");
+        }
+    }
+}
