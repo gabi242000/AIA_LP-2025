@@ -1,25 +1,23 @@
+ex1t4
 import java.io*;
-class FacturaServiciu {
-    String denumireServiciu;
-    double tarifOra;
-    int numarOre;
-    double valoareTotala;
-    FacturaServiciu(String denumireServiciu, double tarifOra, int numarOre) {
-        this.denumireServiciu = denumireServiciu;
-        this.tarifOra = tarifOra;
-        this.numarOre = numarOre;
-        valoareTotala = tarifOra * numarOre;
+class Animal {
+    String nume;
+    String specie;
+    int varsta;
+    Animal() {
+        nume = "necunoscut";
+        specie = "necunoscuta";
+        varsta = 0;
     }
-    void afisareFactura() {
-        System.out.println("serviciu: " + denumireServiciu);
-        System.out.println("tarif ora: " + tarifOra);
-        System.out.println("numar ore: " + numarOre);
-        System.out.println("valoare totala: " + valoareTotala);
+   void afisareAnimal() {
+        System.out.println("nume: " + nume);
+        System.out.println("specie: " + specie);
+        System.out.println("varsta: " + varsta);
     }
 }
-public class TestFactura {
+public class TestAnimal {
     public static void main(String[] args) {
-        FacturaServiciu f = new FacturaServiciu("intretinere", 100, 3);
-        f.afisareFactura();
+        Animal a = new Animal();
+        a.afisareAnimal();
     }
 }
