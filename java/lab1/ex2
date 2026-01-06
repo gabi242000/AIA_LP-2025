@@ -1,0 +1,25 @@
+import java.io.*;
+
+public class Tema2 {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("a = ");
+        int a = Integer.parseInt(br.readLine());
+        System.out.print("b = ");
+        int b = Integer.parseInt(br.readLine());
+        System.out.print("c = ");
+        int c = Integer.parseInt(br.readLine());
+
+        int suma = a + b + c;
+        double media = suma / 3.0;
+
+        int max = Math.max(a, Math.max(b, c));
+        int min = Math.min(a, Math.min(b, c));
+
+        System.out.println("suma = " + suma);
+        System.out.println("media = " + media);
+        System.out.println("max = " + max);
+        System.out.println("min = " + min);
+    }
+}
