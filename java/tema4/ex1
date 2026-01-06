@@ -1,0 +1,25 @@
+import java.io*;
+class FacturaServiciu {
+    String denumireServiciu;
+    double tarifOra;
+    int numarOre;
+    double valoareTotala;
+    FacturaServiciu(String denumireServiciu, double tarifOra, int numarOre) {
+        this.denumireServiciu = denumireServiciu;
+        this.tarifOra = tarifOra;
+        this.numarOre = numarOre;
+        valoareTotala = tarifOra * numarOre;
+    }
+    void afisareFactura() {
+        System.out.println("serviciu: " + denumireServiciu);
+        System.out.println("tarif ora: " + tarifOra);
+        System.out.println("numar ore: " + numarOre);
+        System.out.println("valoare totala: " + valoareTotala);
+    }
+}
+public class TestFactura {
+    public static void main(String[] args) {
+        FacturaServiciu f = new FacturaServiciu("intretinere", 100, 3);
+        f.afisareFactura();
+    }
+}
