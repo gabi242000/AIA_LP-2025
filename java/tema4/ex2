@@ -1,0 +1,37 @@
+ex2t4
+import java.io*;
+import java.util.Scanner;
+class Masina {
+    String marca;
+    String model;
+    int an_fabricare;
+    String culoare;
+    double pret;
+    Masina(String marca, String model, int an_fabricare, String culoare, double pret) {
+        this.marca = marca;
+        this.model = model;
+        this.an_fabricare = an_fabricare;
+        this.culoare = culoare;
+        this.pret = pret;
+    }
+    void afisareMasina() {
+        System.out.println("marca: " + marca);
+        System.out.println("model: " + model);
+        System.out.println("an fabricare: " + an_fabricare);
+        System.out.println("culoare: " + culoare);
+        System.out.println("pret: " + pret);
+    }
+}
+public class TestMasina {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String marca = sc.nextLine();
+        String model = sc.nextLine();
+        int an = sc.nextInt();
+        String culoare = sc.nextLine();
+        double pret = sc.nextDouble();
+        Masina m = new Masina(marca, model, an, culoare, pret);
+        m.afisareMasina();
+    }
+}
