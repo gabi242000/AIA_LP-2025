@@ -1,0 +1,29 @@
+package tema1;
+import java.io.*;
+
+public class Tema1 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("introdu un nr: ");
+        String input = br.readLine();
+
+        try {
+            int n = Integer.parseInt(input); 
+
+            if (n < 0) {
+                System.out.println("valoarea introdusa nu este un nr natural valid ");
+            } else {
+                System.out.println("nr introdus este: " + n);
+                if (n % 2 == 0) {
+                    System.out.println("nr este par.");
+                } else {
+                    System.out.println("nr este impar.");
+                }
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("valoarea introdusa nu este un nr natural valid");
+        }
+    }
+}
+
