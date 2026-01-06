@@ -1,0 +1,39 @@
+import java.io.*;
+
+public class TVECTOR {
+
+    public static int[] citesteVector(int n, BufferedReader br) throws IOException {
+        int[] v = new int[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("v[" + i + "] = ");
+            v[i] = Integer.parseInt(br.readLine());
+        }
+        return v;
+    }
+
+    public static int sumaPare(int[] v) {
+        int suma = 0;
+        System.out.print("elemente pare: ");
+        for (int x : v) {
+            if (x % 2 == 0) {
+                System.out.print(x + " ");
+                suma += x;
+            }
+        }
+        System.out.println();
+        return suma;
+    }
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("dimensiune vector: ");
+        int n = Integer.parseInt(br.readLine());
+
+        int[] v = citesteVector(n, br);
+
+        int suma = sumaPare(v);
+        System.out.println("suma elementelor pare = " + suma);
+    }
+}
+
