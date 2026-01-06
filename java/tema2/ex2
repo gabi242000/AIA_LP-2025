@@ -1,1 +1,24 @@
+import java.io.*;
+
+public class TCIFRE {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("introdu un nr natural: ");
+        int n = Integer.parseInt(br.readLine());
+
+        int min = 9, 
+        int max = 0;
+
+        while (n > 0) {
+            int c = n % 10;  
+            if (c < min) min = c;
+            if (c > max) max = c;
+            n /= 10;        
+        }
+
+        System.out.println("cifra minima = " + min);
+        System.out.println("cifra maxima = " + max);
+    }
+}
 
