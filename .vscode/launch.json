@@ -2,6 +2,90 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Temperaturi",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Fisiere.Temperaturi",
+            "projectName": "AIA_LP-2025_14302fd9"
+        },
+        {
+            "type": "java",
+            "name": "Angajati",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Fisiere.Angajati",
+            "projectName": "AIA_LP-2025_14302fd9"
+        },
+        {
+            "type": "java",
+            "name": "exemplu",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Fisiere.exemplu",
+            "projectName": "AIA_LP-2025_14302fd9"
+        },
+        {
+            "type": "java",
+            "name": "Ex3",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Exceptii.Ex3",
+            "projectName": "AIA_LP-2025_14302fd9"
+        },
+        {
+            "type": "java",
+            "name": "Ex2",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Exceptii.Ex2",
+            "projectName": "AIA_LP-2025_14302fd9"
+        },
+        {
+            "type": "java",
+            "name": "Ex1",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Exceptii.Ex1",
+            "projectName": "AIA_LP-2025_14302fd9"
+        },
+        {
+            "type": "java",
+            "name": "TestMagazin",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Tema_Polimorfism_Mostenire.Exercitiul5.TestMagazin",
+            "projectName": "AIA_LP-2025_14302fd9"
+        },
+        {
+            "type": "java",
+            "name": "TestUniversitate",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Tema_Polimorfism_Mostenire.Exercitiul4.TestUniversitate",
+            "projectName": "AIA_LP-2025_14302fd9"
+        },
+        {
+            "type": "java",
+            "name": "FacturaServiciu",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Tema4.FacturaServiciu",
+            "projectName": "AIA_LP-2025_14302fd9"
+        },
+        {
+            "type": "java",
+            "name": "Masina",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Tema4.Masina",
+            "projectName": "AIA_LP-2025_14302fd9"
+        },
+        {
+            "type": "java",
+            "name": "Animal",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Tema4.Animal",
+            "projectName": "AIA_LP-2025_14302fd9"
+        },
+        {
+            "type": "java",
+            "name": "Ex1",
+            "request": "launch",
+            "mainClass": "Grupa1.Java.Tema1.Ex1",
+            "projectName": "AIA_LP-2025_14302fd9"
+        },
+        {
+            "type": "java",
             "name": "Ex2",
             "request": "launch",
             "mainClass": "Grupa1.Java.Tema1.Ex2",
