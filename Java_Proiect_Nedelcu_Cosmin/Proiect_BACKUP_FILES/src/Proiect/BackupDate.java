@@ -1,0 +1,142 @@
+package Proiect;
+import java.util.*;
+import java.io.*;
+
+
+public class BackupDate {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        Scanner backup = new Scanner(System.in);
+        int optiune = 0;
+
+        System.out.println("~APLICATIE DE BACKUP PENTRU FISIERE~");
+
+        System.out.println("Nume angajat: ");
+        String numeangajat = backup.nextLine();
+
+        System.out.println("        Bun venit, " + numeangajat + "!");
+        System.out.println("Te rugam sa introduci id-ul tau: ");
+        String id = backup.nextLine();
+        int ok = 0;
+
+        while (ok == 0) { 
+            if (id.length() == 6) {
+                System.out.println("        Logat!");
+                ok = 1; 
+            } else {
+                System.out.println("            ID gresit!");
+                System.out.println("Cauza: numar insuficent de caractere.");
+                System.out.println("Te rugam sa introduci id-ul tau: ");
+                id = backup.nextLine();
+            }
+        }
+        
+        
+        File[] surse = {
+        	    new File("ceva1.txt"),
+        	    new File("ceva2.txt"),
+        	    new File("ceva3.txt"),
+        	    new File("ceva4.txt"),
+        	    new File("ceva5.txt") 
+        	};
+
+        	File[] destinatii = {
+        	    new File("backup1.txt"),
+        	    new File("backup2.txt"),
+        	    new File("backup3.txt"),
+        	    new File("backup4.txt"),
+        	    new File("backup5.txt")
+        	};
+        
+        if(ok == 1)
+        {
+        	System.out.println("Va rugam sa selectati fisierul dorit pentru efectuare backup-ului.");
+        	System.out.println("Apasati tasta cu numarul dorit de la 1 la 5 + Enter:");
+        	System.out.println();
+        	System.out.println("In cazul in care doriti sa stergeti cotinutul unui fisier apasati 9 + Enter");
+        	System.out.println();
+        	System.out.print("selectie: ");
+        	optiune = backup.nextInt();
+        }
+        
+        if(optiune == 9)
+        {
+        	
+        	System.out.println("MOD STERGERE: Ce fisier de backup vrei sa golesti? (1-5)");
+            System.out.print("Selectie stergere: ");
+            
+            int optiuneStergere = backup.nextInt(); 
+
+            if (optiuneStergere >= 1 && optiuneStergere <= 5) 
+            {
+                golesteFisier(destinatii[optiuneStergere - 1]); 
+            } else {
+                System.out.println("Ai ales un fisier gresit!");
+            }
+        }
+        
+        else if (optiune >= 1 && optiune <= 5) 
+        {           
+            FileExistCheck(surse[optiune - 1], destinatii[optiune - 1]);
+        } else {
+            System.out.println("Optiune invalida!");
+        }
+	    
+	    
+	    backup.close();
+    }
+
+    
+    public static void copiazaFisier(File sursa, File destinatie) throws IOException {
+	    try (FileInputStream intrare = new FileInputStream(sursa);						
+	         FileOutputStream iesire = new FileOutputStream(destinatie, true)) {				
+	    	
+	    	String linieNoua = System.lineSeparator(); 
+	        
+	        // Scriem acești bytes în fișier
+	        iesire.write(linieNoua.getBytes());
+
+	        byte[] buffer = new byte[1024];			
+	        int lungimeCitita;
+
+	        while ((lungimeCitita = intrare.read(buffer)) > 0) {
+	            iesire.write(buffer, 0, lungimeCitita); 
+	        }
+	    }
+	}
+  
+    public static void FileExistCheck(File sursa_x, File destinatie_x) throws IOException, InterruptedException, FileNotFoundException {
+    	
+    	System.out.println("Caut fisierul " + sursa_x.getName());
+    	
+    	while (!sursa_x.exists()) {
+    		System.out.println("Inca nu l-am gasit... Verific iar in 1 secunda.");
+    	    Thread.sleep(1000); // Pauza de 1 secunda
+    	} 
+    		 
+    	
+    		System.out.println("Am gasit fisierul sursa: " + sursa_x.getAbsolutePath()); 
+    		copiazaFisier(sursa_x, destinatie_x);
+    		       	        																			        
+    		System.out.println("GATA! Am copiat totul din "+ sursa_x + " in " + destinatie_x); 
+    		System.out.println("pentru a verifica deschide fisierul " + destinatie_x.getAbsolutePath());
+    	
+    }
+    
+    public static void golesteFisier(File fisier) throws IOException {
+    	
+        try (FileOutputStream golire = new FileOutputStream(fisier)) {
+            System.out.println("Fisierul " + fisier.getName() + " a fost golit cu succes!");
+        }
+        
+    }
+    
+    
+    
+}// ASTA E DE LA CLASA 
+
+
+
+
+
+
+
