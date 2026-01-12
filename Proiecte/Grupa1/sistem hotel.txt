@@ -1,0 +1,122 @@
+package hotel;
+
+import javax.swing.;
+import java.awt.;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class HotelReservationGUI extends JFrame {
+
+    private JTextField txtNume;
+    private JTextField txtNopti;
+    private JComboBoxString comboCamera;
+    private DefaultListModelString listaModel;
+
+    public HotelReservationGUI() {
+        setTitle(Sistem de Rezervări Hotel);
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+         ===== PANEL PRINCIPAL =====
+        setLayout(new BorderLayout(10, 10));
+
+         ===== PANEL FORMULAR =====
+        JPanel panelForm = new JPanel();
+        panelForm.setBorder(BorderFactory.createTitledBorder(Rezervare nouă));
+        panelForm.setLayout(new GridLayout(4, 2, 10, 10));
+
+        panelForm.add(new JLabel(Nume client));
+        txtNume = new JTextField();
+        panelForm.add(txtNume);
+
+        panelForm.add(new JLabel(Tip cameră));
+        comboCamera = new JComboBox(new String[]{Single, Double, Suite});
+        panelForm.add(comboCamera);
+
+        panelForm.add(new JLabel(Număr nopți));
+        txtNopti = new JTextField();
+        panelForm.add(txtNopti);
+
+        JButton btnRezerva = new JButton(Rezervă);
+        JButton btnSterge = new JButton(Șterge);
+        panelForm.add(btnRezerva);
+        panelForm.add(btnSterge);
+
+         ===== PANEL LISTĂ =====
+        listaModel = new DefaultListModel();
+        JListString listaRezervari = new JList(listaModel);
+        JScrollPane scrollPane = new JScrollPane(listaRezervari);
+        scrollPane.setBorder(BorderFactory.createTitledBorder(Rezervări));
+
+         ===== ADAUGARE ÎN FEREASTRĂ =====
+        add(panelForm, BorderLayout.NORTH);
+        add(scrollPane, BorderLayout.CENTER);
+
+         ===== EVENIMENTE =====
+        btnRezerva.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rezerva();
+            }
+        });
+
+        btnSterge.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                curata();
+            }
+        });
+    }
+
+    private void rezerva() {
+        String nume = txtNume.getText();
+        String camera = (String) comboCamera.getSelectedItem();
+        int nopti;
+
+        if (nume.isEmpty()) {
+            JOptionPane.showMessageDialog(this, Introduceți numele clientului!);
+            return;
+        }
+
+        try {
+            nopti = Integer.parseInt(txtNopti.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, Număr de nopți invalid!);
+            return;
+        }
+
+        int pretPeNoapte = 0;
+
+        if (camera.equals(Single)) {
+            pretPeNoapte = 150;
+        } else if (camera.equals(Double)) {
+            pretPeNoapte = 250;
+        } else if (camera.equals(Suite)) {
+            pretPeNoapte = 400;
+        }
+
+        int total = nopti  pretPeNoapte;
+
+        String rezervare = nume +    + camera +   
+                + nopti +  nopți   + total +  RON;
+
+        listaModel.addElement(rezervare);
+        curata();
+    }
+
+    private void curata() {
+        txtNume.setText();
+        txtNopti.setText();
+        comboCamera.setSelectedIndex(0);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new HotelReservationGUI().setVisible(true);
+            }
+        });
+    }
+}
