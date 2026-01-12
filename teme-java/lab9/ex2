@@ -1,0 +1,54 @@
+import java.io.*;
+import java.util.*;
+public class tema_lab_9_ex2 {
+    public static void main(String[] args) {
+        File fisier = new File("temperaturi.txt");
+        if (!fisier.exists()) {
+            System.out.println("Fisierul temperaturi.txt nu exista!");
+            return;
+        }
+        double suma = 0;
+        double min = Double.MAX_VALUE;
+        double max = Double.MIN_VALUE;
+        int nrSubZero = 0;
+        int nrValori = 0;
+        List<Double> temperaturiNegative = new ArrayList<>();
+        try (Scanner sc = new Scanner(fisier)) {
+            while (sc.hasNextDouble()) {
+                double temp = sc.nextDouble();
+                nrValori++;
+                suma += temp;
+                if (temp < min) min = temp;
+                if (temp > max) max = temp;
+
+                if (temp < 0) {
+                    nrSubZero++;
+                    temperaturiNegative.add(temp);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Eroare la citirea fisierului!");
+            return;
+        }
+
+        double medie = suma / nrValori;
+        try (PrintWriter pw = new PrintWriter("temp_sub_zero.txt")) {
+            for (double t : temperaturiNegative) {
+                pw.println(t);
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea fisierului temp_sub_zero.txt");
+        }
+
+        try (PrintWriter pw = new PrintWriter("raport_temperaturi.txt")) {
+            pw.println("Numar valori: " + nrValori);
+            pw.println("Temperatura medie: " + medie);
+            pw.println("Temperatura minima: " + min);
+            pw.println("Temperatura maxima: " + max);
+            pw.println("Numar temperaturi sub 0°C: " + nrSubZero);
+        } catch (IOException e) {
+            System.out.println("Eroare la scrierea fisierului raport_temperaturi.txt");
+        }
+
+    }
+}
