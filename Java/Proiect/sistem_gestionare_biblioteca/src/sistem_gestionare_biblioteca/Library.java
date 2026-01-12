@@ -435,7 +435,7 @@ public class Library {
 			boolean existsRating = false;
 			for(int i = 0; i < nr_books; i++) 
 				if(library[index[i]].getRating() != -1) {
-					   System.out.println(library[index[i]].getRating() + " pagini " + " ‖ " + "\"" + library[index[i]].getTitle() + "\"" + " ‖ " + library[index[i]].getAuthor());
+					   System.out.println(library[index[i]].getRating() + " / 10 ☆ " + " ‖ " + "\"" + library[index[i]].getTitle() + "\"" + " ‖ " + library[index[i]].getAuthor());
 					   existsRating = true;
 				}
 			
@@ -786,5 +786,6 @@ public class Library {
 	}
 	
 }
+
 
 
