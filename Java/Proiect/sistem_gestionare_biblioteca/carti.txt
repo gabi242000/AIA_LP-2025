@@ -1,0 +1,7 @@
+Little Women;Louisa May Alcott;Clasics;audiobook;citita;400;1868;10
+The Empire of Gold;S.A. Chakraborty;Fantasy;fizic;citita;790;2020
+Gods of Jade and Shadow;Silvia Moreno-Garcia;Fantasy;ebook;wishlist;336;2019
+None of This is True;Lisa Jewell;Thriller;ebook;citita;370;2023;9
+House of Hollow;Krystal Sutherland;Young Adult;fizic;wishlist;300;2017
+Renegades;Marissa Meyer;Young Adult;ebook;citita;560;2012
+The Book Thief;Markus Zusak;Historical fiction;audiobook;citita;592;2006;10
