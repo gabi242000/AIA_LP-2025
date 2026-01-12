@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <ctype.h> 
+void asambleaza(char s[], int key) {
+    for (int i = 0; s[i] != '\0'; i++) {
+        if (isalpha(s[i])) {
+            if (isupper(s[i])) {
+                s[i] = 'A' + (s[i] - 'A' + key) % 26;
+            } else {
+                s[i] = 'a' + (s[i] - 'a' + key) % 26;
+            }
+        }
+    }
+}
+void dezasambleaza(char s[], int key) {
+    for (int i = 0; s[i] != '\0'; i++) {
+        if (isalpha(s[i])) {
+            if (isupper(s[i])) {
+                s[i] = 'A' + (s[i] - 'A' - key + 26) % 26;
+            } else {
+                s[i] = 'a' + (s[i] - 'a' - key + 26) % 26;
+            }
+        }
+    }
+}
+int main() {
+    char s[100];
+    int key;
+    printf("Introdu un sir de caractere: ");
+    fgets(s, sizeof(s), stdin);
+    pritf("Introdu cheia de criptare (un numar intreg): ");
+    scanf("%d", &key);
+    for (int i = 0; s[i] != '\0'; i++) {
+        if (s[i] == '\n') {
+            s[i] = '\0';
+            break;
+        }
+    }
+    asambleaza(s, key);
+    printf("Sir criptat: %s\n", s);
+
+    desazambleaza(s, key);
+    printf("Sir decriptat: %s\n", s);
+    return 0;
+}
