@@ -1,0 +1,28 @@
+RECIPE MANAGER – FORMAT IMPORT
+
+Fișier: .txt sau .recipes (UTF-8)
+
+Poți avea una sau mai multe rețete în același fișier.
+
+STRUCTURĂ:
+
+===RECIPE===
+id=<orice text/număr, opțional>
+title=<obligatoriu>
+category=<obligatoriu>
+minutes=<număr, opțional>
+servings=<număr, opțional>
+ingredients:
+<1 ingredient pe linie>
+<1 ingredient pe linie>
+---
+steps:
+<1 pas pe linie>
+<1 pas pe linie>
+===END===
+
+NOTE:
+- Separatorul '---' închide lista de ingrediente.
+- 'steps:' începe lista de pași.
+- Dacă lipsește id, aplicația generează unul automat.
+- Dacă lipsesc minutes/servings, se folosesc valori implicite.
