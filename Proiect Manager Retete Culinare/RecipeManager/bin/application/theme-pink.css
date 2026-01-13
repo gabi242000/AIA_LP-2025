@@ -1,0 +1,38 @@
+/* =========================
+   THEME: PASTEL ROZ
+   ========================= */
+
+.root {
+    -fx-bg: #fff3f7;            /* fundal general */
+    -fx-panel-bg: #ffe7f0;      /* panouri / liste / inputuri */
+
+    -fx-accent: #f4b9d1;        /* butoane / accent */
+    -fx-accent-strong: #ee9fbe; /* hover buton */
+
+    -fx-text: #4a2c3a;          /* roz inchis */
+    -fx-text-soft: #6b3f53;
+
+    -fx-hover-bg: #f8cfe1;      /* hover pe lista */
+    -fx-hover-text: #4a2c3a;
+
+    -fx-select-bg: #f1a9c7;     /* select */
+    -fx-select-text: #3a1f2b;
+
+    -fx-text-on-accent: #fff3f7; /* alb roz */
+}
+
+.root {
+    -fx-background-color: -fx-bg;
+}
+
+.topbar, .sidebar {
+    -fx-background-color: -fx-panel-bg;
+}
+
+.label, .h1, .h2 {
+    -fx-text-fill: -fx-text;
+}
+
+#metaLabel {
+    -fx-text-fill: -fx-text-soft;
+}

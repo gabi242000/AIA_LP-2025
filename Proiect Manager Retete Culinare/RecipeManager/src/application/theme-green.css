@@ -1,0 +1,38 @@
+/* =========================
+   THEME: PASTEL VERDE
+   ========================= */
+
+.root {
+    -fx-bg: #f2fbf5;
+    -fx-panel-bg: #e6f8ec;
+
+    -fx-accent: #bfe9c9;
+    -fx-accent-strong: #a7dcb5;
+
+    -fx-text: #1f3b2a;
+    -fx-text-soft: #355b44;
+
+    -fx-hover-bg: #d2f2da;
+    -fx-hover-text: #1f3b2a;
+
+    -fx-select-bg: #9fd7af;
+    -fx-select-text: #163020;
+
+    -fx-text-on-accent: #f2fbf5; /* “alb verzui” */
+}
+
+.root {
+    -fx-background-color: -fx-bg;
+}
+
+.topbar, .sidebar {
+    -fx-background-color: -fx-panel-bg;
+}
+
+.label, .h1, .h2 {
+    -fx-text-fill: -fx-text;
+}
+
+#metaLabel {
+    -fx-text-fill: -fx-text-soft;
+}

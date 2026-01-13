@@ -1,0 +1,38 @@
+/* =========================
+   THEME: PASTEL MOV
+   ========================= */
+
+.root {
+    -fx-bg: #f7f3ff;
+    -fx-panel-bg: #efe8ff;
+
+    -fx-accent: #d3c2ff;
+    -fx-accent-strong: #bfa6ff;
+
+    -fx-text: #2f2440;
+    -fx-text-soft: #4b3a66;
+
+    -fx-hover-bg: #e1d7ff;
+    -fx-hover-text: #2f2440;
+
+    -fx-select-bg: #b79cff;
+    -fx-select-text: #241a33;
+
+    -fx-text-on-accent: #f7f3ff; /* alb mov */
+}
+
+.root {
+    -fx-background-color: -fx-bg;
+}
+
+.topbar, .sidebar {
+    -fx-background-color: -fx-panel-bg;
+}
+
+.label, .h1, .h2 {
+    -fx-text-fill: -fx-text;
+}
+
+#metaLabel {
+    -fx-text-fill: -fx-text-soft;
+}

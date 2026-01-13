@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.RecipeController"
+            prefWidth="900" prefHeight="600">
+
+    <top>
+        <HBox spacing="10" styleClass="topbar">
+    <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+
+    <TextField fx:id="searchField" promptText="Caută rețete..." HBox.hgrow="ALWAYS"/>
+    <ComboBox fx:id="categoryFilter" prefWidth="160"/>
+    <ComboBox fx:id="themeBox" prefWidth="160"/>
+    
+
+    <Button text="Adaugă" onAction="#onAdd"/>
+    <Button text="Editează" onAction="#onEdit"/>
+    <Button text="Șterge" onAction="#onDelete"/>
+
+</HBox>
+
+    </top>
+
+    <left>
+        <VBox styleClass="sidebar">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+            <Label text="Rețete" styleClass="h2"/>
+            <ListView fx:id="recipeList" prefWidth="280" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true">
+            <content>
+                <VBox spacing="10" styleClass="content">
+                    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+
+                    <Label fx:id="titleLabel" text="Selectează o rețetă" styleClass="h1"/>
+                    <Label fx:id="metaLabel" text=""/>
+
+                    <Separator/>
+
+                    <Label text="Ingrediente" styleClass="h2"/>
+                    <ListView fx:id="ingredientsList" prefHeight="160"/>
+
+                    <Label text="Pași" styleClass="h2"/>
+                    <ListView fx:id="stepsList" prefHeight="200"/>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+    
+    <bottom>
+    <HBox spacing="10" styleClass="topbar">
+        <padding><Insets top="10" right="12" bottom="10" left="12"/></padding>
+
+        <Button text="Import fișier" onAction="#onImport"/>
+        <Button text="Salvează" onAction="#onSave"/>
+
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Label fx:id="statusLabel" text="0 rețete" id="metaLabel"/>
+    </HBox>
+</bottom>
+    
+
+</BorderPane>

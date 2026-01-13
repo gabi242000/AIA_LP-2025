@@ -1,0 +1,149 @@
+/* =========================
+   BASE (comun pentru toate temele)
+   ========================= */
+
+.root {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 13px;
+}
+
+/* titluri */
+.h1 {
+    -fx-font-size: 24px;
+    -fx-font-weight: 800;
+}
+.h2 {
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+}
+
+/* layout zone */
+.topbar, .sidebar {
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: rgba(0,0,0,0.06);
+}
+
+.content {
+    -fx-background-color: transparent;
+}
+
+/* butoane */
+.button {
+    -fx-background-color: -fx-accent;
+    -fx-text-fill: -fx-text;
+    -fx-background-radius: 14;
+    -fx-padding: 8 18;
+    -fx-font-weight: 800;
+}
+.button:hover {
+    -fx-background-color: -fx-accent-strong;
+    -fx-text-fill: -fx-text-on-accent;
+}
+
+/* =========================
+   FARA ALB: inputuri, liste, scrollpane
+   ========================= */
+.text-field,
+.combo-box,
+.list-view,
+.scroll-pane {
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-border-color: rgba(0,0,0,0.10);
+    -fx-background-color: -fx-panel-bg;
+}
+
+/* interior TextField */
+.text-field {
+    -fx-text-fill: -fx-text;
+    -fx-prompt-text-fill: -fx-text-soft;
+}
+
+/* interior ComboBox */
+.combo-box .list-cell {
+    -fx-text-fill: -fx-text;
+}
+
+/* popup-ul ComboBox (lista care se deschide) */
+.combo-box-popup .list-view {
+    -fx-background-color: -fx-panel-bg;
+    -fx-border-color: rgba(0,0,0,0.10);
+}
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: -fx-panel-bg;
+    -fx-text-fill: -fx-text;
+}
+
+/* listview background fără alb în interior */
+.list-view .virtual-flow,
+.list-view .virtual-flow .clipped-container,
+.list-view .virtual-flow .clipped-container .sheet {
+    -fx-background-color: -fx-panel-bg;
+}
+
+/* list cells */
+.list-cell {
+    -fx-padding: 8 10;
+    -fx-background-color: -fx-panel-bg;
+    -fx-text-fill: -fx-text;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: -fx-hover-bg;
+    -fx-text-fill: -fx-hover-text;
+}
+
+.list-cell:selected {
+    -fx-background-color: -fx-select-bg;
+    -fx-text-fill: -fx-select-text;
+}
+
+/* scrollpane viewport (altfel ramane alb) */
+.scroll-pane {
+    -fx-background-color: -fx-bg;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: -fx-bg;
+}
+
+/* separator */
+.separator .line {
+    -fx-border-color: rgba(0,0,0,0.10);
+}
+
+/* scroll bar thumb */
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: -fx-accent;
+    -fx-background-radius: 10;
+}
+/* TextArea */
+.text-area, .text-area .content {
+    -fx-background-color: -fx-panel-bg;
+    -fx-background-radius: 14;
+    -fx-text-fill: -fx-text;
+}
+.text-area .content {
+    -fx-background-color: -fx-panel-bg;
+}
+
+/* ComboBox */
+.combo-box-base {
+    -fx-background-color: -fx-panel-bg;
+    -fx-background-radius: 14;
+}
+.combo-box-base:hover {
+    -fx-background-color: -fx-hover-bg;
+}
+
+/* ScrollPane corner */
+.scroll-pane .corner {
+    -fx-background-color: -fx-bg;
+}
+
+/* ListView empty space  */
+.list-view {
+    -fx-control-inner-background: -fx-panel-bg;
+    -fx-control-inner-background-alt: -fx-panel-bg;
+}
