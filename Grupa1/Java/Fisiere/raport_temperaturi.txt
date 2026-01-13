@@ -1,0 +1,4 @@
+Temperatura medie : 2.8333333333333335
+Temperatura maxima: 17.0
+Temperatura minima: -12.0
+Numarul temperaturilor negative: 9
