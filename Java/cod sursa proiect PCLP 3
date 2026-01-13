@@ -1,0 +1,137 @@
+import javax.swing.*;
+import java.awt.*;
+import java.util.Random;
+
+public class JocGraficPiFoHa extends JFrame {
+    private int scorOm = 0;
+    private int scorCalculator = 0;
+    private JLabel labelScorOm, labelScorCalc, labelMesaj, labelAlegere;
+
+    public JocGraficPiFoHa() {
+        
+        setTitle("Piatra-Foarfeca-Hartie");
+        setSize(1000, 800); 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout(20, 20));
+        getContentPane().setBackground(new Color(235, 235, 235));
+        setLocationRelativeTo(null);
+
+        
+        JLabel titlu = new JLabel("PIATRA - FOARFECA - HARTIE", SwingConstants.CENTER);
+        titlu.setFont(new Font("Segoe UI", Font.BOLD, 35));
+        titlu.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
+        add(titlu, BorderLayout.NORTH);
+
+        // panel central
+        JPanel panelCentral = new JPanel();
+        panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
+        panelCentral.setOpaque(false);
+
+        // butoane
+        JPanel panelButoane = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 40));
+        panelButoane.setOpaque(false);
+        
+        
+        JButton btnPiatra = creeazaButonSpecial("Piat", "●", "cerc", new Color(41, 128, 185));
+        
+        JButton btnFoarfeca = creeazaButonSpecial("Foar", "✂", "simplu", new Color(192, 57, 43));
+        
+        JButton btnHartie = creeazaButonSpecial("Harti", "📄", "chenar", new Color(39, 174, 96));
+
+        btnPiatra.addActionListener(e -> joaca(1));
+        btnFoarfeca.addActionListener(e -> joaca(2));
+        btnHartie.addActionListener(e -> joaca(3));
+
+        panelButoane.add(btnPiatra);
+        panelButoane.add(btnFoarfeca);
+        panelButoane.add(btnHartie);
+
+        // mesaje
+        labelAlegere = new JLabel("Alege maiestre...", SwingConstants.CENTER);
+        labelAlegere.setAlignmentX(Component.CENTER_ALIGNMENT);
+        labelAlegere.setFont(new Font("Segoe UI", Font.PLAIN, 26));
+
+        labelMesaj = new JLabel("START!", SwingConstants.CENTER);
+        labelMesaj.setAlignmentX(Component.CENTER_ALIGNMENT);
+        labelMesaj.setFont(new Font("Segoe UI", Font.BOLD, 32));
+        labelMesaj.setBorder(BorderFactory.createEmptyBorder(30, 0, 30, 0));
+
+        panelCentral.add(panelButoane);
+        panelCentral.add(labelAlegere);
+        panelCentral.add(labelMesaj);
+        add(panelCentral, BorderLayout.CENTER);
+
+        // scor
+        JPanel panelScor = new JPanel(new GridLayout(1, 2));
+        panelScor.setPreferredSize(new Dimension(1000, 180));
+        panelScor.setBackground(Color.WHITE);
+        panelScor.setBorder(BorderFactory.createMatteBorder(5, 0, 0, 0, new Color(200, 200, 200)));
+
+        labelScorOm = new JLabel("Tu: 0", SwingConstants.CENTER);
+        labelScorOm.setForeground(new Color(39, 174, 96));
+        labelScorOm.setFont(new Font("Arial Black", Font.BOLD, 65));
+
+        labelScorCalc = new JLabel("Com: 0", SwingConstants.CENTER);
+        labelScorCalc.setForeground(new Color(192, 57, 43));
+        labelScorCalc.setFont(new Font("Arial Black", Font.BOLD, 65));
+
+        panelScor.add(labelScorOm);
+        panelScor.add(labelScorCalc);
+
+        add(panelScor, BorderLayout.SOUTH);
+    }
+
+    private JButton creeazaButonSpecial(String text, String iconita, String tip, Color culoare) {
+        String htmlText = "";
+        
+        
+        if (tip.equals("cerc")) {
+            
+            htmlText = "<html><center><font size='15'>" + iconita + "</font><br>" + text + "</center></html>";
+        } else if (tip.equals("simplu")) {
+           
+            htmlText = "<html><center><font size='15'>" + iconita + "</font><br>" + text + "</center></html>";
+        } else if (tip.equals("chenar")) {
+            
+            htmlText = "<html><center><font size='15'>" + iconita + "</font><br>" + text + "</center></html>";
+        }
+
+        JButton buton = new JButton(htmlText);
+        buton.setPreferredSize(new Dimension(220, 160)); 
+        buton.setBackground(culoare);
+        buton.setForeground(Color.WHITE);
+        buton.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        buton.setFocusPainted(false);
+        buton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        buton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 4));
+        
+        return buton;
+    }
+
+    private void joaca(int alegereOm) {
+        String[] optiuni = {"Piat", "Foar", "Harti"};
+        int alegereCalc = new Random().nextInt(3) + 1;
+
+        labelAlegere.setText("Tu ai ales: " + optiuni[alegereOm - 1] + " | Com a ales: " + optiuni[alegereCalc - 1]);
+
+        if (alegereOm == alegereCalc) {
+            labelMesaj.setText("Mintile geniale gandesc la fel");
+            labelMesaj.setForeground(Color.GRAY);
+        } else if ((alegereOm == 1 && alegereCalc == 2) || (alegereOm == 2 && alegereCalc == 3) || (alegereOm == 3 && alegereCalc == 1)) {
+            labelMesaj.setText("DING DING DING CASH!");
+            labelMesaj.setForeground(new Color(39, 174, 96));
+            scorOm++;
+        } else {
+            labelMesaj.setText("E ok se mai intampla, pupic de consolare");
+            labelMesaj.setForeground(new Color(192, 57, 43));
+            scorCalculator++;
+        }
+
+        labelScorOm.setText("Tu: " + scorOm);
+        labelScorCalc.setText("Com: " + scorCalculator);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new JocGraficPiFoHa().setVisible(true));
+    }
+}
