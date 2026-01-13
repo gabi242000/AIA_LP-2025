@@ -1,0 +1,17 @@
+===RECIPE===
+id=1
+title=Paste cu sos roz
+category=Cină
+minutes=25
+servings=2
+ingredients:
+200 g paste
+150 ml smântână
+2 linguri pastă de roșii
+sare, piper
+---
+steps:
+Fierbi pastele.
+Amesteci smântâna cu pasta de roșii.
+Combini totul și asezonezi.
+===END===
