@@ -1,0 +1,389 @@
+import java.io.*;
+import java.util.*;
+
+// 1. CLASA PENTRU O POSTARE
+class Postare {
+    String autor;
+    String text;
+    int likeuri;
+
+    public Postare(String autor, String text) {
+        this.autor = autor;
+        this.text = text;
+        this.likeuri = 0;
+    }
+
+    public void daLike() {
+        this.likeuri++;
+    }
+
+    @Override
+    public String toString() {
+        return "@" + autor + ": " + text + " [Likes: " + likeuri + "]";
+    }
+    
+    // Format pentru salvare in fisier 
+    public String toFileString() {
+        return autor + ";" + text + ";" + likeuri;
+    }
+}
+
+// 2. CLASA PENTRU UTILIZATOR
+class Utilizator {
+    String nume;
+    ArrayList<String> prieteni; // Lista cu numele prietenilor
+
+    public Utilizator(String nume) {
+        this.nume = nume;
+        this.prieteni = new ArrayList<>();
+    }
+
+    public void adaugaPrieten(String numePrieten) {
+        if (!prieteni.contains(numePrieten) && !numePrieten.equals(this.nume)) {
+            prieteni.add(numePrieten);
+            System.out.println("Te-ai imprietenit cu " + numePrieten + "!");
+        } else {
+            System.out.println("Esti deja prieten sau nu te poti adauga pe tine.");
+        }
+    }
+}
+
+// 3. CLASA PRINCIPALA (MAIN)
+public class SocialApp {
+    
+    // "Baza de date" in memorie
+    static ArrayList<Utilizator> utilizatori = new ArrayList<>();
+    static ArrayList<Postare> toatePostarile = new ArrayList<>();
+    static Utilizator utilizatorCurent = null; // Cine este logat acum?
+    static Scanner scanner = new Scanner(System.in);
+    static final String FISIER_DATE = "social_data.txt";
+
+    public static void main(String[] args) {
+        incarcareDate(); // Incarcam postarile vechi daca exista
+        
+        int optiune;
+        do {
+            System.out.println("\n=== SOCIAL CONSOLE ===");
+            if (utilizatorCurent == null) {
+                System.out.println("1. Inregistrare / Login");
+                System.out.println("0. Iesire");
+                System.out.print("Alege: ");
+                optiune = scanner.nextInt(); scanner.nextLine();
+                
+                if (optiune == 1) loginSauRegister();
+                
+            } else {
+                System.out.println("Salut, " + utilizatorCurent.nume + "!");
+                System.out.println("1. Scrie o Postare");
+                System.out.println("2. Vezi Feed (Noutati)");
+                System.out.println("3. Adauga un Prieten");
+                System.out.println("4. Vezi lista mea de prieteni");
+                System.out.println("5. Deconectare (Logout)");
+                System.out.println("0. Iesire din aplicatie");
+                System.out.print("Alege: ");
+                optiune = scanner.nextInt(); scanner.nextLine();
+
+                switch (optiune) {
+                    case 1: scriePostare(); break;
+                    case 2: afisareFeed(); break;
+                    case 3: adaugaPrieten(); break;
+                    case 4: afisarePrieteni(); break;
+                    case 5: 
+                        utilizatorCurent = null; 
+                        System.out.println("Te-ai deconectat.");
+                        break;
+                    case 0: 
+                        salvareDate();
+                        System.out.println("La revedere!");
+                        break;
+                    default: System.out.println("Optiune invalida.");
+                }
+            }
+        } while (optiune != 0 || utilizatorCurent != null); // Ramane in bucla daca dai logout
+        
+        // Salvare finala la inchidere
+        salvareDate();
+    }
+
+    //  METODELE FUNCTIONALE 
+
+    private static void loginSauRegister() {
+        System.out.print("Introdu numele tau de utilizator: ");
+        String nume = scanner.nextLine().trim();
+        
+        // Cautam daca exista deja
+        for (Utilizator u : utilizatori) {
+            if (u.nume.equalsIgnoreCase(nume)) {
+                utilizatorCurent = u;
+                System.out.println("Bine ai revenit, " + nume + "!");
+                return;
+            }
+        }
+        
+        // Daca nu exista, il cream
+        Utilizator nou = new Utilizator(nume);
+        utilizatori.add(nou);
+        utilizatorCurent = nou;
+        System.out.println("Cont nou creat pentru " + nume + "!");
+    }
+
+    private static void scriePostare() {
+        System.out.print("Ce ai in minte?: ");
+        String text = scanner.nextLine();
+        Postare p = new Postare(utilizatorCurent.nume, text);
+        toatePostarile.add(p);
+        System.out.println("Postat cu succes!");
+    }
+
+    private static void afisareFeed() {
+        System.out.println("\n--- NEWS FEED ---");
+        boolean gol = true;
+        // Afisam postarile mele SI ale prietenilor
+        for (Postare p : toatePostarile) {
+            if (p.autor.equals(utilizatorCurent.nume) || utilizatorCurent.prieteni.contains(p.autor)) {
+                System.out.println(p); // Apeleaza automat toString()
+                gol = false;
+            }
+        }
+        if (gol) System.out.println("Nimic nou. Adauga prieteni sau scrie ceva!");
+    }
+
+    private static void adaugaPrieten() {
+        System.out.print("Pe cine vrei sa adaugi (nume exacte): ");
+        String numePrieten = scanner.nextLine();
+        utilizatorCurent.adaugaPrieten(numePrieten);
+    }
+    
+    private static void afisarePrieteni() {
+        System.out.println("Prietenii tai: " + utilizatorCurent.prieteni);
+    }
+
+    //  SALVARE SI INCARCARE (Persistence) 
+    
+    private static void salvareDate() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FISIER_DATE))) {
+            for (Postare p : toatePostarile) {
+                bw.write(p.toFileString());
+                bw.newLine();
+            }
+            
+            // Aici salvam doar postarile pentru simplitate
+        } catch (IOException e) {
+            System.out.println("Eroare la salvare.");
+        }
+    }
+
+    private static void incarcareDate() {
+        File f = new File(FISIER_DATE);
+        if (!f.exists()) return;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+            String linie;
+            while ((linie = br.readLine()) != null) {
+                String[] parti = linie.split(";");
+                if (parti.length == 3) {
+                    Postare p = new Postare(parti[0], parti[1]);
+                    p.likeuri = Integer.parseInt(parti[2]);
+                    toatePostarile.add(p);
+                    
+                    // Reconstituim userii din postari 
+                    boolean existaUser = false;
+                    for(Utilizator u : utilizatori) {
+                        if(u.nume.equals(parti[0])) existaUser = true;
+                    }
+                    if(!existaUser) utilizatori.add(new Utilizator(parti[0]));
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Eroare la incarcare.");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+# Documentație Tehnică: Aplicația "Social Console" în Java
+
+## 1. Introducere și Obiectivele Proiectului
+
+Proiectul reprezintă o simulare a unei rețele de socializare care rulează în consolă. Scopul principal este gestionarea interacțiunilor de bază dintre utilizatori: crearea de conturi, publicarea de conținut (postări), gestionarea relațiilor de prietenie și persistența datelor prin fișiere externe.
+
+## 2. Analiza Structurii de Date și a Claselor
+
+### 2.1. Clasa `Postare` – Gestionarea Conținutului
+
+Această clasă este unitatea de bază pentru informația partajată în aplicație.
+
+**Liniile importante de cod:**
+
+```java
+String autor;
+String text;
+int likeuri;
+
+```
+
+* **Explicație:** Acestea sunt atributele clasei. Folosim `String` pentru a stoca numele autorului și textul postării, în timp ce un `int` este suficient pentru a contoriza aprecierile (like-urile).
+
+```java
+public String toFileString() {
+    return autor + ";" + text + ";" + likeuri;
+}
+
+```
+
+* **Importanța în proiect:** Această metodă implementează conceptul de **serializare manuală**. Pentru a salva datele într-un fișier text (CSV), trebuie să transformăm obiectul dintr-o entitate complexă într-un singur rând de text. Folosirea punctului și virgulei (`;`) ca separator este crucială pentru a putea „sparge” (split) linia înapoi în bucăți la încărcare.
+
+---
+
+### 2.2. Clasa `Utilizator` – Entitatea Socială
+
+Clasa definește profilul persoanei care interacționează cu sistemul.
+
+**Liniile importante de cod:**
+
+```java
+ArrayList<String> prieteni;
+
+```
+
+* **Explicație:** Se utilizează o listă dinamică (`ArrayList`) în locul unui array fix deoarece numărul de prieteni ai unui utilizator se schimbă pe parcursul rulării. Stocăm doar numele prietenilor ca referințe.
+
+```java
+public void adaugaPrieten(String numePrieten) {
+    if (!prieteni.contains(numePrieten) && !numePrieten.equals(this.nume)) {
+        prieteni.add(numePrieten);
+
+```
+
+* **Logica de business:** Aici regăsim mecanismul de validare. Codul verifică două condiții esențiale:
+1. Utilizatorul să nu fie deja în lista de prieteni (evitarea duplicatelor).
+2. Utilizatorul să nu se poată adăuga pe sine însuși (regula de integritate).
+
+
+
+---
+
+## 3. Logica Principală (Clasa `SocialApp`)
+
+Această clasă funcționează ca un motor (Engine) pentru întreaga aplicație, gestionând starea sistemului (cine este logat) și colecțiile de date globale.
+
+### 3.1. Gestiunea Memoriei și Starea Aplicației
+
+```java
+static ArrayList<Utilizator> utilizatori = new ArrayList<>();
+static ArrayList<Postare> toatePostarile = new ArrayList<>();
+static Utilizator utilizatorCurent = null;
+
+```
+
+* **Explicație:** Variabilele sunt declarate `static` pentru a fi accesibile din metoda `main` și din restul metodelor utilitare fără a fi nevoie de instanțierea clasei `SocialApp`. `utilizatorCurent` este o variabilă de tip referință care ne spune în orice moment dacă există cineva autentificat.
+
+### 3.2. Mecanismul de Autentificare (`loginSauRegister`)
+
+```java
+for (Utilizator u : utilizatori) {
+    if (u.nume.equalsIgnoreCase(nume)) {
+        utilizatorCurent = u;
+        return;
+    }
+}
+
+```
+
+* **Explicație:** Aceasta este o căutare liniară. Programul parcurge lista de utilizatori existenți. Utilizarea `equalsIgnoreCase` îmbunătățește experiența utilizatorului (UX), permițând logarea indiferent dacă se folosesc litere mari sau mici. Dacă bucla se termină fără a găsi un nume, codul creează automat un obiect nou, implementând astfel o înregistrare „on-the-fly”.
+
+---
+
+## 4. Persistența Datelor (Lucrul cu Fișiere)
+
+Aceasta este cea mai tehnică parte a documentației, explicând cum datele supraviețuiesc după închiderea programului.
+
+### 4.1. Salvarea Datelor (`salvareDate`)
+
+```java
+try (BufferedWriter bw = new BufferedWriter(new FileWriter(FISIER_DATE))) {
+    for (Postare p : toatePostarile) {
+        bw.write(p.toFileString());
+        bw.newLine();
+    }
+}
+
+```
+
+* **Explicație:** Se folosește construcția **try-with-resources** (introdusă în Java 7). Aceasta garantează că fluxul de date (Stream-ul) va fi închis automat, chiar dacă apare o eroare, prevenind pierderile de memorie sau blocarea fișierului. `BufferedWriter` este utilizat pentru eficiență, scriind datele în blocuri, nu caracter cu caracter.
+
+### 4.2. Încărcarea și Reconstituirea Datelor (`incarcareDate`)
+
+```java
+String[] parti = linie.split(";");
+if (parti.length == 3) {
+    Postare p = new Postare(parti[0], parti[1]);
+    p.likeuri = Integer.parseInt(parti[2]);
+    toatePostarile.add(p);
+}
+
+```
+
+* **Analiză detaliată:** Aici are loc procesul de **de-serializare**.
+1. `split(";")`: Transformă șirul de caractere înapoi într-un vector de bucăți.
+2. `Integer.parseInt()`: Este critic, deoarece din fișier totul vine ca text, iar atributul `likeuri` din clasa noastră este numeric.
+3. **Reconstituirea utilizatorilor:** Codul include o logică prin care, dacă o postare este citită, sistemul verifică dacă autorul există în lista de utilizatori; dacă nu, îl creează. Acest lucru asigură integritatea referențială.
+
+
+
+---
+
+## 5. Algoritmi și Fluxuri de Lucru
+
+### 5.1. Algoritmul de Afișare Feed
+
+```java
+for (Postare p : toatePostarile) {
+    if (p.autor.equals(utilizatorCurent.nume) || utilizatorCurent.prieteni.contains(p.autor)) {
+        System.out.println(p);
+    }
+}
+
+```
+
+* **Logică:** Acesta este un algoritm de filtrare. În loc să arătăm toate postările din sistem, aplicăm o condiție logică `OR`. Postarea este vizibilă dacă:
+* Este postarea proprie.
+* Autorul postării se află în lista de prieteni a celui logat.
+
+
+
+---
+
+## Sugestii pentru extinderea documentației la 10 pagini:
+
+Pentru a atinge volumul de 10 pagini, poți adăuga următoarele secțiuni pe care să le dezvolți similar:
+
+1. **Cerințe de sistem:** Java JRE/JDK minim 8, IDE (IntelliJ/Eclipse).
+2. **Ghid de utilizare:** Descrie fiecare pas (cum pornești, cum scrii „1”, cum dai logout).
+3. **Diagrama de clase (UML):** Desenează tabele pentru fiecare clasă cu atribute și metode.
+4. **Gestionarea erorilor:** Explică ce se întâmplă dacă fișierul nu există (ai deja `if (!f.exists()) return;` în cod).
+5. **Posibilități de dezvoltare viitoare:** Trecerea la o bază de date SQL, adăugarea unei interfețe grafice (Swing/JavaFX) sau criptarea parolelor.
+
+**Vrei să dezvoltăm mai mult una dintre aceste secțiuni, de exemplu partea de „Ghid de utilizare” sau „Analiza detaliată a metodelor”?**
