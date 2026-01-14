@@ -1,0 +1,350 @@
+package proiect;
+
+import java.io.*;
+import java.time.LocalDate; 
+import java.util.Scanner;
+
+interface Analizabil {
+    double calculeazaScorSanatate();
+}
+
+
+@SuppressWarnings("serial")
+class ValoareInvalidaException extends Exception {
+    public ValoareInvalidaException(String mesaj) {
+        super(mesaj);
+    }
+}
+
+
+class DeadlineObiectiv extends Thread {
+    private String obiectiv;
+    private int secunde;
+
+    public DeadlineObiectiv(String obiectiv, int secunde) {
+        this.obiectiv = obiectiv;
+        this.secunde = secunde;
+    }
+
+    @Override
+    public void run() {
+        try {
+            System.out.println("\n[Sistem] Obiectiv setat: '" + obiectiv + "'. Cronometru pornit: " + secunde + " sec.");
+            Thread.sleep(secunde * 1000); 
+            System.out.println("\n[NOTIFICARE] Timpul a expirat pentru: '" + obiectiv + "'! Verifică progresul.");
+        } catch (InterruptedException e) {
+            System.out.println("Cronometrul a fost întrerupt.");
+        }
+    }
+}
+
+
+class Hobby {
+    private String denumire;
+    private int durataMinute;
+
+    public Hobby(String denumire, int durataMinute) {
+        this.denumire = denumire;
+        this.durataMinute = durataMinute;
+    }
+
+    public String getDenumire() { return denumire; }
+    public int getDurata() { return durataMinute; }
+
+    @Override
+    public String toString() {
+        return denumire + " (" + durataMinute + " min)";
+    }
+}
+
+
+class InregistrareZi implements Analizabil {
+    private String data; 
+    private int pasi;
+    private int puls;
+    private String stareEmotionala;
+    private double economii;
+    
+    private Hobby[] hobbyuri;
+    private int contorHobby;
+
+    public InregistrareZi(String data, int pasi, int puls, String stare, double economii) {
+        this.data = data;
+        this.pasi = pasi;
+        this.puls = puls;
+        this.stareEmotionala = stare;
+        this.economii = economii;
+        this.hobbyuri = new Hobby[5]; 
+        this.contorHobby = 0;
+    }
+
+    public void adaugaHobby(Hobby h) {
+        if (contorHobby < hobbyuri.length) {
+            hobbyuri[contorHobby] = h;
+            contorHobby++;
+        }
+    }
+
+    @Override
+    public double calculeazaScorSanatate() {
+       
+        return (pasi / 100.0) - Math.abs(puls - 70);
+    }
+
+    public int getPasi() { return pasi; }
+    public int getPuls() { return puls; }
+    public String getStare() { return stareEmotionala; }
+
+    public void afisareDetalii() {
+        System.out.println("------------------------------------------------");
+        System.out.println("DATA: " + data);
+        System.out.println("  > Pasi: " + pasi);
+        System.out.println("  > Puls: " + puls + " bpm");
+        System.out.println("  > Stare: " + stareEmotionala);
+        System.out.println("  > Scor Sănătate: " + String.format("%.2f", calculeazaScorSanatate()));
+        System.out.println("  > Economii: " + economii + " RON");
+        System.out.print("  > Hobby-uri: ");
+        if (contorHobby == 0) {
+            System.out.print("Niciunul.");
+        } else {
+            for (int i = 0; i < contorHobby; i++) {
+                System.out.print("[" + hobbyuri[i].toString() + "] ");
+            }
+        }
+        System.out.println("\n------------------------------------------------");
+    }
+
+    public String toFileString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(data).append(";")
+          .append(pasi).append(";")
+          .append(puls).append(";")
+          .append(stareEmotionala).append(";")
+          .append(economii).append(";");
+        
+        for (int i = 0; i < contorHobby; i++) {
+            sb.append(hobbyuri[i].getDenumire()).append("|").append(hobbyuri[i].getDurata());
+            if (i < contorHobby - 1) sb.append(",");
+        }
+        if (contorHobby == 0) sb.append("none");
+        
+        return sb.toString();
+    }
+}
+
+
+public class JurnalApp {
+    private static InregistrareZi[] jurnal = new InregistrareZi[100];
+    private static int contorZile = 0;
+    private static final String NUME_FISIER = "jurnal_backup.txt"; 
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+      
+        incarcareDateDinFisier();
+
+        System.out.println("=== JURNAL ACTIVITĂȚI ZILNICE ===");
+        System.out.println("Data Calendaristică Azi: " + LocalDate.now()); 
+
+        int optiune = 0;
+        do {
+            System.out.println("\n--- MENIU ---");
+            System.out.println("1. Adaugă date pentru ASTĂZI");
+            System.out.println("2. Setează Obiectiv (Cronometru)");
+            System.out.println("3. Afișează Istoric");
+            System.out.println("4. Statistică Săptămânală");
+            System.out.println("5. Caută după Stare Emoțională");
+            System.out.println("0. Ieșire");
+            System.out.print("Comanda ta: ");
+            
+            try {
+                optiune = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Eroare: Introdu o cifră validă!");
+                continue;
+            }
+
+            switch (optiune) {
+                case 1: adaugaZiNoua(sc); break;
+                case 2: startObiectiv(sc); break;
+                case 3: afisareIstoric(); break;
+                case 4: generareRaportMatrice(); break;
+                case 5: cautaDupaStare(sc); break;
+                case 0: 
+                    salvareDateInFisier(); 
+                    System.out.println("La revedere!");
+                    break;
+                default: System.out.println("Opțiune invalidă.");
+            }
+        } while (optiune != 0);
+        
+        sc.close();
+    }
+
+    private static void adaugaZiNoua(Scanner sc) {
+        try {
+            String dataAzi = LocalDate.now().toString(); 
+            
+            System.out.print("Pași parcurși azi: ");
+            int pasi = Integer.parseInt(sc.nextLine());
+            if (pasi < 0) throw new ValoareInvalidaException("Pașii nu pot fi negativi!");
+
+            System.out.print("Puls mediu (bpm): ");
+            int puls = Integer.parseInt(sc.nextLine());
+            if (puls < 30 || puls > 250) throw new ValoareInvalidaException("Puls incorect!");
+
+            System.out.print("Stare emoțională: ");
+            String stare = sc.nextLine();
+
+            System.out.print("Economii adăugate azi (RON): ");
+            double eco = Double.parseDouble(sc.nextLine());
+
+            InregistrareZi zi = new InregistrareZi(dataAzi, pasi, puls, stare, eco);
+
+            System.out.println("--- Adăugare Hobby-uri ---");
+            while (true) {
+                System.out.print("Ai avut un hobby azi? (da/nu): ");
+                String rasp = sc.nextLine();
+                if (rasp.equalsIgnoreCase("nu")) break;
+
+                System.out.print("Nume Hobby: ");
+                String numeHobby = sc.nextLine();
+                System.out.print("Durată (min): ");
+                int min = Integer.parseInt(sc.nextLine());
+                
+                zi.adaugaHobby(new Hobby(numeHobby, min));
+                System.out.println("-> Hobby salvat.");
+            }
+
+            if (contorZile < jurnal.length) {
+                jurnal[contorZile] = zi;
+                contorZile++;
+                System.out.println("Date înregistrate!");
+                salvareDateInFisier(); 
+            } else {
+                System.out.println("Memoria este plină!");
+            }
+
+        } catch (ValoareInvalidaException e) {
+            System.out.println("EROARE VALIDARE: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("EROARE: Introdu numere unde este cazul!");
+        }
+    }
+
+    private static void startObiectiv(Scanner sc) {
+        System.out.print("Descriere obiectiv: ");
+        String scop = sc.nextLine();
+        System.out.print("Timp până la deadline (secunde): ");
+        try {
+            int sec = Integer.parseInt(sc.nextLine());
+            DeadlineObiectiv t = new DeadlineObiectiv(scop, sec);
+            t.start(); 
+        } catch (Exception e) {
+            System.out.println("Timp invalid.");
+        }
+    }
+
+    private static void generareRaportMatrice() {
+        System.out.println("\n--- STATISTICĂ SĂPTĂMÂNALĂ ---");
+        if (contorZile < 7) {
+            System.out.println("Nu ai suficiente date (minim 7 zile).");
+            return;
+        }
+
+        int[][] statistica = new int[7][2];
+        int startIdx = contorZile - 7; 
+
+        for (int i = 0; i < 7; i++) {
+            statistica[i][0] = jurnal[startIdx + i].getPasi();
+            statistica[i][1] = jurnal[startIdx + i].getPuls();
+        }
+
+        System.out.println("ZI | PAȘI  | PULS");
+        long totalPasi = 0;
+        long totalPuls = 0;
+
+        for (int i = 0; i < 7; i++) {
+            System.out.println(" " + (i + 1) + " | " + statistica[i][0] + " | " + statistica[i][1]);
+            totalPasi += statistica[i][0];
+            totalPuls += statistica[i][1];
+        }
+        System.out.println("----------------");
+        System.out.println("MEDIE PAȘI: " + (totalPasi / 7));
+        System.out.println("MEDIE PULS: " + (totalPuls / 7));
+    }
+
+    private static void cautaDupaStare(Scanner sc) {
+        System.out.print("Ce stare cauți: ");
+        String tinta = sc.nextLine();
+        boolean gasit = false;
+
+        for (int i = 0; i < contorZile; i++) {
+            if (jurnal[i].getStare().equalsIgnoreCase(tinta)) {
+                jurnal[i].afisareDetalii();
+                gasit = true;
+            }
+        }
+        if (!gasit) System.out.println("Nu s-a găsit.");
+    }
+
+    private static void afisareIstoric() {
+        if (contorZile == 0) {
+            System.out.println("Istoric gol.");
+        } else {
+            for (int i = 0; i < contorZile; i++) {
+                jurnal[i].afisareDetalii();
+            }
+        }
+    }
+    
+    private static void salvareDateInFisier() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(NUME_FISIER))) {
+            for (int i = 0; i < contorZile; i++) {
+                bw.write(jurnal[i].toFileString());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Eroare salvare: " + e.getMessage());
+        }
+    }
+
+    private static void incarcareDateDinFisier() {
+        File f = new File(NUME_FISIER);
+        if (!f.exists()) return; 
+
+        try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+            String linie;
+            contorZile = 0;
+            
+            while ((linie = br.readLine()) != null) {
+                String[] parti = linie.split(";");
+                if (parti.length >= 6) {
+                    InregistrareZi zi = new InregistrareZi(
+                        parti[0], 
+                        Integer.parseInt(parti[1]), 
+                        Integer.parseInt(parti[2]), 
+                        parti[3], 
+                        Double.parseDouble(parti[4])
+                    );
+                    
+                    String hobbyStr = parti[5];
+                    if (!hobbyStr.equals("none")) {
+                        String[] hList = hobbyStr.split(",");
+                        for (String hItem : hList) {
+                            String[] det = hItem.split("\\|");
+                            if (det.length == 2) {
+                                zi.adaugaHobby(new Hobby(det[0], Integer.parseInt(det[1])));
+                            }
+                        }
+                    }
+                    jurnal[contorZile++] = zi;
+                }
+            }
+            System.out.println("[Sistem] S-au încărcat " + contorZile + " înregistrări din backup.");
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Eroare citire backup: " + e.getMessage());
+        }
+    }
+}
