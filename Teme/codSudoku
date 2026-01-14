@@ -1,0 +1,99 @@
+public class Main {
+    
+    
+    public static void afiseazaTabla(int[][] tabla) {
+        for (int i = 0; i < 9; i++) {
+            if (i % 3 == 0 && i != 0) {
+                System.out.println("------+-------+------");
+            }
+            for (int j = 0; j < 9; j++) {
+                if (j % 3 == 0 && j != 0) {
+                    System.out.print("| ");
+                }
+                System.out.print(tabla[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+    
+    
+    public static boolean esteValid(int[][] tabla, int rand, int coloana, int numar) {
+        
+        for (int i = 0; i < 9; i++) {
+            if (tabla[rand][i] == numar) {
+                return false;
+            }
+        }
+        
+        
+        for (int i = 0; i < 9; i++) {
+            if (tabla[i][coloana] == numar) {
+                return false;
+            }
+        }
+        
+        
+        int startRand = rand - rand % 3;
+        int startColoana = coloana - coloana % 3;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (tabla[i + startRand][j + startColoana] == numar) {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
+    }
+    
+    
+    public static boolean rezolva(int[][] tabla) {
+        for (int rand = 0; rand < 9; rand++) {
+            for (int coloana = 0; coloana < 9; coloana++) {
+                
+                if (tabla[rand][coloana] == 0) {
+                    
+                    for (int numar = 1; numar <= 9; numar++) {
+                        if (esteValid(tabla, rand, coloana, numar)) {
+                            tabla[rand][coloana] = numar;
+                            
+                            
+                            if (rezolva(tabla)) {
+                                return true;
+                            }
+                            
+                            
+                            tabla[rand][coloana] = 0;
+                        }
+                    }
+                    return false; 
+                }
+            }
+        }
+        return true; 
+    }
+    
+    public static void main(String[] args) {
+        int[][] tabla = {
+            {5, 3, 0, 0, 7, 0, 0, 0, 0},
+            {6, 0, 0, 1, 9, 5, 0, 0, 0},
+            {0, 9, 8, 0, 0, 0, 0, 6, 0},
+            {8, 0, 0, 0, 6, 0, 0, 0, 3},
+            {4, 0, 0, 8, 0, 3, 0, 0, 1},
+            {7, 0, 0, 0, 2, 0, 0, 0, 6},
+            {0, 6, 0, 0, 0, 0, 2, 8, 0},
+            {0, 0, 0, 4, 1, 9, 0, 0, 5},
+            {0, 0, 0, 0, 8, 0, 0, 7, 9}
+        };
+        
+        System.out.println("Tabla inițială:");
+        afiseazaTabla(tabla);
+        
+        if (rezolva(tabla)) {
+            System.out.println("\nSoluția:");
+            afiseazaTabla(tabla);
+        } else {
+            System.out.println("\nNu există soluție!");
+        }
+    }
+}
