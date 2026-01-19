@@ -1,0 +1,181 @@
+package proiect;
+	
+	import java.awt.*;
+	import java.awt.event.*;
+	import java.util.ArrayList;
+	
+	
+	public class Proiect extends Frame implements ActionListener {
+	    TextField txtId, txtNume, txtPret, txtCantitate;
+	    Label lblId, lblNume, lblPret, lblCantitate;
+	    Button btnAdauga, btnVizualizeaza, btnVinde, btnSterge, btnIesire;
+	    TextArea zonaAfisare;
+	    
+	    GestionareMagazin administrator = new GestionareMagazin();
+	
+	    public Proiect() {
+	        setTitle("Aplicatie Gestionare Magazin");
+	        setSize(900, 500);
+	        setLayout(new FlowLayout());
+	        setBackground(new Color(240, 240, 240));
+	
+	        lblId = new Label("ID Produs:");
+	        txtId = new TextField(5);
+	        lblNume = new Label("Nume:");
+	        txtNume = new TextField(10);
+	        lblPret = new Label("Pret:");
+	        txtPret = new TextField(5);
+	        lblCantitate = new Label("Cantitate:");
+	        txtCantitate = new TextField(5);
+	
+	        btnAdauga = new Button("Adauga");
+	        btnVizualizeaza = new Button("Vezi Stoc");
+	        btnVinde = new Button("Vinde");
+	        btnSterge = new Button("Sterge");
+	        btnIesire = new Button("Iesire");
+	
+	        zonaAfisare = new TextArea(15, 75);
+	        zonaAfisare.setEditable(false);
+	        zonaAfisare.setFont(new Font("Monospaced", Font.PLAIN, 12));
+	
+	        add(lblId); add(txtId);
+	        add(lblNume); add(txtNume);
+	        add(lblPret); add(txtPret);
+	        add(lblCantitate); add(txtCantitate);
+	        
+	        add(btnAdauga);
+	        add(btnVizualizeaza);
+	        add(btnVinde);
+	        add(btnSterge);
+	        add(btnIesire);
+	        add(zonaAfisare);
+	
+	        btnAdauga.addActionListener(this);
+	        btnVizualizeaza.addActionListener(this);
+	        btnVinde.addActionListener(this);
+	        btnSterge.addActionListener(this);
+	        btnIesire.addActionListener(this);
+	
+	        addWindowListener(new WindowAdapter() {
+	            public void windowClosing(WindowEvent we) { System.exit(0); }
+	        });
+	
+	        setVisible(true);
+	    }
+	
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+	        try {
+	            if (e.getSource() == btnAdauga) {
+	                int id = Integer.parseInt(txtId.getText());
+	                
+	                
+	                if (administrator.gasesteProdus(id) != null) {
+	                    zonaAfisare.append("EROARE: ID-ul " + id + " există deja! Folosește un ID unic.\n");
+	                } else {
+	                    String nume = txtNume.getText();
+	                    double pret = Double.parseDouble(txtPret.getText());
+	                    int cantitate = Integer.parseInt(txtCantitate.getText());
+	
+	                    administrator.adaugaProdus(new Produs(id, nume, pret, cantitate));
+	                    zonaAfisare.append("SUCCES: Produsul [" + nume + "] a fost adăugat.\n");
+	                    curataCampuri();
+	                }
+	
+	            } else if (e.getSource() == btnVizualizeaza) {
+	                zonaAfisare.setText("--- LISTĂ STOC CURENT ---\n");
+	                ArrayList<Produs> lista = administrator.obtineProdusele();
+	                if (lista.isEmpty()) {
+	                    zonaAfisare.append("Stocul este gol.\n");
+	                } else {
+	                    for (Produs p : lista) {
+	                        zonaAfisare.append(p.toString() + "\n");
+	                    }
+	                }
+	
+	            } else if (e.getSource() == btnVinde) {
+	                int id = Integer.parseInt(txtId.getText());
+	                int cantitateDeVandut = Integer.parseInt(txtCantitate.getText());
+	                if (administrator.vindeProdus(id, cantitateDeVandut)) {
+	                    zonaAfisare.append("VÂNZARE: ID " + id + " - Cantitate redusă.\n");
+	                } else {
+	                    zonaAfisare.append("EROARE: Stoc insuficient sau ID invalid!\n");
+	                }
+	
+	            } else if (e.getSource() == btnSterge) {
+	                int id = Integer.parseInt(txtId.getText());
+	                if (administrator.stergeProdus(id)) {
+	                    zonaAfisare.append("ȘTERGERE: Produsul cu ID " + id + " a fost eliminat.\n");
+	                } else {
+	                    zonaAfisare.append("EROARE: ID-ul " + id + " nu a fost găsit.\n");
+	                }
+	
+	            } else if (e.getSource() == btnIesire) {
+	                System.exit(0);
+	            }
+	        } catch (NumberFormatException ex) {
+	            zonaAfisare.append("EROARE: Introdu date valide în câmpuri!\n");
+	        }
+	    }
+	
+	    private void curataCampuri() {
+	        txtId.setText(""); txtNume.setText(""); txtPret.setText(""); txtCantitate.setText("");
+	    }
+	
+	    public static void main(String[] args) { new Proiect(); }
+	}
+	
+	class GestionareMagazin {
+	    private ArrayList<Produs> inventar = new ArrayList<>();
+	
+	    public void adaugaProdus(Produs p) { inventar.add(p); }
+	
+	    public boolean stergeProdus(int id) {
+	        for (int i = 0; i < inventar.size(); i++) {
+	            if (inventar.get(i).obtineId() == id) {
+	                inventar.remove(i);
+	                return true;
+	            }
+	        }
+	        return false;
+	    }
+	
+	    public ArrayList<Produs> obtineProdusele() { return inventar; }
+	
+	    public Produs gasesteProdus(int id) {
+	        for (Produs p : inventar) {
+	            if (p.obtineId() == id) return p;
+	        }
+	        return null;
+	    }
+	
+	    public boolean vindeProdus(int id, int suma) {
+	        Produs p = gasesteProdus(id);
+	        if (p != null && p.obtineCantitate() >= suma) {
+	            p.seteazaCantitate(p.obtineCantitate() - suma);
+	            return true;
+	        }
+	        return false;
+	    }
+	}
+	
+	
+	class Produs {
+	    private int id;
+	    private String nume;
+	    private double pret;
+	    private int cantitate;
+	
+	    public Produs(int id, String nume, double pret, int cantitate) {
+	        this.id = id; this.nume = nume; this.pret = pret; this.cantitate = cantitate;
+	    }
+	
+	    public int obtineId() { return id; }
+	    public int obtineCantitate() { return cantitate; }
+	    public void seteazaCantitate(int cantitate) { this.cantitate = cantitate; }
+	
+	    @Override
+	    public String toString() {
+	        return "ID: " + id + " | Nume: " + nume + " | Pret: " + pret + " lei | Stoc: " + cantitate;
+	    }
+	}
