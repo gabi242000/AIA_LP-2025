@@ -1,0 +1,226 @@
+package proiect2;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class FilmRatingGUI extends JFrame {
+
+    // ===== CLASA FILM =====
+    static class Film {
+        private String titlu;
+        private List<Integer> note = new ArrayList<>();
+
+        public Film(String titlu) {
+            this.titlu = titlu;
+        }
+
+        public String getTitlu() {
+            return titlu;
+        }
+
+        public void adaugaNota(int nota) {
+            note.add(nota);
+        }
+
+        public double getMedia() {
+            if (note.isEmpty()) return 0;
+            double suma = 0;
+            for (int n : note) suma += n;
+            return suma / note.size();
+        }
+
+        @Override
+        public String toString() {
+            return titlu + " - Medie: " + String.format("%.2f", getMedia());
+        }
+    }
+
+    // ===== DATE =====
+    private List<Film> filme = new ArrayList<>();
+
+    // ===== COMPONENTE =====
+    private JTextField txtTitlu, txtNota;
+    private JTextArea zonaAfisare;
+
+    // Culoare mov
+    private final Color MOV = new Color(138, 43, 226);
+
+    // ===== CONSTRUCTOR =====
+    public FilmRatingGUI() {
+        setTitle("Sistem de Notare Filme");
+        setSize(700, 500);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        initFilmeInitiale();
+        initInterfata();
+
+        setVisible(true);
+    }
+
+    private void initFilmeInitiale() {
+        Film f1 = new Film("Inception");
+        f1.adaugaNota(9);
+        f1.adaugaNota(10);
+        f1.adaugaNota(9);
+
+        Film f2 = new Film("Titanic");
+        f2.adaugaNota(8);
+        f2.adaugaNota(9);
+        f2.adaugaNota(8);
+
+        Film f3 = new Film("Fast & Furious");
+        f3.adaugaNota(6);
+        f3.adaugaNota(7);
+        f3.adaugaNota(5);
+
+        filme.add(f1);
+        filme.add(f2);
+        filme.add(f3);
+    }
+
+    // ===== INTERFATA =====
+    private void initInterfata() {
+        JPanel main = new JPanel(new BorderLayout(5,5));
+
+        // ===== FORMULAR =====
+        JPanel form = new JPanel(new GridLayout(3,2,5,5));
+        form.setBorder(BorderFactory.createTitledBorder("Date film"));
+
+        txtTitlu = new JTextField();
+        txtNota = new JTextField();
+
+        form.add(new JLabel("Titlu film:"));
+        form.add(txtTitlu);
+        form.add(new JLabel("Nota (1-10):"));
+        form.add(txtNota);
+
+        JButton btnAdaugaFilm = creeazaButon("Adauga film");
+        btnAdaugaFilm.addActionListener(e -> adaugaFilm());
+
+        JButton btnAdaugaNota = creeazaButon("Adauga nota");
+        btnAdaugaNota.addActionListener(e -> adaugaNota());
+
+        form.add(btnAdaugaFilm);
+        form.add(btnAdaugaNota);
+
+        // ===== BUTOANE =====
+        JPanel actiuni = new JPanel(new GridLayout(1,3,5,5));
+
+        JButton btnAfiseaza = creeazaButon("Afiseaza filme");
+        btnAfiseaza.addActionListener(e -> afiseazaFilme());
+
+        JButton btnBest = creeazaButon("Cea mai mare medie");
+        btnBest.addActionListener(e -> afiseazaBest());
+
+        JButton btnWorst = creeazaButon("Cea mai mica medie");
+        btnWorst.addActionListener(e -> afiseazaWorst());
+
+        actiuni.add(btnAfiseaza);
+        actiuni.add(btnBest);
+        actiuni.add(btnWorst);
+
+        // ===== ZONA AFISARE =====
+        zonaAfisare = new JTextArea();
+        zonaAfisare.setEditable(false);
+        JScrollPane scroll = new JScrollPane(zonaAfisare);
+
+        main.add(form, BorderLayout.NORTH);
+        main.add(actiuni, BorderLayout.CENTER);
+        main.add(scroll, BorderLayout.SOUTH);
+
+        add(main);
+    }
+
+    // ===== BUTON MOV =====
+    private JButton creeazaButon(String text) {
+        JButton btn = new JButton(text);
+        btn.setBackground(MOV);
+        btn.setForeground(Color.WHITE);
+        btn.setFocusPainted(false);
+        return btn;
+    }
+
+    // ===== LOGICA =====
+    private void adaugaFilm() {
+        String titlu = txtTitlu.getText();
+
+        if (titlu.isEmpty()) {
+            eroare("Introdu titlul filmului!");
+            return;
+        }
+
+        filme.add(new Film(titlu));
+        zonaAfisare.setText("Filmul \"" + titlu + "\" a fost adaugat.");
+    }
+
+    private void adaugaNota() {
+        try {
+            String titlu = txtTitlu.getText();
+            int nota = Integer.parseInt(txtNota.getText());
+
+            if (nota < 1 || nota > 10) throw new Exception();
+
+            Film film = cautaFilm(titlu);
+            if (film == null) {
+                eroare("Filmul nu exista!");
+                return;
+            }
+
+            film.adaugaNota(nota);
+            zonaAfisare.setText("Nota " + nota + " adaugata filmului " + titlu);
+
+        } catch (Exception e) {
+            eroare("Nota invalida!");
+        }
+    }
+
+    private Film cautaFilm(String titlu) {
+        for (Film f : filme) {
+            if (f.getTitlu().equalsIgnoreCase(titlu)) {
+                return f;
+            }
+        }
+        return null;
+    }
+
+    private void afiseazaFilme() {
+        zonaAfisare.setText("");
+        for (Film f : filme) {
+            zonaAfisare.append(f + "\n");
+        }
+    }
+
+    private void afiseazaBest() {
+        if (filme.isEmpty()) return;
+
+        Film best = filme.get(0);
+        for (Film f : filme) {
+            if (f.getMedia() > best.getMedia()) best = f;
+        }
+
+        zonaAfisare.setText("Cel mai bine notat film:\n" + best);
+    }
+
+    private void afiseazaWorst() {
+        if (filme.isEmpty()) return;
+
+        Film worst = filme.get(0);
+        for (Film f : filme) {
+            if (f.getMedia() < worst.getMedia()) worst = f;
+        }
+
+        zonaAfisare.setText("Cel mai prost notat film:\n" + worst);
+    }
+
+    private void eroare(String mesaj) {
+        JOptionPane.showMessageDialog(this, mesaj, "Eroare", JOptionPane.ERROR_MESSAGE);
+    }
+
+    // ===== MAIN =====
+    public static void main(String[] args) {
+        new FilmRatingGUI();
+    }
+}
