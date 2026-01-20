@@ -1,0 +1,181 @@
+package proiect1;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Scanner;
+
+public class CatalogAuto {
+
+    //CLASA INTERNA MASINA
+    static class Masina {
+        private static int contorId = 1;
+
+        private int id;
+        private String marca;
+        private String model;
+        private int anFabricatie;
+        private double pret;
+
+        public Masina(String marca, String model, int anFabricatie, double pret) {
+            this.id = contorId++;
+            this.marca = marca;
+            this.model = model;
+            this.anFabricatie = anFabricatie;
+            this.pret = pret;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getMarca() {
+            return marca;
+        }
+
+        public double getPret() {
+            return pret;
+        }
+
+        public void afiseaza() {
+            System.out.println(
+                    "ID: " + id +
+                    " | Marca: " + marca +
+                    " | Model: " + model +
+                    " | An: " + anFabricatie +
+                    " | Pret: " + pret + " €"
+            );
+        }
+    }
+
+    //DATE PROGRAM
+    private static ArrayList<Masina> catalog = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+
+    // ===== MAIN =====
+    public static void main(String[] args) {
+
+        // Masini initiale
+        catalog.add(new Masina("BMW", "Seria 3", 2020, 22000));
+        catalog.add(new Masina("Audi", "A4", 2019, 21000));
+        catalog.add(new Masina("Dacia", "Duster", 2021, 16000));
+
+        boolean ruleaza = true;
+
+        while (ruleaza) {
+            afiseazaMeniu();
+            int optiune = scanner.nextInt();
+            scanner.nextLine(); // curata buffer
+
+            switch (optiune) {
+                case 1 -> adaugaMasina();
+                case 2 -> afiseazaCatalog();
+                case 3 -> cautaDupaMarca();
+                case 4 -> stergeMasinaDupaId();
+                case 5 -> sorteazaDupaPret();
+                case 6 -> statisticiPret();
+                case 0 -> {
+                    ruleaza = false;
+                    System.out.println("Program inchis.");
+                }
+                default -> System.out.println("Optiune invalida!");
+            }
+        }
+    }
+
+    //MENIU
+    private static void afiseazaMeniu() {
+        System.out.println("\n===== CATALOG AUTO =====");
+        System.out.println("1. Adauga masina");
+        System.out.println("2. Afiseaza catalog");
+        System.out.println("3. Cauta dupa marca");
+        System.out.println("4. Sterge masina dupa ID");
+        System.out.println("5. Sorteaza dupa pret");
+        System.out.println("6. Statistici pret");
+        System.out.println("0. Iesire");
+        System.out.print("Alege optiunea: ");
+    }
+
+    //FUNCTIONALITATI
+    private static void adaugaMasina() {
+        System.out.print("Marca: ");
+        String marca = scanner.nextLine();
+
+        System.out.print("Model: ");
+        String model = scanner.nextLine();
+
+        System.out.print("An fabricatie: ");
+        int an = scanner.nextInt();
+
+        System.out.print("Pret: ");
+        double pret = scanner.nextDouble();
+
+        catalog.add(new Masina(marca, model, an, pret));
+        System.out.println("Masina adaugata cu succes!");
+    }
+
+    private static void afiseazaCatalog() {
+        if (catalog.isEmpty()) {
+            System.out.println("Catalogul este gol.");
+            return;
+        }
+
+        for (Masina m : catalog) {
+            m.afiseaza();
+        }
+    }
+
+    private static void cautaDupaMarca() {
+        System.out.print("Introdu marca: ");
+        String marca = scanner.nextLine();
+
+        boolean gasit = false;
+        for (Masina m : catalog) {
+            if (m.getMarca().equalsIgnoreCase(marca)) {
+                m.afiseaza();
+                gasit = true;
+            }
+        }
+
+        if (!gasit) {
+            System.out.println("Nu s-au gasit masini cu aceasta marca.");
+        }
+    }
+
+    private static void stergeMasinaDupaId() {
+        System.out.print("Introdu ID-ul: ");
+        int id = scanner.nextInt();
+
+        boolean sters = catalog.removeIf(m -> m.getId() == id);
+
+        if (sters) {
+            System.out.println("Masina stearsa cu succes.");
+        } else {
+            System.out.println("Masina cu acest ID nu exista.");
+        }
+    }
+
+    private static void sorteazaDupaPret() {
+        catalog.sort(Comparator.comparingDouble(Masina::getPret));
+        System.out.println("Catalog sortat crescator dupa pret.");
+    }
+
+    private static void statisticiPret() {
+        if (catalog.isEmpty()) {
+            System.out.println("Nu exista masini in catalog.");
+            return;
+        }
+
+        double suma = 0;
+        Masina max = catalog.get(0);
+
+        for (Masina m : catalog) {
+            suma += m.getPret();
+            if (m.getPret() > max.getPret()) {
+                max = m;
+            }
+        }
+
+        System.out.println("Pret mediu: " + (suma / catalog.size()) + " €");
+        System.out.print("Cea mai scumpa masina: ");
+        max.afiseaza();
+    }
+}
