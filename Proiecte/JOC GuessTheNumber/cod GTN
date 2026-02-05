@@ -1,0 +1,98 @@
+package proiect;
+
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+
+public class JOCGUESSTHENUMBER extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField txtarea;
+	private static int numaraleatoriu = (int)(Math.random() * 100); 
+	private int incercari = 0;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JOCGUESSTHENUMBER frame = new JOCGUESSTHENUMBER();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public JOCGUESSTHENUMBER() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Robi\\Downloads\\jocul.png"));
+		setTitle("Joc GuessTheNumber");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 381, 406);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 255, 0));
+		contentPane.setForeground(new Color(0, 255, 0));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lbl = new JLabel("");
+		lbl.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 15));
+		lbl.setBounds(55, 206, 263, 70);
+		contentPane.add(lbl);
+		
+		JButton btn = new JButton("Alege numărul");
+		btn.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+		        	incercari++;
+		            int x = Integer.parseInt(txtarea.getText());
+
+		            if (x > numaraleatoriu) {
+		                lbl.setText("Prea mare!");
+		            } else if (x < numaraleatoriu) {
+		                lbl.setText("Prea mic!");
+		            } else {
+		                lbl.setText("Corect! Ai ghicit din " + incercari + " încercări!");    
+		                incercari = 0;
+		                numaraleatoriu = (int)(Math.random() * 100);
+		                JOptionPane.showMessageDialog(null, "Ai ghicit! Ghiceste alt numar acum.");
+		                txtarea.setText("");
+		            }
+		        } catch (NumberFormatException ex) {
+		            JOptionPane.showMessageDialog(null, "Scrie un numar de la 0 la 100 te rog!", "Eroare", JOptionPane.ERROR_MESSAGE);
+		        }
+		    }
+		});
+		btn.setBounds(119, 134, 125, 20);
+		contentPane.add(btn);
+		contentPane.getRootPane().setDefaultButton(btn);
+		txtarea = new JTextField();
+		txtarea.setHorizontalAlignment(SwingConstants.CENTER);
+		txtarea.setBounds(112, 40, 132, 70);
+		contentPane.add(txtarea);
+		txtarea.setColumns(10);
+
+	}
+
+}
